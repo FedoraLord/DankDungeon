@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dank Dungeon", "Dank Dungeon.csproj", "{67621A97-655B-8CBA-DE70-F93AD5712184}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dank Dungeon.Editor", "Dank Dungeon.Editor.csproj", "{BD20D593-8DEC-4E4B-1E08-60DFDA79247F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67621A97-655B-8CBA-DE70-F93AD5712184}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67621A97-655B-8CBA-DE70-F93AD5712184}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67621A97-655B-8CBA-DE70-F93AD5712184}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67621A97-655B-8CBA-DE70-F93AD5712184}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD20D593-8DEC-4E4B-1E08-60DFDA79247F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD20D593-8DEC-4E4B-1E08-60DFDA79247F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD20D593-8DEC-4E4B-1E08-60DFDA79247F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD20D593-8DEC-4E4B-1E08-60DFDA79247F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
