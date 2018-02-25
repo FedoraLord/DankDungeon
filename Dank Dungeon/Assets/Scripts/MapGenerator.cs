@@ -1,33 +1,49 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Tilemaps;
 
 public class MapGenerator : MonoBehaviour {
 
+    [Header("Tilemaps")]
     public GridLayout tileMapGrid;
-
     public Tilemap staticObstacles;
     public Tilemap dynamicObstacles;
     public Tilemap floorTiles;
 
-    public Transform parentStatic;
-    public Transform parentDynamic;
-    public Transform navFloor;
+    [Header("Special Tiles")]
+    public Tile pitTile;
+    public Tile lavaTile;
 
-    public GameObject prefabStatic;
+    [Header("Parents")]
+    public Transform staticParent;
+    public Transform dynamicParent;
+    public Transform floorParent;
+
+    [Header("Prefabs")]
+    public GameObject staticPrefab;
+    public GameObject pitPrefab;
+    public GameObject lavaPrefab;
 
     void Start () {
         CompressTileMaps();
         ResizeFloor();
-        GenerateStaticObstacles();
+        
+        GenerateSomeShit(staticObstacles, staticPrefab, staticParent, (x => x != null));
+        //GenerateSomeShit(floorTiles, pitPrefab, staticParent, (x => x == pitTile));
+        //GenerateSomeShit(floorTiles, lavaPrefab, staticParent, (x => x == lavaTile));
+
         BakeNavMesh();
     }
 
     private void BakeNavMesh()
     {
-        NavMeshSurface surface = navFloor.GetComponent<NavMeshSurface>();
+        NavMeshSurface surface = floorParent.GetComponent<NavMeshSurface>();
+        var asdf = surface.GetBuildSettings();
         surface.BuildNavMesh();
     }
 
@@ -40,14 +56,14 @@ public class MapGenerator : MonoBehaviour {
     private void ResizeFloor()
     {
         BoundsInt bounds = floorTiles.cellBounds;
-        navFloor.localPosition = new Vector3((float)bounds.size.x / 2 + bounds.position.x, (float)bounds.size.y / 2 + bounds.position.y, 0);
-        navFloor.localScale = new Vector3(bounds.size.x, 1, bounds.size.y);
+        floorParent.localPosition = new Vector3((float)bounds.size.x / 2 + bounds.position.x, (float)bounds.size.y / 2 + bounds.position.y, 0);
+        floorParent.localScale = new Vector3(bounds.size.x, 1, bounds.size.y);
     }
 
-    private void GenerateStaticObstacles()
+    private void GenerateSomeShit(Tilemap mapLayer, GameObject prefab3D, Transform parent, Func<TileBase, bool> tileCheck)
     {
-        BoundsInt bounds = staticObstacles.cellBounds;
-        TileBase[] allTiles = staticObstacles.GetTilesBlock(bounds);
+        BoundsInt bounds = mapLayer.cellBounds;
+        TileBase[] allTiles = mapLayer.GetTilesBlock(bounds);
         int continuousTiles = 0;
 
         for (int y = 0; y < bounds.size.y; y++)
@@ -55,34 +71,31 @@ public class MapGenerator : MonoBehaviour {
             for (int x = 0; x < bounds.size.x; x++)
             {
                 TileBase tile = allTiles[x + y * bounds.size.x];
-                
-                if (tile != null)
+                bool isTileAffected = tileCheck(tile);
+
+                if (isTileAffected)
                 {
                     continuousTiles++;
                 }
-                else if (continuousTiles > 0)
+
+                int trueX = x;
+                if (x == bounds.size.x - 1)
+                    trueX++;
+
+                //if end of continuous tile set OR last x-index of the array
+                if (continuousTiles > 0 && (!isTileAffected || trueX == x + 1))
                 {
-                    Vector3Int mapPosition = new Vector3Int(x - continuousTiles + bounds.x, y + bounds.y, 0);
-                    CreateStaticObstacle(mapPosition, continuousTiles);
+                    Vector3Int mapPosition = new Vector3Int(trueX - continuousTiles + bounds.x, y + bounds.y, 0);
+                    Vector3 position = tileMapGrid.CellToWorld(mapPosition);
+                    Vector3 scale = new Vector3(continuousTiles, 1, 1);
+                    position += new Vector3((float)continuousTiles / 2, 0.5f, -1);
+
+                    GenerateNavObject(prefab3D, parent, position, scale);
+
                     continuousTiles = 0;
                 }
             }
-
-            if (continuousTiles > 0)
-            {
-                Vector3Int mapPosition = new Vector3Int(bounds.size.x + bounds.x - continuousTiles, y + bounds.y, 0);
-                CreateStaticObstacle(mapPosition, continuousTiles);
-                continuousTiles = 0;
-            }
         }
-    }
-
-    private void CreateStaticObstacle(Vector3Int mapPosition, int numTiles)
-    {
-        Vector3 scale = new Vector3(numTiles, 1, 1);
-        Vector3 position = tileMapGrid.CellToWorld(mapPosition);
-        position += new Vector3((float)numTiles / 2, 0.5f, -1);
-        GenerateNavObject(prefabStatic, parentStatic, position, scale);
     }
     
     public void GenerateNavObject(GameObject prefab, Transform parent, Vector3 localPosition, Vector3 localScale)
@@ -91,9 +104,4 @@ public class MapGenerator : MonoBehaviour {
         obj.transform.localPosition = localPosition;
         obj.transform.localScale = localScale;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
