@@ -22,13 +22,14 @@ GameObject:
   - component: {fileID: 33122699727164448}
   - component: {fileID: 65728450439709002}
   - component: {fileID: 23370144557038556}
+  - component: {fileID: 114684888799237532}
   - component: {fileID: 114876584491859568}
   m_Layer: 0
   m_Name: Lava3D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 4
-  m_StaticEditorFlags: 40
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4236161867738166
 Transform:
@@ -96,7 +97,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114876584491859568
+--- !u!114 &114684888799237532
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -111,3 +112,18 @@ MonoBehaviour:
   m_Area: 4
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!114 &114876584491859568
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1299455124601460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: 00000000

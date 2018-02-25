@@ -42,9 +42,11 @@ public class MapGenerator : MonoBehaviour {
 
     private void BakeNavMesh()
     {
-        NavMeshSurface surface = floorParent.GetComponent<NavMeshSurface>();
-        var asdf = surface.GetBuildSettings();
-        surface.BuildNavMesh();
+        NavMeshSurface[] surfaces = floorParent.GetComponents<NavMeshSurface>();
+        foreach (var surface in surfaces)
+        {
+            surface.BuildNavMesh();
+        }
     }
 
     private void CompressTileMaps()

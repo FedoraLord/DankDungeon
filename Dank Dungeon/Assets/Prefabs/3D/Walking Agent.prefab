@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 136635249858396960}
   - component: {fileID: 23907165366462126}
   - component: {fileID: 195527239238422156}
-  - component: {fileID: 114775633469762818}
   m_Layer: 0
   m_Name: Walking Agent
   m_TagString: Untagged
@@ -85,21 +84,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1704894984888036}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114775633469762818
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1704894984888036}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fd8388a5eec1fd40b94d0db0c7d1597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  objectReference: {fileID: 0}
-  navigation: {fileID: 195527239238422156}
-  destination: {fileID: 0}
 --- !u!136 &136635249858396960
 CapsuleCollider:
   m_ObjectHideFlags: 1

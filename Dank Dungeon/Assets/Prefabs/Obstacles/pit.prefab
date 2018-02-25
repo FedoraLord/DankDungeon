@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab3D: {fileID: 1987356942758932, guid: bd77f488e3cdac54dad5abceccc4cfa1, type: 2}
-  parent3D: 0
+  parent3dName: Static Obstacles
   independentMover: 2
 --- !u!212 &212770997503269036
 SpriteRenderer:

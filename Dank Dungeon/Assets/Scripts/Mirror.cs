@@ -5,10 +5,9 @@ using UnityEngine;
 public class Mirror : MonoBehaviour {
 
     public GameObject prefab3D;
-    public Parent3D parent3D;
+    public string parent3dName;
     public MirrorMode independentMover;
-
-    public enum Parent3D { StaticObstacles, DynamicObstacles, EnemyBodies }
+    
     public enum MirrorMode { Object2D, Object3D, DontMirror }
 
     private GameObject mirror3D;
@@ -20,24 +19,9 @@ public class Mirror : MonoBehaviour {
 
     void Start() {
         GameObject obj = GameObject.FindWithTag("Level3D");
-        Transform parent = null;
-        switch (parent3D)
-        {
-            case Parent3D.StaticObstacles:
-                parent = obj.transform.Find("Static Obstacles");
-                break;
-            case Parent3D.DynamicObstacles:
-                parent = obj.transform.Find("Dynamic Obstacles");
-                break;
-            case Parent3D.EnemyBodies:
-                parent = obj.transform.Find("Enemy Bodies");
-                break;
-        }
-
+        Transform parent = obj.transform.Find(parent3dName);
         if (parent == null)
-        {
             parent = obj.transform;
-        }
             
         mirror3D = Instantiate(prefab3D, Coordinates3D(), Quaternion.identity, parent);
         mirror3D.transform.localScale = transform.localScale;

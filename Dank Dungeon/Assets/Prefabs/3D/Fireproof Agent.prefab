@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 136501029684885676}
   - component: {fileID: 23770033764774550}
   - component: {fileID: 195743324967155084}
-  - component: {fileID: 114731622579838578}
   m_Layer: 0
   m_Name: Fireproof Agent
   m_TagString: Untagged
@@ -85,21 +84,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1234598186804674}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114731622579838578
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1234598186804674}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fd8388a5eec1fd40b94d0db0c7d1597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  objectReference: {fileID: 0}
-  navigation: {fileID: 195743324967155084}
-  destination: {fileID: 0}
 --- !u!136 &136501029684885676
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -120,7 +104,7 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1234598186804674}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -334000983
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
