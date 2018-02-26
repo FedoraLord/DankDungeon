@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 3664157343732331346}
   m_Layer: 0
   m_Name: Pit Prefabs
-  m_TagString: Untagged
+  m_TagString: PitPrefabs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 3664157343950321992}
   m_Layer: 0
   m_Name: Lava Prefabs
-  m_TagString: Untagged
+  m_TagString: LavaPrefabs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

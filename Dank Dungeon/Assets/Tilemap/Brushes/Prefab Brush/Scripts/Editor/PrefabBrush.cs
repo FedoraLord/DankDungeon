@@ -13,12 +13,30 @@ namespace UnityEditor
 		public GameObject[] m_Prefabs;
 		public float m_PerlinScale = 0.5f;
 		public int m_Z;
+        //Desired parent - Jeremy K.
+        public string parentTag;
 
 		public override void Paint(GridLayout grid, GameObject brushTarget, Vector3Int position)
 		{
-			// Do not allow editing palettes
+            Paint(grid, brushTarget, position, new Vector3Int(1, 1, 1));
+		}
+
+        //Allow scaling - Jeremy K.
+        public void Paint(GridLayout grid, GameObject brushTarget, Vector3Int position, Vector3Int scale)
+        {
+            // Do not allow editing palettes
 			if (brushTarget.layer == 31)
 				return;
+            
+            //Force to desired parent - Jeremy K.
+            if (!string.IsNullOrEmpty(parentTag))
+            {
+                GameObject parent = GameObject.FindGameObjectWithTag(parentTag);
+                if (parent != null)
+                    brushTarget = parent;
+            }
+
+            BoxErase(grid, brushTarget, new BoundsInt(position, scale));
 
 			int index = Mathf.Clamp(Mathf.FloorToInt(GetPerlinValue(position, m_PerlinScale, k_PerlinOffset)*m_Prefabs.Length), 0, m_Prefabs.Length - 1);
 			GameObject prefab = m_Prefabs[index];
@@ -27,15 +45,41 @@ namespace UnityEditor
 			if (instance != null)
 			{
 				instance.transform.SetParent(brushTarget.transform);
-				instance.transform.position = grid.LocalToWorld(grid.CellToLocalInterpolated(new Vector3Int(position.x, position.y, m_Z) + new Vector3(.5f, .5f, .5f)));
+				instance.transform.position = grid.LocalToWorld(grid.CellToLocalInterpolated(new Vector3Int(position.x, position.y, m_Z) + new Vector3(.5f * scale.x, .5f * scale.y, .5f * scale.z)));
+                instance.transform.localScale = scale;
 			}
-		}
+        }
 
-		public override void Erase(GridLayout grid, GameObject brushTarget, Vector3Int position)
+        public GameObject GetParent(GameObject defaultParent)
+        {
+            if (!string.IsNullOrEmpty(parentTag))
+            {
+                GameObject desiredParent = GameObject.FindGameObjectWithTag(parentTag);
+                if (desiredParent != null)
+                    return desiredParent;
+            }
+            return defaultParent;
+        }
+
+        //Scale instead of drawing multiple - Jeremy K.
+        public override void BoxFill(GridLayout gridLayout, GameObject brushTarget, BoundsInt position)
+        {
+            Paint(gridLayout, brushTarget, position.position, position.size);
+        }
+
+        public override void BoxErase(GridLayout gridLayout, GameObject brushTarget, BoundsInt position)
+        {
+            brushTarget = GetParent(brushTarget);
+            base.BoxErase(gridLayout, brushTarget, position);
+        }
+
+        public override void Erase(GridLayout grid, GameObject brushTarget, Vector3Int position)
 		{
 			// Do not allow editing palettes
 			if (brushTarget.layer == 31)
 				return;
+
+            brushTarget = GetParent(brushTarget);
 
 			Transform erased = GetObjectInCell(grid, brushTarget.transform, new Vector3Int(position.x, position.y, m_Z));
 			if (erased != null)

@@ -15,10 +15,6 @@ public class MapGenerator : MonoBehaviour {
     public Tilemap dynamicObstacles;
     public Tilemap floorTiles;
 
-    [Header("Special Tiles")]
-    public Tile pitTile;
-    public Tile lavaTile;
-
     [Header("Parents")]
     public Transform staticParent;
     public Transform dynamicParent;
@@ -26,8 +22,6 @@ public class MapGenerator : MonoBehaviour {
 
     [Header("Prefabs")]
     public GameObject staticPrefab;
-    public GameObject pitPrefab;
-    public GameObject lavaPrefab;
 
     void Start () {
         CompressTileMaps();

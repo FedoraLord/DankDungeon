@@ -68,6 +68,8 @@ GameObject:
   - component: {fileID: 65620622468666356}
   - component: {fileID: 23533709227373400}
   - component: {fileID: 114376223910064770}
+  - component: {fileID: 114965251894870092}
+  - component: {fileID: 114762528410183792}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -228,15 +230,11 @@ MonoBehaviour:
   staticObstacles: {fileID: 0}
   dynamicObstacles: {fileID: 0}
   floorTiles: {fileID: 0}
-  pitTile: {fileID: 11400000, guid: 1e965897d1436604f8a5d4a2be0f28d1, type: 2}
-  lavaTile: {fileID: 11400000, guid: d63c31c884c7bc54f8799661c26c39fc, type: 2}
   staticParent: {fileID: 4934316193312074}
   dynamicParent: {fileID: 4279700655633714}
   floorParent: {fileID: 4881228671603906}
   staticPrefab: {fileID: 1919194645889864, guid: 8fcf1007f4038a74ab330d8abdc62674,
     type: 2}
-  pitPrefab: {fileID: 1987356942758932, guid: bd77f488e3cdac54dad5abceccc4cfa1, type: 2}
-  lavaPrefab: {fileID: 1299455124601460, guid: 1ba0736f00001c4429277240562f8dd9, type: 2}
 --- !u!114 &114376223910064770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -249,6 +247,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.083333336
+  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!114 &114762528410183792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1813221925500372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -334000983
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.083333336
+  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!114 &114965251894870092
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1813221925500372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -1372625422
   m_CollectObjects: 0
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 2, z: 0}
