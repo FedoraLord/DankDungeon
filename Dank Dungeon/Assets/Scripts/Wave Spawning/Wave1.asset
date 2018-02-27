@@ -11,7 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1f150c5d566b54eb7912cd674bb1f9, type: 3}
   m_Name: Wave1
   m_EditorClassIdentifier: 
+  registeredEnemies: {fileID: 11400000, guid: 49dee6f327345de4abea01370c13eceb, type: 2}
   commandQueue:
-  - index: 0
-    n: 0
-    commandIndex: 0
+  - n: 5
+    type: 1
+  - n: 1
+    type: 0
+  - n: 5
+    type: 0
+  spawnRate: 0.5
