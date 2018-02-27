@@ -89,8 +89,9 @@ GameObject:
   - component: {fileID: 4719718832567844}
   - component: {fileID: 8195094281598226248}
   - component: {fileID: 3664157345966546482}
-  - component: {fileID: 50139031780925136}
+  - component: {fileID: 2113883505992220324}
   - component: {fileID: 66605738503156898}
+  - component: {fileID: 50139031780925136}
   m_Layer: 0
   m_Name: Static Obstacles
   m_TagString: Untagged
@@ -235,7 +236,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1601279652042428}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -254,7 +255,7 @@ CompositeCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1601279652042428}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -264,10 +265,49 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 2113883505992220324}
+    m_ColliderPaths:
+    - - X: 40000000
+        Y: 60000000
+      - X: -40000000
+        Y: 60000000
+      - X: -40000000
+        Y: 40000000
+      - X: 40000000
+        Y: 40000000
+    - - X: 40000000
+        Y: -50000000
+      - X: -40000000
+        Y: -50000000
+      - X: -40000000
+        Y: -60000000
+      - X: 40000000
+        Y: -60000000
   m_CompositePaths:
-    m_Paths: []
+    m_Paths:
+    - - {x: 4, y: 6}
+      - {x: -4, y: 6}
+      - {x: -4, y: 4}
+      - {x: 4, y: 4}
+    - - {x: 4, y: -5}
+      - {x: -4, y: -5}
+      - {x: -4, y: -6}
+      - {x: 4, y: -6}
   m_VertexDistance: 0.0005
+--- !u!19719996 &2113883505992220324
+TilemapCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1601279652042428}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 1
+  m_Offset: {x: 0, y: 0}
 --- !u!156049354 &2569400266200933426
 Grid:
   m_ObjectHideFlags: 1
