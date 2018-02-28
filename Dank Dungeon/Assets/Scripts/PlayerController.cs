@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    public float speed = 10;
+
     private Rigidbody2D rb;
-    private float speed = 10;
+    private Transform lastRoom;
 
 	// Use this for initialization
 	void Start () {
@@ -14,29 +16,43 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.anyKey)
-        {
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                rb.velocity = new Vector2(0, 1) * speed;
-            }
-            else if (Input.GetKeyDown(KeyCode.A))
-            {
-                rb.velocity = new Vector2(-1, 0) * speed;
-            }
-            else if (Input.GetKeyDown(KeyCode.S))
-            {
-                rb.velocity = new Vector2(0, -1) * speed;
-            }
-            else if (Input.GetKeyDown(KeyCode.D))
-            {
-                rb.velocity = new Vector2(1, 0) * speed;
-            }
-        }
-        else
-        {
-            rb.velocity = new Vector2();
-        }
+        MovePlayer();
 		
+    }
+
+    private void MovePlayer()
+    {
+        Vector3 velocity = new Vector3();
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            velocity += transform.up;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            velocity += -transform.right;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            velocity += -transform.up;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            velocity += transform.right;
+        }
+
+        if (velocity.magnitude > 0)
+        {
+            velocity = velocity.normalized * speed;
+        }
+        rb.velocity = velocity;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Room"))
+        {
+            lastRoom = collision.transform;
+        }
     }
 }

@@ -40,8 +40,8 @@ MonoBehaviour:
     y: 385
     width: 413
     height: 346
-  m_MinSize: {x: 240, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 244, y: 221}
+  m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_MinSize: {x: 244, y: 442}
   m_MaxSize: {x: 4004, y: 8042}
   vertical: 1
-  controlID: 101
+  controlID: 104
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_MinSize: {x: 753, y: 442}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 1
-  controlID: 99
+  controlID: 102
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 392}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 55
+  controlID: 34
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_MinSize: {x: 753, y: 442}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 100
+  controlID: 103
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -344,9 +344,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -9.165795, y: 0.03665881, z: -0.20152442}
+    m_Target: {x: -3.6084747, y: -0.19491133, z: -0.13761802}
     speed: 2
-    m_Value: {x: -9.165795, y: 0.03665881, z: -0.20152442}
+    m_Value: {x: -3.6084747, y: -0.19491133, z: -0.13761802}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -374,9 +374,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 39.515553
+    m_Target: 32.98227
     speed: 2
-    m_Value: 39.515553
+    m_Value: 32.98227
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -537,9 +537,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 7edffeff
-    m_LastClickedID: -73858
-    m_ExpandedIDs: 30a5ffff6cf7ffffbef7ffff00000000
+    m_SelectedIDs: 34280000
+    m_LastClickedID: 0
+    m_ExpandedIDs: 1afbffff26fbffff9efbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -601,19 +601,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scripts
+    - Assets/Prefabs
   m_ViewMode: 1
   m_StartGridSize: 44
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Prefabs
   m_LastFoldersGridSize: 44
   m_LastProjectPath: C:\Users\jerkr\Documents\GitHub\DankDungeon\Dank Dungeon
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 81}
-    m_SelectedIDs: 6c320000
-    m_LastClickedID: 12908
-    m_ExpandedIDs: 0000000052310000063200002832000036320000663200006c32000080320000d4320000c0330000ffffff7f
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 7a2b0000
+    m_LastClickedID: 11130
+    m_ExpandedIDs: 00000000c4270000542a0000b02a0000cc2a00004c2b0000562b00007a2b0000e22c0000582f0000ffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -641,7 +641,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000052310000063200002832000036320000663200006c32000080320000d4320000c0330000
+    m_ExpandedIDs: 00000000c4270000542a0000b02a0000cc2a00004c2b0000562b00007a2b0000e22c0000582f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -750,7 +750,7 @@ MonoBehaviour:
     width: 335
     height: 710
   m_PersistentViewDataDictionary: {fileID: 0}
-  m_ScrollPosition: {x: 0, y: 213.95508}
+  m_ScrollPosition: {x: 0, y: 0}
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: 151

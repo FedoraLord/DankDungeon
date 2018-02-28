@@ -9,6 +9,7 @@ TagManager:
   - PitPrefabs
   - LavaPrefabs
   - RoomPrefabs
+  - Room
   layers:
   - Default
   - TransparentFX
