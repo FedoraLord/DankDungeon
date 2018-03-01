@@ -9,7 +9,9 @@ using System;
 public class Wave : ScriptableObject {
     
     public EnemyList registeredEnemies;
+    [HideInInspector]
     public List<WaveCommand> commandQueue = new List<WaveCommand>();
+    public float timeBeforeWave = 30;
     public float spawnRate = 0.5f;
 
     public Enemy[] Enemies
@@ -28,12 +30,11 @@ public class WaveEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        //base.OnInspectorGUI();
-        //DrawDefaultInspector();
+        DrawDefaultInspector();
 
         Wave wave = (Wave)target;
-        wave.registeredEnemies = (EnemyList)EditorGUILayout.ObjectField("Enemy List Object", wave.registeredEnemies, typeof(EnemyList), true);
-        wave.spawnRate = EditorGUILayout.FloatField("Spawn Rate", wave.spawnRate);
+        //wave.registeredEnemies = (EnemyList)EditorGUILayout.ObjectField("Enemy List Object", wave.registeredEnemies, typeof(EnemyList), true);
+        //wave.spawnRate = EditorGUILayout.FloatField("Spawn Rate", wave.spawnRate);
         EditorGUILayout.Space();
 
         EditorGUILayout.BeginHorizontal();

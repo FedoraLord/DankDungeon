@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
         spawner = GameObject.FindGameObjectWithTag("GameController").GetComponent<WaveSpawner>();
-	}
+        GetComponent<Mirror>().mirror3D.GetComponent<NavMeshAgent>().isStopped = true;
+    }
 
     void Update () {
         MovePlayer();

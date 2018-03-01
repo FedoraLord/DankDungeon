@@ -10,6 +10,7 @@ TagManager:
   - LavaPrefabs
   - RoomPrefabs
   - Room
+  - Barriers
   layers:
   - Default
   - TransparentFX
