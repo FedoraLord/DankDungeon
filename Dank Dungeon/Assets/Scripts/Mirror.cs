@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Mirror : MonoBehaviour {
 
+    [Tooltip("Use this field if you don't want to instantiate a prefab at runtime.")]
+    public GameObject mirror3D;
     public GameObject prefab3D;
     public string parent3dName;
     public MirrorMode independentMover;
     
     public enum MirrorMode { Object2D, Object3D, DontMirror }
-
-    private GameObject mirror3D;
 
     public GameObject GetMirror()
     {
@@ -18,13 +18,16 @@ public class Mirror : MonoBehaviour {
     }
 
     void Start() {
-        GameObject obj = GameObject.FindWithTag("Level3D");
-        Transform parent = obj.transform.Find(parent3dName);
-        if (parent == null)
-            parent = obj.transform;
+        if (mirror3D == null)
+        {
+            GameObject obj = GameObject.FindWithTag("Level3D");
+            Transform parent = obj.transform.Find(parent3dName);
+            if (parent == null)
+                parent = obj.transform;
             
-        mirror3D = Instantiate(prefab3D, Coordinates3D(), Quaternion.identity, parent);
-        mirror3D.transform.localScale = transform.localScale;
+            mirror3D = Instantiate(prefab3D, Coordinates3D(), Quaternion.identity, parent);
+            mirror3D.transform.localScale = transform.localScale;
+        }
 	}
 
     private Vector3 Coordinates3D()
@@ -53,5 +56,10 @@ public class Mirror : MonoBehaviour {
     public void Mirror2DObject()
     {
         independentMover = MirrorMode.Object2D;
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(mirror3D);
     }
 }

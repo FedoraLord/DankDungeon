@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GameController : MonoBehaviour {
 
@@ -23,4 +24,5 @@ public class GameController : MonoBehaviour {
         _level3D = GameObject.FindGameObjectWithTag("Level3D");
         _player3DPosition = GameObject.FindGameObjectWithTag("Player3DPosition").transform;
     }
+    
 }

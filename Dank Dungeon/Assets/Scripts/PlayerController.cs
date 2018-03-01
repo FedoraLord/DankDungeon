@@ -1,23 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour {
+
+    public static Transform lastRoom;
 
     public float speed = 10;
 
     private Rigidbody2D rb;
-    private Transform lastRoom;
-
-	// Use this for initialization
+    private WaveSpawner spawner;
+    
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
+        spawner = GameObject.FindGameObjectWithTag("GameController").GetComponent<WaveSpawner>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    void Update () {
         MovePlayer();
-		
     }
 
     private void MovePlayer()
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour {
         if (collision.CompareTag("Room"))
         {
             lastRoom = collision.transform;
+            spawner.UpdateSpawnPoints();
         }
     }
 }
