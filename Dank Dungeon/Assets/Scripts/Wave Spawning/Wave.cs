@@ -33,8 +33,15 @@ public class WaveEditor : Editor
         DrawDefaultInspector();
 
         Wave wave = (Wave)target;
-        //wave.registeredEnemies = (EnemyList)EditorGUILayout.ObjectField("Enemy List Object", wave.registeredEnemies, typeof(EnemyList), true);
-        //wave.spawnRate = EditorGUILayout.FloatField("Spawn Rate", wave.spawnRate);
+        if (wave.commandQueue.Count > 0)
+        {
+            if (wave.commandQueue.First().type == WaveCommand.CommandType.Utility)// || 
+                //wave.commandQueue.Last().type == WaveCommand.CommandType.Utility)
+            {
+                EditorGUILayout.HelpBox("Utility commands at the beginning of the command queue will be ignored by the spawner.", MessageType.Warning);
+            }
+
+        }
         EditorGUILayout.Space();
 
         EditorGUILayout.BeginHorizontal();
@@ -82,18 +89,17 @@ public class WaveEditor : Editor
             command.type = (WaveCommand.CommandType)EditorGUILayout.EnumPopup(command.type);
 
             EditorGUILayout.BeginHorizontal();
-            command.n = EditorGUILayout.IntField(command.n);
-
-            string[] commandList;
+            command.SetNFromEditorScript(EditorGUILayout.IntField(command.N));
+            
             if (command.type == WaveCommand.CommandType.Spawning)
             {
-                commandList = wave.Enemies.Select(x => x.name).ToArray();
+                command.enemyIndex = EditorGUILayout.Popup(command.enemyIndex, wave.Enemies.Select(x => x.name).ToArray());
             }
             else
             {
-                commandList = WaveSpawner.alternateWaveCommands.ToArray();
+                command.utility = (WaveCommand.UtilityCommand)EditorGUILayout.EnumPopup(command.utility);
             }
-            command.CurrentIndex = EditorGUILayout.Popup(command.CurrentIndex, commandList.ToArray());
+            
             EditorGUILayout.EndHorizontal();
             
             EditorGUILayout.EndVertical();

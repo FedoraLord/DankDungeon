@@ -13,10 +13,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   registeredEnemies: {fileID: 11400000, guid: 49dee6f327345de4abea01370c13eceb, type: 2}
   commandQueue:
+  - n: 0
+    type: 0
+  - n: 0
+    type: 0
+  - n: 0
+    type: 0
+  - n: 0
+    type: 0
   - n: 5
     type: 1
-  - n: 1
-    type: 0
-  - n: 5
-    type: 0
+  timeBeforeWave: 0
   spawnRate: 0.5

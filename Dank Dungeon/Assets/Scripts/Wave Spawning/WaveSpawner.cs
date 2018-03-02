@@ -6,24 +6,28 @@ using UnityEngine.AI;
 
 public class WaveSpawner : MonoBehaviour {
 
-    public static List<string> alternateWaveCommands = new List<string>()
-    {
-        "Wait N Seconds",
-        "Wait Until N Alive"
-    };
+    //TODO make this an enum without fucking up the Wave editor GUI script
+    //public static List<string> alternateWaveCommands = new List<string>()
+    //{
+    //    "Wait N Seconds",
+    //    "Wait Until N Alive"
+    //};
 
     public int maxSpawnPoints;
     public Transform enemyParent;
     public List<Wave> waves;
 
-    private int currentWave;
+    private int waveIndex;
     private NavMeshAgent playerAgent;
-    public List<Transform> currentSpawnPoints;
-    public List<Transform> validSpawnPoints = new List<Transform>();
-    public List<Transform> invalidSpawnPoints = new List<Transform>();
+    private List<Transform> currentSpawnPoints = new List<Transform>();
+    private List<Transform> validSpawnPoints = new List<Transform>();
+    private List<Transform> invalidSpawnPoints = new List<Transform>();
     public List<GameObject> test = new List<GameObject>();
 
     private bool roomsInitialized;
+    private bool wavesStarted;
+    private WaveTimer countdown = new WaveTimer();
+    private List<Enemy> aliveEnemies = new List<Enemy>();
     
 	void Start () {
         playerAgent = GameObject.FindGameObjectWithTag("Player3DPosition").GetComponent<NavMeshAgent>();
@@ -46,6 +50,19 @@ public class WaveSpawner : MonoBehaviour {
         for (int i = 0; i < currentSpawnPoints.Count; i++)
         {
             test[i].transform.position = currentSpawnPoints[i].position;
+        }
+
+        if (countdown.isActive)
+        {
+            if (countdown.stopTime > Time.time)
+            {
+                //TODO Update the timer on screen
+            }
+            else
+            {
+                countdown.Stop();
+                StartCoroutine(ExecuteWaveCommands(waves[waveIndex]));
+            }
         }
     }
 
@@ -116,12 +133,19 @@ public class WaveSpawner : MonoBehaviour {
             });
         }
 
+        //TODO give a minimum spawn distance .Where(x => x.distance > something) but make sure it has at least minSpawnPoints
         pairs = pairs.OrderBy(x => x.distance).ToList();
         currentSpawnPoints = new List<Transform>();
 
         for (int i = 0; i < pairs.Count && i < maxSpawnPoints; i++)
         {
             currentSpawnPoints.Add(pairs[i].point);
+        }
+
+        if (!wavesStarted)
+        {
+            wavesStarted = true;
+            StartWave();
         }
     }
 
@@ -173,5 +197,96 @@ public class WaveSpawner : MonoBehaviour {
             distance += Vector3.Distance(corners[i], corners[i + 1]);
         }
         return distance;
+    }
+
+    private struct WaveTimer
+    {
+        public bool isActive;
+        public float stopTime;
+
+        public void Start(float timeLength) {
+            isActive = true;
+            stopTime = Time.time + timeLength;
+        }
+
+        public void Stop()
+        {
+            isActive = false;
+        }
+    }
+
+    public void StartWave()
+    {
+        if (waves[waveIndex].timeBeforeWave > 0)
+            countdown.Start(waves[waveIndex].timeBeforeWave);
+        else
+            StartCoroutine(ExecuteWaveCommands(waves[waveIndex]));
+    }
+
+    private IEnumerator ExecuteWaveCommands(Wave currentWave)
+    {
+        int firstSpawn = 0;
+        for (int i = 0; i < currentWave.commandQueue.Count; i++)
+        {
+            if (currentWave.commandQueue[i].type == WaveCommand.CommandType.Spawning)
+            {
+                firstSpawn = i;
+                break;
+            }
+        }
+
+        int currentCommand = firstSpawn;
+        
+        //looped code starts here
+        //while (true) {
+        List<WaveCommand> spawnCommands = new List<WaveCommand>();
+        for (; currentCommand < currentWave.commandQueue.Count; currentCommand++)
+        {
+            if (currentWave.commandQueue[currentCommand].type == WaveCommand.CommandType.Spawning)
+                spawnCommands.Add(currentWave.commandQueue[currentCommand]);
+            else
+                break;
+        }
+
+        int maxSpawned = spawnCommands.OrderByDescending(x => x.N).Select(x => x.N).First();
+        for (int n = 0; n < maxSpawned; n++)
+        {
+            for (int i = 0; i < spawnCommands.Count; i++)
+            {
+                if (spawnCommands[i].N > n)
+                {
+                    Spawn(currentWave.Enemies[spawnCommands[i].enemyIndex], currentSpawnPoints[i % currentSpawnPoints.Count].position);
+                }
+            }
+            yield return new WaitForSeconds(currentWave.spawnRate);
+        }
+
+        List<WaveCommand> utilityCommands = new List<WaveCommand>();
+        for (; currentCommand < currentWave.commandQueue.Count; currentCommand++)
+        {
+            if (currentWave.commandQueue[currentCommand].type == WaveCommand.CommandType.Utility)
+                utilityCommands.Add(currentWave.commandQueue[currentCommand]);
+            else
+                break;
+        }
+
+        //TODO this is wrong right now
+        for (int i = 0; i < utilityCommands.Count; i++)
+        {
+            switch (utilityCommands[i].utility)
+            {
+                case WaveCommand.UtilityCommand.WaitNSeconds:
+                    yield return new WaitForSeconds(utilityCommands[i].N);
+                    break;
+                case WaveCommand.UtilityCommand.WaitUntilNAlive:
+                    break;
+            }
+        }
+    }
+
+    private void Spawn(Enemy enemy, Vector3 position)
+    {
+        GameObject spawned = Instantiate(enemy.gameObject, position, Quaternion.identity, enemyParent);
+        aliveEnemies.Add(spawned.GetComponent<Enemy>());
     }
 }

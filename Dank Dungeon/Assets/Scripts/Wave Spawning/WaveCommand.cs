@@ -7,29 +7,20 @@ using System.Linq;
 [System.Serializable]
 public class WaveCommand{
     
-    public int n = 5;
-    //public bool isSpawnCommand;
+    private int n = 5;
+    public int N { get { return n; } }
+    public int enemyIndex;
     public enum CommandType { Spawning, Utility }
     public CommandType type;
+    public enum UtilityCommand { WaitNSeconds, WaitUntilNAlive }
+    public UtilityCommand utility;
 
-    public int CurrentIndex
+    /// <summary>
+    /// FOR THE LOVE OF GOD DO NOT USE THIS METHOD UNLESS YOU ARE WORKING IN THE EDITOR SCRIPT. You will overwrite the Wave scriptable object at runtime.
+    /// </summary>
+    /// <param name="n"></param>
+    public void SetNFromEditorScript(int n)
     {
-        get
-        {
-            if (type == CommandType.Spawning)
-                return enemyIndex;
-            return altIndex;
-        }
-
-        set
-        {
-            if (type == CommandType.Spawning)
-                enemyIndex = value;
-            else
-                altIndex = value;
-        }
+        this.n = n;
     }
-
-    private int enemyIndex;
-    private int altIndex;
 }
