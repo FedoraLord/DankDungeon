@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ed4cbf244ae59645bd237914be6598a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mirror3D: {fileID: 0}
   prefab3D: {fileID: 1299455124601460, guid: 1ba0736f00001c4429277240562f8dd9, type: 2}
   parent3dName: Dynamic Obstacles
   independentMover: 2
@@ -89,12 +90,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300310, guid: 74884482b9b8e924c9063cfe44107c6a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 25c513f104fa3134c84e0c87e9db4560, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5625, y: 0.6875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

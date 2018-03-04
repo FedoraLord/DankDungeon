@@ -6,23 +6,18 @@ using UnityEngine.AI;
 public class GameController : MonoBehaviour {
 
     public static float Z_OffsetLevel3D = 10;
-
-    private static GameObject _level3D;
-    public static GameObject Level3D
-    {
-        get { return _level3D; }        
-    }
-
-    private static Transform _player3DPosition;
-    public static Vector3 Player3DPosition
-    {
-        get { return _player3DPosition.position; }
-    }
+    
+    public static GameController GameCtrl { get; set; }
+    public static WaveSpawner Spawner { get; set; }
+    public static GameObject Level3D { get; set; }
+    public static Transform Player3DTransform { get; set; }    
 
     void Start()
     {
-        _level3D = GameObject.FindGameObjectWithTag("Level3D");
-        _player3DPosition = GameObject.FindGameObjectWithTag("Player3DPosition").transform;
+        GameCtrl = this;
+        Spawner = GetComponent<WaveSpawner>();
+        Level3D = GameObject.FindGameObjectWithTag("Level3D");
+        Player3DTransform = GameObject.FindGameObjectWithTag("Player3DPosition").transform;
     }
     
 }

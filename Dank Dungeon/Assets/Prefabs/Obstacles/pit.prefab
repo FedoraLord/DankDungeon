@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ed4cbf244ae59645bd237914be6598a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mirror3D: {fileID: 0}
   prefab3D: {fileID: 1987356942758932, guid: bd77f488e3cdac54dad5abceccc4cfa1, type: 2}
   parent3dName: Static Obstacles
   independentMover: 2
@@ -89,7 +90,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300086, guid: deb0c23b6c426c0468833677affc17aa, type: 3}
+  m_Sprite: {fileID: 21300134, guid: 95e7ee6f97a128c429b8694765998801, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

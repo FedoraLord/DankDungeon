@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114296902549625112}
   - component: {fileID: 114032167772515214}
   - component: {fileID: 61511131975456524}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ed4cbf244ae59645bd237914be6598a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mirror3D: {fileID: 0}
   prefab3D: {fileID: 1234598186804674, guid: 6c07b5e94c8e9064b845d07ff4784eeb, type: 2}
   parent3dName: Enemy Bodies
   independentMover: 1
@@ -128,7 +129,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300290, guid: 74884482b9b8e924c9063cfe44107c6a, type: 3}
+  m_Sprite: {fileID: 21300002, guid: ebae08cf813ee5a49b2bb8a3a65eec64, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -5,14 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class WaveSpawner : MonoBehaviour {
-
-    //TODO make this an enum without fucking up the Wave editor GUI script
-    //public static List<string> alternateWaveCommands = new List<string>()
-    //{
-    //    "Wait N Seconds",
-    //    "Wait Until N Alive"
-    //};
-
+    
     public int maxSpawnPoints;
     public Transform enemyParent;
     public List<Wave> waves;
@@ -22,6 +15,7 @@ public class WaveSpawner : MonoBehaviour {
     private List<Transform> currentSpawnPoints = new List<Transform>();
     private List<Transform> validSpawnPoints = new List<Transform>();
     private List<Transform> invalidSpawnPoints = new List<Transform>();
+    //TODO remove this
     public List<GameObject> test = new List<GameObject>();
 
     private bool roomsInitialized;
@@ -47,6 +41,7 @@ public class WaveSpawner : MonoBehaviour {
     
     private void Update()
     {
+        //TODO remove this: it's a test for visualizing current spawn points
         for (int i = 0; i < currentSpawnPoints.Count; i++)
         {
             test[i].transform.position = currentSpawnPoints[i].position;
@@ -217,10 +212,13 @@ public class WaveSpawner : MonoBehaviour {
 
     public void StartWave()
     {
-        if (waves[waveIndex].timeBeforeWave > 0)
-            countdown.Start(waves[waveIndex].timeBeforeWave);
-        else
-            StartCoroutine(ExecuteWaveCommands(waves[waveIndex]));
+        if (waveIndex < waves.Count)
+        {
+            if (waves[waveIndex].timeBeforeWave > 0)
+                countdown.Start(waves[waveIndex].timeBeforeWave);
+            else
+                StartCoroutine(ExecuteWaveCommands(waves[waveIndex]));
+        }
     }
 
     private IEnumerator ExecuteWaveCommands(Wave currentWave)
@@ -236,57 +234,72 @@ public class WaveSpawner : MonoBehaviour {
         }
 
         int currentCommand = firstSpawn;
-        
-        //looped code starts here
-        //while (true) {
-        List<WaveCommand> spawnCommands = new List<WaveCommand>();
-        for (; currentCommand < currentWave.commandQueue.Count; currentCommand++)
-        {
-            if (currentWave.commandQueue[currentCommand].type == WaveCommand.CommandType.Spawning)
-                spawnCommands.Add(currentWave.commandQueue[currentCommand]);
-            else
-                break;
-        }
 
-        int maxSpawned = spawnCommands.OrderByDescending(x => x.N).Select(x => x.N).First();
-        for (int n = 0; n < maxSpawned; n++)
+        while (currentCommand < currentWave.commandQueue.Count)
         {
-            for (int i = 0; i < spawnCommands.Count; i++)
+            List<WaveCommand> spawnCommands = new List<WaveCommand>();
+            for (; currentCommand < currentWave.commandQueue.Count; currentCommand++)
             {
-                if (spawnCommands[i].N > n)
+                if (currentWave.commandQueue[currentCommand].type == WaveCommand.CommandType.Spawning)
+                    spawnCommands.Add(currentWave.commandQueue[currentCommand]);
+                else
+                    break;
+            }
+
+            //TODO if there is only one point spawning like 12 more, maybe distribute to the other points so it spawns 4 mobs of 1 command simultaneously. 
+            //However, this will make the wave progress much faster which you may not want
+            //HOWTO make a prior loop that builds a shuffled queue of the monsters, and let the second loop spaw them at each point ever x seconds
+            int maxSpawned = spawnCommands.OrderByDescending(x => x.N).Select(x => x.N).First();
+            for (int n = 0; n < maxSpawned; n++)
+            {
+                for (int i = 0; i < spawnCommands.Count; i++)
                 {
-                    Spawn(currentWave.Enemies[spawnCommands[i].enemyIndex], currentSpawnPoints[i % currentSpawnPoints.Count].position);
+                    if (spawnCommands[i].N > n)
+                    {
+                        Spawn(currentWave.Enemies[spawnCommands[i].enemyIndex], currentSpawnPoints[i % currentSpawnPoints.Count].position);
+                    }
+                }
+                yield return new WaitForSeconds(currentWave.spawnRate);
+            }
+
+            List<WaveCommand> utilityCommands = new List<WaveCommand>();
+            for (; currentCommand < currentWave.commandQueue.Count; currentCommand++)
+            {
+                if (currentWave.commandQueue[currentCommand].type == WaveCommand.CommandType.Utility)
+                    utilityCommands.Add(currentWave.commandQueue[currentCommand]);
+                else
+                    break;
+            }
+
+            for (int i = 0; i < utilityCommands.Count; i++)
+            {
+                switch (utilityCommands[i].utility)
+                {
+                    case WaveCommand.UtilityCommand.WaitNSeconds:
+                        yield return new WaitForSeconds(utilityCommands[i].N);
+                        break;
+                    case WaveCommand.UtilityCommand.WaitUntilNAlive:
+                        while (aliveEnemies.Count > utilityCommands[i].N)
+                        {
+                            yield return new WaitForEndOfFrame();
+                        }
+                        break;
                 }
             }
-            yield return new WaitForSeconds(currentWave.spawnRate);
         }
 
-        List<WaveCommand> utilityCommands = new List<WaveCommand>();
-        for (; currentCommand < currentWave.commandQueue.Count; currentCommand++)
-        {
-            if (currentWave.commandQueue[currentCommand].type == WaveCommand.CommandType.Utility)
-                utilityCommands.Add(currentWave.commandQueue[currentCommand]);
-            else
-                break;
-        }
-
-        //TODO this is wrong right now
-        for (int i = 0; i < utilityCommands.Count; i++)
-        {
-            switch (utilityCommands[i].utility)
-            {
-                case WaveCommand.UtilityCommand.WaitNSeconds:
-                    yield return new WaitForSeconds(utilityCommands[i].N);
-                    break;
-                case WaveCommand.UtilityCommand.WaitUntilNAlive:
-                    break;
-            }
-        }
+        waveIndex++;
+        StartWave();
     }
 
     private void Spawn(Enemy enemy, Vector3 position)
     {
         GameObject spawned = Instantiate(enemy.gameObject, position, Quaternion.identity, enemyParent);
         aliveEnemies.Add(spawned.GetComponent<Enemy>());
+    }
+
+    public void EnemyDied(Enemy dead)
+    {
+        aliveEnemies.Remove(dead);
     }
 }

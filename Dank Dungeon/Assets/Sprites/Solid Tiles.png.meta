@@ -1,0 +1,1137 @@
+fileFormatVersion: 2
+guid: 95e7ee6f97a128c429b8694765998801
+timeCreated: 1520127940
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Solid Tiles_0
+    21300002: Solid Tiles_1
+    21300004: Solid Tiles_2
+    21300006: Solid Tiles_3
+    21300008: Solid Tiles_4
+    21300010: Solid Tiles_5
+    21300012: Solid Tiles_6
+    21300014: Solid Tiles_7
+    21300016: Solid Tiles_8
+    21300018: Solid Tiles_9
+    21300020: Solid Tiles_10
+    21300022: Solid Tiles_11
+    21300024: Solid Tiles_12
+    21300026: Solid Tiles_13
+    21300028: Solid Tiles_14
+    21300030: Solid Tiles_15
+    21300032: Solid Tiles_16
+    21300034: Solid Tiles_17
+    21300036: Solid Tiles_18
+    21300038: Solid Tiles_19
+    21300040: Solid Tiles_20
+    21300042: Solid Tiles_21
+    21300044: Solid Tiles_22
+    21300046: Solid Tiles_23
+    21300048: Solid Tiles_24
+    21300050: Solid Tiles_25
+    21300052: Solid Tiles_26
+    21300054: Solid Tiles_27
+    21300056: Solid Tiles_28
+    21300058: Solid Tiles_29
+    21300060: Solid Tiles_30
+    21300062: Solid Tiles_31
+    21300064: Solid Tiles_32
+    21300066: Solid Tiles_33
+    21300068: Solid Tiles_34
+    21300070: Solid Tiles_35
+    21300072: Solid Tiles_36
+    21300074: Solid Tiles_37
+    21300076: Solid Tiles_38
+    21300078: Solid Tiles_39
+    21300080: Solid Tiles_40
+    21300082: Solid Tiles_41
+    21300084: Solid Tiles_42
+    21300086: Solid Tiles_43
+    21300088: Solid Tiles_44
+    21300090: Solid Tiles_45
+    21300092: Solid Tiles_46
+    21300094: Solid Tiles_47
+    21300096: Solid Tiles_48
+    21300098: Solid Tiles_49
+    21300100: Solid Tiles_50
+    21300102: Solid Tiles_51
+    21300104: Solid Tiles_52
+    21300106: Solid Tiles_53
+    21300108: Solid Tiles_54
+    21300110: Solid Tiles_55
+    21300112: Solid Tiles_56
+    21300114: Solid Tiles_57
+    21300116: Solid Tiles_58
+    21300118: Solid Tiles_59
+    21300120: Solid Tiles_60
+    21300122: Solid Tiles_61
+    21300124: Solid Tiles_62
+    21300126: Solid Tiles_63
+    21300128: Solid Tiles_64
+    21300130: Solid Tiles_65
+    21300132: Solid Tiles_66
+    21300134: Solid Tiles_67
+    21300136: Solid Tiles_68
+    21300138: Solid Tiles_69
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 96
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Solid Tiles_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 870
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_1
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 870
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_2
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 870
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_3
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 870
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_4
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 870
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_5
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 870
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_6
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 870
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_7
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 870
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_8
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 762
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_9
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 762
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_10
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 762
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_11
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 762
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_12
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 762
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_13
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 762
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_14
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 762
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_15
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 762
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_16
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 654
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_17
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 654
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_18
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 654
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_19
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 654
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_20
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 654
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_21
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 654
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_22
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 654
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_23
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 654
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_24
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 546
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_25
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 546
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_26
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 546
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_27
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 546
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_28
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 546
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_29
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 546
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_30
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 546
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_31
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 546
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_32
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 438
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_33
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 438
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_34
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 438
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_35
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 438
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_36
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 438
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_37
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 438
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_38
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 438
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_39
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 438
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_40
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 330
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_41
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 330
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_42
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 330
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_43
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 330
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_44
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 330
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_45
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 330
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_46
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 330
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_47
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 330
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_48
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 222
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_49
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 222
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_50
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 222
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_51
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 222
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_52
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 222
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_53
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 222
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_54
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 222
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_55
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 222
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_56
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 114
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_57
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 114
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_58
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 114
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_59
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 114
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_60
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 114
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_61
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 114
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_62
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 114
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_63
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 114
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_64
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 6
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_65
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 6
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_66
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 6
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_67
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 6
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_68
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 6
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Solid Tiles_69
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 6
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

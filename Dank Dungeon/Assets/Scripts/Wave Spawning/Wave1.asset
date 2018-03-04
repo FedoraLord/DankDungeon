@@ -13,15 +13,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   registeredEnemies: {fileID: 11400000, guid: 49dee6f327345de4abea01370c13eceb, type: 2}
   commandQueue:
-  - n: 0
+  - enemyIndex: 0
     type: 0
-  - n: 0
+    utility: 0
+  - enemyIndex: 1
     type: 0
-  - n: 0
+    utility: 0
+  - enemyIndex: 2
     type: 0
-  - n: 0
-    type: 0
-  - n: 5
+    utility: 0
+  - enemyIndex: 0
     type: 1
-  timeBeforeWave: 0
+    utility: 0
+  - enemyIndex: 0
+    type: 0
+    utility: 0
+  - enemyIndex: 1
+    type: 0
+    utility: 0
+  - enemyIndex: 2
+    type: 0
+    utility: 0
+  - enemyIndex: 0
+    type: 1
+    utility: 1
+  timeBeforeWave: 1
   spawnRate: 0.5

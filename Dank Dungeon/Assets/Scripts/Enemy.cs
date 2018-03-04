@@ -13,11 +13,17 @@ public class Enemy : MonoBehaviour {
         GameObject obj = mirror.GetMirror();
         if (obj != null)
             navigator = obj.GetComponent<NavMeshAgent>();
+        
 	}
 	
 	void Update () {
         if (navigator == null)
             navigator = mirror.GetMirror().GetComponent<NavMeshAgent>();
-        navigator.SetDestination(GameController.Player3DPosition);
+        navigator.SetDestination(GameController.Player3DTransform.position);
 	}
+
+    void OnDestroy()
+    {
+        GameController.Spawner.EnemyDied(this);
+    }
 }
