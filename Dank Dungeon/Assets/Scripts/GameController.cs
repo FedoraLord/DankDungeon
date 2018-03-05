@@ -23,6 +23,19 @@ public class GameController : MonoBehaviour {
         Spawner = GetComponent<WaveSpawner>();
         Level3D = GameObject.FindGameObjectWithTag("Level3D");
         Player3DTransform = GameObject.FindGameObjectWithTag("Player3DPosition").transform;
+
+        StartCoroutine(SetupMap());
+    }
+
+    private IEnumerator SetupMap()
+    {
+        yield return new WaitForFixedUpdate();
+        Level3D.GetComponent<MapGenerator>().BakeNavMeshes();
+
+        yield return Spawner.Setup();
+
+        yield return new WaitForFixedUpdate();
+        Player3DTransform.gameObject.GetComponent<NavMeshAgent>().isStopped = true;
     }
 
     public void RebuildNavMeshes()

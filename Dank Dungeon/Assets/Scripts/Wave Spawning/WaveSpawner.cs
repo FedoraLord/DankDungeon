@@ -25,14 +25,14 @@ public class WaveSpawner : MonoBehaviour {
     
 	void Start () {
         playerAgent = GameObject.FindGameObjectWithTag("Player3DPosition").GetComponent<NavMeshAgent>();
-        StartCoroutine(Setup());
+        //StartCoroutine(Setup());
     }
 
     /// <summary>
     /// Co-routine method that calls InitializeValidRooms after allowing for the NavMesh to be baked.
     /// </summary>
     /// <returns></returns>
-    private IEnumerator Setup()
+    public IEnumerator Setup()
     {
         //wait for navmesh to be baked
         yield return new WaitForEndOfFrame();

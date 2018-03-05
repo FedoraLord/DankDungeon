@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour {
 
     public float speed = 5;
     public float hordeMovementSpeed = 2;
+    public Transform weaponPivot;
+    public Weapon weapon;
     public BoxCollider2D top;
     public BoxCollider2D bottom;
     public BoxCollider2D left;
@@ -19,7 +21,7 @@ public class PlayerController : MonoBehaviour {
     
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
-        GetComponent<Mirror>().mirror3D.GetComponent<NavMeshAgent>().isStopped = true;
+        //GetComponent<Mirror>().mirror3D.GetComponent<NavMeshAgent>().isStopped = true;
     }
 
     void Update () {

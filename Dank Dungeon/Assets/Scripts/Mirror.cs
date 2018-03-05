@@ -11,6 +11,7 @@ public class Mirror : MonoBehaviour {
     public FindBy findBy;
     public MirrorMode independentMover;
     public Vector2 positionOffset;
+    public Vector2 customScale;
     
     public enum FindBy { Tag, Name }
     public enum MirrorMode { Object2D, Object3D, DontMirror }
@@ -34,7 +35,14 @@ public class Mirror : MonoBehaviour {
             }
 
             mirror3D = Instantiate(prefab3D, Coordinates3D(), Quaternion.identity, parent);
-            mirror3D.transform.localScale = transform.localScale;
+            if (customScale == default(Vector2))
+            {
+                mirror3D.transform.localScale = transform.localScale;
+            }
+            else
+            {
+                mirror3D.transform.localScale = (Vector3)customScale + new Vector3(0, 0, 1);
+            }
         }
 	}
 

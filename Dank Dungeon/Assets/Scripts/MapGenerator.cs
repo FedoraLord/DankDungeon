@@ -28,13 +28,9 @@ public class MapGenerator : MonoBehaviour {
         ResizeFloor();
         
         GenerateSomeShit(staticObstacles, staticPrefab, staticParent, (x => x != null));
-        //GenerateSomeShit(floorTiles, pitPrefab, staticParent, (x => x == pitTile));
-        //GenerateSomeShit(floorTiles, lavaPrefab, staticParent, (x => x == lavaTile));
-
-        BakeNavMesh();
     }
 
-    private void BakeNavMesh()
+    public void BakeNavMeshes()
     {
         NavMeshSurface[] surfaces = floorParent.GetComponents<NavMeshSurface>();
         foreach (var surface in surfaces)

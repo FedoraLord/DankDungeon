@@ -11,6 +11,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1802776242558024}
   m_IsPrefabParent: 1
+--- !u!1 &1167453670395774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4693865528479086}
+  m_Layer: 0
+  m_Name: Weapon Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1802776242558024
 GameObject:
   m_ObjectHideFlags: 0
@@ -20,10 +35,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4443456805458918}
   - component: {fileID: 212517121310230606}
-  - component: {fileID: 61485929601665220}
-  - component: {fileID: 50148763560125992}
   - component: {fileID: 114736175636178570}
   - component: {fileID: 114410425216924960}
+  - component: {fileID: 61485929601665220}
+  - component: {fileID: 50148763560125992}
   - component: {fileID: 61453725693416312}
   - component: {fileID: 61369074920305208}
   - component: {fileID: 61784451748555504}
@@ -60,10 +75,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1802776242558024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 1, z: 0}
+  m_LocalPosition: {x: 0.66, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4655616439139274}
+  - {fileID: 4693865528479086}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -79,6 +95,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4443456805458918}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4693865528479086
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1167453670395774}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4443456805458918}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &20851034378076194
 Camera:
@@ -100,7 +129,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.713753
+  orthographic size: 4.97
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -285,6 +314,7 @@ MonoBehaviour:
   findBy: 0
   independentMover: 0
   positionOffset: {x: 0, y: 0}
+  customScale: {x: 0, y: 0}
 --- !u!114 &114736175636178570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -298,6 +328,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   hordeMovementSpeed: 2
+  weaponPivot: {fileID: 4693865528479086}
+  weapon: {fileID: 114698975638024554, guid: ef24e1c67b59fea4ab08326df8e03345, type: 2}
   top: {fileID: 61579532609976190}
   bottom: {fileID: 61784451748555504}
   left: {fileID: 61369074920305208}
