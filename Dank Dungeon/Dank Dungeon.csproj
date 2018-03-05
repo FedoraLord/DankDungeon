@@ -342,13 +342,17 @@
     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifier.cs" />
     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifierVolume.cs" />
     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshSurface.cs" />
+    <Compile Include="Assets\Scripts\Bridge.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\Gate.cs" />
+    <Compile Include="Assets\Scripts\Lever.cs" />
     <Compile Include="Assets\Scripts\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\Mirror.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Testing\CoroutineExample.cs" />
     <Compile Include="Assets\Scripts\Testing\Something.cs" />
+    <Compile Include="Assets\Scripts\TriggerBarrier.cs" />
     <Compile Include="Assets\Scripts\Wave Spawning\EnemyList.cs" />
     <Compile Include="Assets\Scripts\Wave Spawning\Wave.cs" />
     <Compile Include="Assets\Scripts\Wave Spawning\WaveCommand.cs" />

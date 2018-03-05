@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 61803143233979462}
   m_Layer: 8
   m_Name: Oger 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,7 +66,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &114194640306789014
 MonoBehaviour:
@@ -93,8 +93,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mirror3D: {fileID: 0}
   prefab3D: {fileID: 1704894984888036, guid: 12361b4f26d855f4c97034ef47030fa3, type: 2}
-  parent3dName: Enemy Bodies
+  parentTagOrName: Enemy Bodies
+  findBy: 1
   independentMover: 1
+  positionOffset: {x: 0, y: 0}
 --- !u!212 &212080171093259682
 SpriteRenderer:
   m_ObjectHideFlags: 1

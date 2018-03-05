@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 61511131975456524}
   m_Layer: 8
   m_Name: Skeleton
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,7 +66,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &114032167772515214
 MonoBehaviour:
@@ -81,8 +81,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mirror3D: {fileID: 0}
   prefab3D: {fileID: 1234598186804674, guid: 6c07b5e94c8e9064b845d07ff4784eeb, type: 2}
-  parent3dName: Enemy Bodies
+  parentTagOrName: Enemy Bodies
+  findBy: 1
   independentMover: 1
+  positionOffset: {x: 0, y: 0}
 --- !u!114 &114296902549625112
 MonoBehaviour:
   m_ObjectHideFlags: 1

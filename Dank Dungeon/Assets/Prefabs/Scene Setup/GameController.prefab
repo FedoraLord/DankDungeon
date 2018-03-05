@@ -73,3 +73,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c812eec3245ee84a942ce774347888e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WalkingSurface: {fileID: 0}
+  FireProofSurface: {fileID: 0}
+  FlyingSurface: {fileID: 0}

@@ -11,6 +11,8 @@ TagManager:
   - RoomPrefabs
   - Room
   - Barriers
+  - Weapon
+  - Enemy
   layers:
   - Default
   - TransparentFX

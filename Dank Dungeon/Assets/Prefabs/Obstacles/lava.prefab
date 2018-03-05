@@ -54,8 +54,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mirror3D: {fileID: 0}
   prefab3D: {fileID: 1299455124601460, guid: 1ba0736f00001c4429277240562f8dd9, type: 2}
-  parent3dName: Dynamic Obstacles
+  parentTagOrName: Dynamic Obstacles
+  findBy: 1
   independentMover: 2
+  positionOffset: {x: 0, y: 0}
 --- !u!212 &212580315749852086
 SpriteRenderer:
   m_ObjectHideFlags: 1
