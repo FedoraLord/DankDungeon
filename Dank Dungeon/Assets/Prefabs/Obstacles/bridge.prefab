@@ -85,6 +85,7 @@ MonoBehaviour:
   findBy: 1
   independentMover: 2
   positionOffset: {x: 0, y: 0}
+  customScale: {x: 0, y: 0}
 --- !u!114 &114588537858024242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -96,7 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba95ba2d04c757f4280e42a6cc3569a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activatedSprite: {fileID: 0}
   expandingDirection: 0
 --- !u!212 &212395533416240060
 SpriteRenderer:
@@ -131,7 +131,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300134, guid: 95e7ee6f97a128c429b8694765998801, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

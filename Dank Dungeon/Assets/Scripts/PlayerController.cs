@@ -21,11 +21,19 @@ public class PlayerController : MonoBehaviour {
     
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
-        //GetComponent<Mirror>().mirror3D.GetComponent<NavMeshAgent>().isStopped = true;
+        SetWeapon(weapon);
+    }
+
+    public void SetWeapon(Weapon newWeapon)
+    {
+        weapon = Instantiate(newWeapon, weaponPivot);
+        weapon.transform.localPosition = new Vector3(0, 0.5f, 0);
+        weapon.gameObject.SetActive(false);
     }
 
     void Update () {
         MovePlayer();
+        Attack();
     }
 
     private void MovePlayer()
@@ -75,6 +83,15 @@ public class PlayerController : MonoBehaviour {
                 velocity = velocity.normalized * speed;
         }
         rb.velocity = velocity;
+    }
+
+    private void Attack()
+    {
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            Vector2 direction = GameController.MainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            weapon.Swing(direction);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)

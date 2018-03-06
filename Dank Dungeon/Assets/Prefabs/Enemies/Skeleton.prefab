@@ -85,6 +85,7 @@ MonoBehaviour:
   findBy: 1
   independentMover: 1
   positionOffset: {x: 0, y: 0}
+  customScale: {x: 0, y: 0}
 --- !u!114 &114296902549625112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -130,7 +131,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300002, guid: ebae08cf813ee5a49b2bb8a3a65eec64, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour {
     public static WaveSpawner Spawner { get; set; }
     public static GameObject Level3D { get; set; }
     public static Transform Player3DTransform { get; set; }
+    public static Camera MainCamera { get; set; }
 
     public NavMeshSurface WalkingSurface;
     public NavMeshSurface FireProofSurface;
@@ -23,6 +24,7 @@ public class GameController : MonoBehaviour {
         Spawner = GetComponent<WaveSpawner>();
         Level3D = GameObject.FindGameObjectWithTag("Level3D");
         Player3DTransform = GameObject.FindGameObjectWithTag("Player3DPosition").transform;
+        MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
         StartCoroutine(SetupMap());
     }
