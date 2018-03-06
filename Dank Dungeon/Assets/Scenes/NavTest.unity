@@ -746,6 +746,12 @@ Prefab:
       propertyPath: mirror3D
       value: 
       objectReference: {fileID: 340766186}
+    - target: {fileID: 114736175636178570, guid: 406f86528303fd148a792bb7f18a9e76,
+        type: 2}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 114827459614496232, guid: ef24e1c67b59fea4ab08326df8e03345,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 406f86528303fd148a792bb7f18a9e76, type: 2}
   m_IsPrefabParent: 0
@@ -1694,6 +1700,14 @@ Prefab:
     - target: {fileID: 4475393967514304, guid: bf095da0418959d48b2a482fc3aed8b0, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1601279652042428, guid: bf095da0418959d48b2a482fc3aed8b0, type: 2}
+      propertyPath: m_TagString
+      value: Walls
+      objectReference: {fileID: 0}
+    - target: {fileID: 1601279652042428, guid: bf095da0418959d48b2a482fc3aed8b0, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bf095da0418959d48b2a482fc3aed8b0, type: 2}

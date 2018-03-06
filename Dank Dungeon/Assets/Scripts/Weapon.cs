@@ -1,81 +1,171 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour {
+public abstract class Weapon : MonoBehaviour {
 
     public SwordType type;
+    public new SpriteRenderer renderer;
+    public new BoxCollider2D collider;
     public float damage = 1;
     public int hitsPerSwing = 1;
 
-    private bool isSwinging;
-    private bool canDamage;
-    private int remainingHits;
+    protected bool isSwinging;
+    protected bool canDamage;
+    protected int remainingHits;
 
-    // Use this for initialization
-    void Start() {
-
+    protected bool IsInWall
+    {
+        get
+        {
+            return collider.IsTouchingLayers(type.swingInterruptionLayers);
+        }
     }
 
-    // Update is called once per frame
-    void Update() {
+    private IEnumerator currentAttack;
+    private bool validAttack;
+    private Vector2 cursorDirection;
+    private List<AttackDirection> attacks = new List<AttackDirection>();
+    private int attackIndex;
+    
+    private class AttackDirection
+    {
+        public IEnumerator attackRoutine;
+        private Func<Vector2> directionAccessor;
 
+        public AttackDirection(IEnumerator attack, Func<Vector2> getDirection)
+        {
+            attackRoutine = attack;
+            directionAccessor = getDirection;
+        }
+
+        public Vector2 GetDirection()
+        {
+            return directionAccessor();
+        }
     }
 
-    public void Swing(Vector2 direction)
+    private Vector2 GetClockwiseSlashDirection()
+    {
+        return Quaternion.Euler(0, 0, type.attackRadius / 2) * cursorDirection;
+    }
+
+    private Vector2 GetCounterClockwiseSlashDirection()
+    {
+        return Quaternion.Euler(0, 0, -type.attackRadius / 2) * cursorDirection;
+    }
+
+    private Vector2 GetCursorDirection()
+    {
+        return cursorDirection;
+    }
+
+    private void Start()
+    {
+        attacks.Add(new AttackDirection(Slash(true), GetClockwiseSlashDirection));
+        attacks.Add(new AttackDirection(Slash(false), GetCounterClockwiseSlashDirection));
+        attacks.Add(new AttackDirection(Stab(), GetCursorDirection));
+    }
+
+    public void AttemptSwing(Vector2 direction)
     {
         if (!isSwinging)
         {
-            Vector2 directionFrom = Quaternion.Euler(0, 0, type.attackRadius / 2) * direction;
-            gameObject.SetActive(true);
-            remainingHits = 3;
-            StartCoroutine(Co_Swing(directionFrom));
+            StartCoroutine(FindValidSwing(direction));
         }
     }
 
-    private IEnumerator Co_Swing(Vector2 from)
+    private IEnumerator FindValidSwing(Vector2 direction)
     {
         isSwinging = true;
-        transform.parent.up = from;
-
-        if (type.chargeTime > 0)
-            yield return new WaitForSeconds(type.chargeTime);
-
-        canDamage = true;
-        for (float angleTraveled = 0; angleTraveled < type.attackRadius; angleTraveled += type.attackSpeed)
+        validAttack = false;
+        
+        //TODO randomize which slash is first
+        for (int i = 0; i < attacks.Count && !validAttack; i++)
         {
-            transform.parent.Rotate(new Vector3(0, 0, 1), -type.attackSpeed);
-            yield return new WaitForEndOfFrame();
+            int index = (attackIndex + i) % attacks.Count;
+            currentAttack = attacks[index].attackRoutine;
+            yield return AttackIfValid(attacks[index].GetDirection());
         }
+        //currentAttack = Slash(true);
+        //yield return AttackIfValid(Quaternion.Euler(0, 0, type.attackRadius / 2) * direction);
+
+        //if (!validAttack)
+        //{
+        //    currentAttack = Slash(false);
+        //    yield return AttackIfValid(Quaternion.Euler(0, 0, -type.attackRadius / 2) * direction);
+        //}
+
+        //if (!validAttack)
+        //{
+        //    currentAttack = Stab();
+        //    yield return AttackIfValid(direction);
+        //}
+
+        if (!validAttack)
+        {
+            isSwinging = false;
+        }
+    }
+
+    private IEnumerator AttackIfValid(Vector2 direction)
+    {
+        transform.parent.up = direction;
+        yield return new WaitForFixedUpdate();
+
+        if (!IsInWall)
+        {
+            validAttack = true;
+            StartCoroutine(currentAttack);
+        }
+    }
+
+    protected abstract IEnumerator Slash(bool clockwise);
+
+    protected abstract IEnumerator Stab();
+    
+    protected IEnumerator EndSwing()
+    {
         canDamage = false;
-
-        if (type.chargeOutTime > 0)
-            yield return new WaitForSeconds(type.chargeOutTime);
-
-        gameObject.SetActive(false);
-        isSwinging = false;
+        renderer.enabled = false;
+        ResetRestingPosition();
 
         if (type.attackLatency > 0)
             yield return new WaitForSeconds(type.attackLatency);
+
+        isSwinging = false;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (remainingHits > 0)
+        if (renderer.enabled && collider.IsTouchingLayers(type.swingInterruptionLayers))
         {
-            if (collision.CompareTag("Enemy"))
-            {
-                remainingHits--;
-                //TODO damage enemy
-            }
-            //TODO break crates
-            //else if (collision.CompareTag("Crate"))
-            //{
-
-            //}
+            StopCoroutine(currentAttack);
+            StartCoroutine(EndSwing());
         }
+        else if (canDamage)
+        {
+            if (remainingHits > 0)
+            {
+                if (collision.CompareTag("Enemy"))
+                {
+                    //TODO damage enemy
+                    remainingHits--;
+                }
+                //TODO break crates
+                //else if (collision.CompareTag("Crate"))
+                //{
+
+                //}
+            }
         
-        //TODO if collision is the wall, stop the swing, maybe add a spark where it hit the wall
+        }
+    }
+
+    public void ResetRestingPosition()
+    {
+        transform.localPosition = new Vector3(0, 0.5f, 0);
     }
 
 }

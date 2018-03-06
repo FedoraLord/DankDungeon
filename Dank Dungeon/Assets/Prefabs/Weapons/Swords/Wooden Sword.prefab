@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4366895488470592}
   - component: {fileID: 212922706597848696}
   - component: {fileID: 61371685445219998}
-  - component: {fileID: 114698975638024554}
+  - component: {fileID: 114827459614496232}
   m_Layer: 0
   m_Name: Wooden Sword
   m_TagString: Untagged
@@ -51,7 +51,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.65625}
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1.3125}
   m_EdgeRadius: 0
---- !u!114 &114698975638024554
+--- !u!114 &114827459614496232
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,10 +75,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1453214097247930}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 663442397d93da249ab51990c9f78a0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 97cdcced1bd133643a11630732ce5134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: {fileID: 11400000, guid: 0d5a196abd3f2764fbe9e5bc4d556600, type: 2}
+  renderer: {fileID: 212922706597848696}
+  collider: {fileID: 61371685445219998}
+  swingInterruptionLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  damage: 1
+  hitsPerSwing: 3
 --- !u!212 &212922706597848696
 SpriteRenderer:
   m_ObjectHideFlags: 1

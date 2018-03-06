@@ -13,6 +13,7 @@ TagManager:
   - Barriers
   - Weapon
   - Enemy
+  - Walls
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - 
   - 
   - Enemy
-  - 
+  - Solid Environment
   - 
   - 
   - 

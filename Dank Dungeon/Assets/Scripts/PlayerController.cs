@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour {
     {
         weapon = Instantiate(newWeapon, weaponPivot);
         weapon.transform.localPosition = new Vector3(0, 0.5f, 0);
-        weapon.gameObject.SetActive(false);
+        weapon.renderer.enabled = false;
     }
 
     void Update () {
@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKey(KeyCode.Mouse0))
         {
             Vector2 direction = GameController.MainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            weapon.Swing(direction);
+            weapon.AttemptSwing(direction);
         }
     }
 

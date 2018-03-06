@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Gate : Barrier
 {
-    public SpriteRenderer renderer;
+    public SpriteRenderer spriteRenderer;
 
     private float raiseHeight = 1;
     private float raiseSpeed = 0.03f;
@@ -26,9 +26,9 @@ public class Gate : Barrier
         {
             transform.position = new Vector2(transform.position.x, transform.position.y + raiseSpeed);
 
-            Color color = renderer.color;
+            Color color = spriteRenderer.color;
             color.a = color.a - raiseSpeed;
-            renderer.color = color;
+            spriteRenderer.color = color;
 
             yield return new WaitForEndOfFrame();
         }
