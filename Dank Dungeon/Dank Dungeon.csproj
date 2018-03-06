@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -344,9 +342,8 @@
     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifier.cs" />
     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifierVolume.cs" />
     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshSurface.cs" />
-    <Compile Include="Assets\Prefabs\Weapons\Swords\Craftable.cs" />
-    <Compile Include="Assets\Prefabs\Weapons\Swords\ShortSword.cs" />
-    <Compile Include="Assets\Prefabs\Weapons\Swords\SwordStats.cs" />
+    <Compile Include="Assets\Prefabs\Crafting\Craftable.cs" />
+    <Compile Include="Assets\Prefabs\Crafting\WeaponUpgrade.cs" />
     <Compile Include="Assets\Prefabs\Weapons\Swords\SwordType.cs" />
     <Compile Include="Assets\Scripts\Bridge.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
@@ -356,6 +353,7 @@
     <Compile Include="Assets\Scripts\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\Mirror.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\ShortSword.cs" />
     <Compile Include="Assets\Scripts\Testing\CoroutineExample.cs" />
     <Compile Include="Assets\Scripts\Testing\Something.cs" />
     <Compile Include="Assets\Scripts\TriggerBarrier.cs" />

@@ -16,8 +16,8 @@ MonoBehaviour:
   attackLatency: 0.25
   chargeInTime: 0.1
   chargeOutTime: 0.1
-  stabDistance: 1
-  stabSpeed: 0.2
+  stabDistance: 1.3
+  stabSpeed: 0.3
   swingInterruptionLayers:
     serializedVersion: 2
     m_Bits: 512

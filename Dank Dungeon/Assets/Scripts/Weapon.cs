@@ -26,52 +26,19 @@ public abstract class Weapon : MonoBehaviour {
     private IEnumerator currentAttack;
     private bool validAttack;
     private Vector2 cursorDirection;
-    private List<AttackDirection> attacks = new List<AttackDirection>();
+    private List<Func<Vector2, IEnumerator>> attackMethods = new List<Func<Vector2, IEnumerator>>();
     private int attackIndex;
     
-    private class AttackDirection
-    {
-        public IEnumerator attackRoutine;
-        private Func<Vector2> directionAccessor;
-
-        public AttackDirection(IEnumerator attack, Func<Vector2> getDirection)
-        {
-            attackRoutine = attack;
-            directionAccessor = getDirection;
-        }
-
-        public Vector2 GetDirection()
-        {
-            return directionAccessor();
-        }
-    }
-
-    private Vector2 GetClockwiseSlashDirection()
-    {
-        return Quaternion.Euler(0, 0, type.attackRadius / 2) * cursorDirection;
-    }
-
-    private Vector2 GetCounterClockwiseSlashDirection()
-    {
-        return Quaternion.Euler(0, 0, -type.attackRadius / 2) * cursorDirection;
-    }
-
-    private Vector2 GetCursorDirection()
-    {
-        return cursorDirection;
-    }
-
     private void Start()
     {
-        attacks.Add(new AttackDirection(Slash(true), GetClockwiseSlashDirection));
-        attacks.Add(new AttackDirection(Slash(false), GetCounterClockwiseSlashDirection));
-        attacks.Add(new AttackDirection(Stab(), GetCursorDirection));
+        attackMethods = new List<Func<Vector2, IEnumerator>>() { TryClockwiseSlash, TryCounterClockwiseSlash, TryStab };
     }
 
     public void AttemptSwing(Vector2 direction)
     {
         if (!isSwinging)
         {
+            cursorDirection = direction;
             StartCoroutine(FindValidSwing(direction));
         }
     }
@@ -80,33 +47,40 @@ public abstract class Weapon : MonoBehaviour {
     {
         isSwinging = true;
         validAttack = false;
-        
-        //TODO randomize which slash is first
-        for (int i = 0; i < attacks.Count && !validAttack; i++)
+
+        int i = 0;
+        for (; i < attackMethods.Count && !validAttack; i++)
         {
-            int index = (attackIndex + i) % attacks.Count;
-            currentAttack = attacks[index].attackRoutine;
-            yield return AttackIfValid(attacks[index].GetDirection());
+            yield return attackMethods[(attackIndex + i) % attackMethods.Count](direction);
         }
-        //currentAttack = Slash(true);
-        //yield return AttackIfValid(Quaternion.Euler(0, 0, type.attackRadius / 2) * direction);
-
-        //if (!validAttack)
-        //{
-        //    currentAttack = Slash(false);
-        //    yield return AttackIfValid(Quaternion.Euler(0, 0, -type.attackRadius / 2) * direction);
-        //}
-
-        //if (!validAttack)
-        //{
-        //    currentAttack = Stab();
-        //    yield return AttackIfValid(direction);
-        //}
 
         if (!validAttack)
         {
             isSwinging = false;
+            attackIndex = 0;
         }
+        else
+        {
+            attackIndex = (attackIndex + 1) % attackMethods.Count;
+        }
+    }
+
+    private IEnumerator TryClockwiseSlash(Vector2 cursorDirection)
+    {
+        currentAttack = Slash(true);
+        yield return AttackIfValid(Quaternion.Euler(0, 0, type.attackRadius / 2) * cursorDirection);
+    }
+
+    private IEnumerator TryCounterClockwiseSlash(Vector2 cursorDirection)
+    {
+        currentAttack = Slash(false);
+        yield return AttackIfValid(Quaternion.Euler(0, 0, -type.attackRadius / 2) * cursorDirection);
+    }
+
+    private IEnumerator TryStab(Vector2 cursorDirection)
+    {
+        currentAttack = Stab();
+        yield return AttackIfValid(cursorDirection);
     }
 
     private IEnumerator AttackIfValid(Vector2 direction)
