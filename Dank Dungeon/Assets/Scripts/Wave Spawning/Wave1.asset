@@ -37,5 +37,5 @@ MonoBehaviour:
   - enemyIndex: 0
     type: 1
     utility: 1
-  timeBeforeWave: 100
+  timeBeforeWave: 10
   spawnRate: 0.5

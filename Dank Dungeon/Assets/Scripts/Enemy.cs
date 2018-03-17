@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour {
 
     public Mirror mirror;
+    public int health = 5;
 
     private NavMeshAgent navigator;
 
@@ -22,8 +23,29 @@ public class Enemy : MonoBehaviour {
         navigator.SetDestination(GameController.Player3DTransform.position);
 	}
 
-    void OnDestroy()
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Weapon"))
+        {
+            Weapon wpn = collision.GetComponent<Weapon>();
+            TakeDamage(wpn);
+        }
+    }
+
+    private void TakeDamage(Weapon wpn)
+    {
+        health -= wpn.damage;
+        wpn.Hit();
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
     {
         GameController.Spawner.EnemyDied(this);
+        Destroy(gameObject);
     }
 }

@@ -8,7 +8,7 @@ public abstract class Weapon : MonoBehaviour {
     public SwordType type;
     public new SpriteRenderer renderer;
     public new BoxCollider2D collider;
-    public float damage = 1;
+    public int damage = 1;
     public int hitsPerSwing = 1;
 
     protected bool isSwinging;
@@ -38,6 +38,7 @@ public abstract class Weapon : MonoBehaviour {
     {
         if (!isSwinging)
         {
+            remainingHits = hitsPerSwing;
             cursorDirection = direction;
             StartCoroutine(FindValidSwing(direction));
         }
@@ -142,4 +143,8 @@ public abstract class Weapon : MonoBehaviour {
         transform.localPosition = new Vector3(0, 0.5f, 0);
     }
 
+    public void Hit()
+    {
+        remainingHits--;
+    }
 }
