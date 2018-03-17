@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mirror: {fileID: 114367940535308648}
+  health: 5
 --- !u!114 &114367940535308648
 MonoBehaviour:
   m_ObjectHideFlags: 1

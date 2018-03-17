@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mirror: {fileID: 114301507260566498}
+  health: 1
 --- !u!212 &212532731498016016
 SpriteRenderer:
   m_ObjectHideFlags: 1

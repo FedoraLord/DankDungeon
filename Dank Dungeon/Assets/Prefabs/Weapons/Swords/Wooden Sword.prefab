@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114827459614496232}
   m_Layer: 0
   m_Name: Wooden Sword
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,9 +81,6 @@ MonoBehaviour:
   type: {fileID: 11400000, guid: 0d5a196abd3f2764fbe9e5bc4d556600, type: 2}
   renderer: {fileID: 212922706597848696}
   collider: {fileID: 61371685445219998}
-  swingInterruptionLayers:
-    serializedVersion: 2
-    m_Bits: 512
   damage: 1
   hitsPerSwing: 3
 --- !u!212 &212922706597848696

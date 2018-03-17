@@ -237,6 +237,56 @@ Tilemap:
   m_PrefabParentObject: {fileID: 8195094281598226248, guid: bf095da0418959d48b2a482fc3aed8b0,
     type: 2}
   m_PrefabInternal: {fileID: 1978842668}
+--- !u!1001 &318126386
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1656463371}
+    m_Modifications:
+    - target: {fileID: 4634442713894006, guid: cb5bcfe10e70fea48b1ff00643c05a4a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634442713894006, guid: cb5bcfe10e70fea48b1ff00643c05a4a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634442713894006, guid: cb5bcfe10e70fea48b1ff00643c05a4a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634442713894006, guid: cb5bcfe10e70fea48b1ff00643c05a4a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634442713894006, guid: cb5bcfe10e70fea48b1ff00643c05a4a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634442713894006, guid: cb5bcfe10e70fea48b1ff00643c05a4a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634442713894006, guid: cb5bcfe10e70fea48b1ff00643c05a4a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634442713894006, guid: cb5bcfe10e70fea48b1ff00643c05a4a, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634442713894006, guid: cb5bcfe10e70fea48b1ff00643c05a4a, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634442713894006, guid: cb5bcfe10e70fea48b1ff00643c05a4a, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: cb5bcfe10e70fea48b1ff00643c05a4a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &340766186 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1006851410567838, guid: eec236d06d61437448abafa88d6c1d32,
@@ -1662,6 +1712,11 @@ Tilemap:
   m_PrefabParentObject: {fileID: 8195094282426674654, guid: bf095da0418959d48b2a482fc3aed8b0,
     type: 2}
   m_PrefabInternal: {fileID: 1978842668}
+--- !u!4 &1656463371 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4422640225965848, guid: 5d98bae55adf379479bb6abfc493d4f1,
+    type: 2}
+  m_PrefabInternal: {fileID: 697749748}
 --- !u!1001 &1978842668
 Prefab:
   m_ObjectHideFlags: 0
