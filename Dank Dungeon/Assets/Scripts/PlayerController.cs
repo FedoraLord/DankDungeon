@@ -27,8 +27,6 @@ public class PlayerController : MonoBehaviour {
     public void SetWeapon(Weapon newWeapon)
     {
         weapon = Instantiate(newWeapon, weaponPivot);
-        weapon.transform.localPosition = new Vector3(0, 0.5f, 0);
-        weapon.renderer.enabled = false;
     }
 
     void Update () {

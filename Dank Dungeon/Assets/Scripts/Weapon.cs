@@ -32,6 +32,9 @@ public abstract class Weapon : MonoBehaviour {
     private void Start()
     {
         attackMethods = new List<Func<Vector2, IEnumerator>>() { TryClockwiseSlash, TryCounterClockwiseSlash, TryStab };
+        ResetRestingPosition();
+        renderer.enabled = false;
+        collider.enabled = false;
     }
 
     public void AttemptSwing(Vector2 direction)
@@ -58,6 +61,7 @@ public abstract class Weapon : MonoBehaviour {
         if (!validAttack)
         {
             isSwinging = false;
+            collider.enabled = false;
             attackIndex = 0;
         }
         else
@@ -87,6 +91,7 @@ public abstract class Weapon : MonoBehaviour {
     private IEnumerator AttackIfValid(Vector2 direction)
     {
         transform.parent.up = direction;
+        collider.enabled = true;
         yield return new WaitForFixedUpdate();
 
         if (!IsInWall)
@@ -102,8 +107,9 @@ public abstract class Weapon : MonoBehaviour {
     
     protected IEnumerator EndSwing()
     {
-        canDamage = false;
+        collider.enabled = false;
         renderer.enabled = false;
+        canDamage = false;
         ResetRestingPosition();
 
         if (type.attackLatency > 0)
@@ -119,32 +125,25 @@ public abstract class Weapon : MonoBehaviour {
             StopCoroutine(currentAttack);
             StartCoroutine(EndSwing());
         }
-        else if (canDamage)
+        else if (remainingHits > 0)
         {
-            if (remainingHits > 0)
+            if (collision.CompareTag("Enemy"))
             {
-                if (collision.CompareTag("Enemy"))
-                {
-                    //TODO damage enemy
-                    remainingHits--;
-                }
-                //TODO break crates
-                //else if (collision.CompareTag("Crate"))
-                //{
-
-                //}
+                Enemy hit = collision.GetComponent<Enemy>();
+                hit.TakeDamage(this);
+                remainingHits--;
             }
+            //TODO break crates
+            //else if (collision.CompareTag("Crate"))
+            //{
+
+            //}
         
         }
     }
 
     public void ResetRestingPosition()
     {
-        transform.localPosition = new Vector3(0, 0.5f, 0);
-    }
-
-    public void Hit()
-    {
-        remainingHits--;
+        transform.localPosition = new Vector3(0, 1f, 0);
     }
 }

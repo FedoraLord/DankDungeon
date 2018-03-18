@@ -25,18 +25,12 @@ public class Enemy : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Weapon"))
-        {
-            Weapon wpn = collision.GetComponent<Weapon>();
-            TakeDamage(wpn);
-        }
+        //pit
     }
 
-    private void TakeDamage(Weapon wpn)
+    public void TakeDamage(Weapon wpn)
     {
         health -= wpn.damage;
-        wpn.Hit();
-
         if (health <= 0)
         {
             Die();
