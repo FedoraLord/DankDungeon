@@ -15,8 +15,6 @@ public class WaveSpawner : MonoBehaviour {
     private List<Transform> currentSpawnPoints = new List<Transform>();
     private List<Transform> validSpawnPoints = new List<Transform>();
     private List<Transform> invalidSpawnPoints = new List<Transform>();
-    //TODO remove this
-    public List<GameObject> test = new List<GameObject>();
 
     private bool roomsInitialized;
     private bool wavesStarted;
@@ -25,7 +23,6 @@ public class WaveSpawner : MonoBehaviour {
     
 	void Start () {
         playerAgent = GameObject.FindGameObjectWithTag("Player3DPosition").GetComponent<NavMeshAgent>();
-        //StartCoroutine(Setup());
     }
 
     /// <summary>
@@ -41,12 +38,6 @@ public class WaveSpawner : MonoBehaviour {
     
     private void Update()
     {
-        //TODO remove this: it's a test for visualizing current spawn points
-        for (int i = 0; i < currentSpawnPoints.Count; i++)
-        {
-            test[i].transform.position = currentSpawnPoints[i].position;
-        }
-
         if (countdown.isActive)
         {
             if (countdown.stopTime > Time.time)

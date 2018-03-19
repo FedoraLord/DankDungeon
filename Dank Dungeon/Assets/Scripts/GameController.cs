@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour {
 
     public static float Z_OffsetLevel3D = 10;
     public static GameController GameCtrl { get; set; }
+    public static PlayerController PlayerCtrl { get; set; }
     public static WaveSpawner Spawner { get; set; }
     public static GameObject Level3D { get; set; }
     public static Transform Player3DTransform { get; set; }
@@ -21,6 +22,7 @@ public class GameController : MonoBehaviour {
     void Start()
     {
         GameCtrl = this;
+        PlayerCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         Spawner = GetComponent<WaveSpawner>();
         Level3D = GameObject.FindGameObjectWithTag("Level3D");
         Player3DTransform = GameObject.FindGameObjectWithTag("Player3DPosition").transform;
@@ -55,7 +57,7 @@ public class GameController : MonoBehaviour {
         var enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (var item in enemies)
         {
-            item.GetComponent<Mirror>().independentMover = Mirror.MirrorMode.DontMirror;
+            item.GetComponent<Mirror>().DontMirror();
         }
 
         FireProofSurface.RemoveData();
@@ -68,7 +70,7 @@ public class GameController : MonoBehaviour {
 
         foreach (var item in enemies)
         {
-            item.GetComponent<Mirror>().independentMover = Mirror.MirrorMode.Object3D;
+            item.GetComponent<Mirror>().Mirror3DObject();
         }
     }
 }

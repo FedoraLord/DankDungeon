@@ -16,11 +16,6 @@ public class Mirror : MonoBehaviour {
     public enum FindBy { Tag, Name }
     public enum MirrorMode { Object2D, Object3D, DontMirror }
 
-    public GameObject GetMirror()
-    {
-        return mirror3D;
-    }
-
     void Start() {
         if (mirror3D == null)
         {
@@ -73,6 +68,11 @@ public class Mirror : MonoBehaviour {
     public void Mirror2DObject()
     {
         independentMover = MirrorMode.Object2D;
+    }
+
+    public void DontMirror()
+    {
+        independentMover = MirrorMode.DontMirror;
     }
 
     private void OnDestroy()

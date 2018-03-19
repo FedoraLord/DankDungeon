@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212770997503269036}
   - component: {fileID: 114363794593368886}
   - component: {fileID: 61542384575447086}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

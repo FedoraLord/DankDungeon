@@ -10,6 +10,8 @@ public abstract class Weapon : MonoBehaviour {
     public new BoxCollider2D collider;
     public int damage = 1;
     public int hitsPerSwing = 1;
+    public float knockbackForce = 1;
+    public float knockbackTime = 1;
 
     protected bool isSwinging;
     protected bool canDamage;
@@ -25,16 +27,13 @@ public abstract class Weapon : MonoBehaviour {
 
     private IEnumerator currentAttack;
     private bool validAttack;
-    private Vector2 cursorDirection;
     private List<Func<Vector2, IEnumerator>> attackMethods = new List<Func<Vector2, IEnumerator>>();
     private int attackIndex;
-    
+
     private void Start()
     {
         attackMethods = new List<Func<Vector2, IEnumerator>>() { TryClockwiseSlash, TryCounterClockwiseSlash, TryStab };
         ResetRestingPosition();
-        renderer.enabled = false;
-        collider.enabled = false;
     }
 
     public void AttemptSwing(Vector2 direction)
@@ -42,7 +41,6 @@ public abstract class Weapon : MonoBehaviour {
         if (!isSwinging)
         {
             remainingHits = hitsPerSwing;
-            cursorDirection = direction;
             StartCoroutine(FindValidSwing(direction));
         }
     }

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerController : MonoBehaviour {
-
+public class PlayerController : Character
+{
     public static Transform lastRoom;
 
+    public bool hasControl = true;
     public float speed = 5;
     public float hordeMovementSpeed = 2;
     public Transform weaponPivot;
@@ -30,8 +31,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update () {
-        MovePlayer();
-        Attack();
+        if (hasControl)
+        {
+            MovePlayer();
+            Attack();
+        }
     }
 
     private void MovePlayer()
@@ -99,5 +103,10 @@ public class PlayerController : MonoBehaviour {
             lastRoom = collision.transform;
             GameController.Spawner.UpdateSpawnPoints();
         }
+    }
+
+    protected override void FallInPit()
+    {
+        hasControl = false;
     }
 }
