@@ -12,17 +12,15 @@ public class PlayerController : Character
     public float hordeMovementSpeed = 2;
     public Transform weaponPivot;
     public Weapon weapon;
-    public BoxCollider2D top;
-    public BoxCollider2D bottom;
-    public BoxCollider2D left;
-    public BoxCollider2D right;
+    public Transform topEnemyDetector;
+    public Transform bottomEnemyDetector;
+    public Transform leftEnemyDetector;
+    public Transform rightEnemyDetector;
     public LayerMask enemyLayer;
-
-    private Rigidbody2D rb;
     
 	void Start () {
-        rb = GetComponent<Rigidbody2D>();
         SetWeapon(weapon);
+        StartCoroutine(UpdateLastValidPosition());
     }
 
     public void SetWeapon(Weapon newWeapon)
@@ -46,7 +44,7 @@ public class PlayerController : Character
         if (Input.GetKey(KeyCode.W))
         {
             //TODO these conditions will be "if(touching || !hasBluePotionEffect)"
-            if (top.IsTouchingLayers(enemyLayer))
+            if (Physics2D.OverlapPoint(topEnemyDetector.position, enemyLayer))
             {
                 movingThroughEnemy = true;
             }
@@ -54,7 +52,7 @@ public class PlayerController : Character
         }
         if (Input.GetKey(KeyCode.A))
         {
-            if (left.IsTouchingLayers(enemyLayer))
+            if (Physics2D.OverlapPoint(leftEnemyDetector.position, enemyLayer))
             {
                 movingThroughEnemy = true;
             }
@@ -62,7 +60,7 @@ public class PlayerController : Character
         }
         if (Input.GetKey(KeyCode.S))
         {
-            if (right.IsTouchingLayers(enemyLayer))
+            if (Physics2D.OverlapPoint(rightEnemyDetector.position, enemyLayer))
             {
                 movingThroughEnemy = true;
             }
@@ -70,7 +68,7 @@ public class PlayerController : Character
         }
         if (Input.GetKey(KeyCode.D))
         {
-            if (bottom.IsTouchingLayers(enemyLayer))
+            if (Physics2D.OverlapPoint(bottomEnemyDetector.position, enemyLayer))
             {
                 movingThroughEnemy = true;
             }
@@ -84,7 +82,7 @@ public class PlayerController : Character
             else
                 velocity = velocity.normalized * speed;
         }
-        rb.velocity = velocity;
+        body.velocity = velocity;
     }
 
     private void Attack()
@@ -105,8 +103,16 @@ public class PlayerController : Character
         }
     }
 
-    protected override void FallInPit()
+    protected override void FallInPit_Start()
     {
         hasControl = false;
+    }
+
+    protected override void FallInPit_End()
+    {
+        hasControl = true;
+        //Take Damage
+        transform.localScale = Vector3.one;
+        transform.position = lastValidPosition;
     }
 }

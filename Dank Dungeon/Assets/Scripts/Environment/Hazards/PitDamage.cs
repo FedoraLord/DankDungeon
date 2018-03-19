@@ -4,22 +4,18 @@ using UnityEngine;
 
 public class PitDamage : EnvironmentalDamage
 {
-    public Rigidbody2D body;
-    public bool isFalling;
-
     void Start()
     {
         tagFilter = "Pit";
         StartCoroutine(CheckCollisions());
     }
 
-    protected override void TriggerEnvironmentalDamage()
+    protected override void TriggerEnvironmentalDamage(Collider2D damageFrom)
     {
-        if (!isFalling)
+        Character actor = GetComponent<Character>();
+        if (actor != null)
         {
-            isFalling = true;
-            Vector2 lastVelocity = body.velocity;
-            
+            actor.FallInPit(damageFrom);
         }
     }
 }

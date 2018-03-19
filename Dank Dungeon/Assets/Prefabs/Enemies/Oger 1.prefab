@@ -37,9 +37,9 @@ GameObject:
   - component: {fileID: 212080171093259682}
   - component: {fileID: 114194640306789014}
   - component: {fileID: 114367940535308648}
+  - component: {fileID: 114118668024495082}
   - component: {fileID: 61803143233979462}
   - component: {fileID: 50688729110168976}
-  - component: {fileID: 114118668024495082}
   m_Layer: 8
   m_Name: Oger 1
   m_TagString: Enemy
@@ -266,8 +266,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 744abae2069d2a04cbb31482b3637457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mirror: {fileID: 114367940535308648}
   body: {fileID: 50688729110168976}
+  mainCollider: {fileID: 61803143233979462}
+  environmentalDamage:
+    serializedVersion: 2
+    m_Bits: 1024
+  mirror: {fileID: 114367940535308648}
   health: 5
 --- !u!114 &114367940535308648
 MonoBehaviour:

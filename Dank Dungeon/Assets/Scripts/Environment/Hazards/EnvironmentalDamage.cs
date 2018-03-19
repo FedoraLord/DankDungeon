@@ -17,22 +17,25 @@ public abstract class EnvironmentalDamage : MonoBehaviour {
         while (true)
         {
             int numContacts = 0;
+            Collider2D damageFrom = null;
             for (int i = 0; i < overlapPoints.Count; i++)
             {
                 Collider2D[] colliders = Physics2D.OverlapPointAll(overlapPoints[i].position, damageLayer);
-                if (colliders.Where(x => x.CompareTag(tagFilter)).Any())
+                var environmentColliders = colliders.Where(x => x.CompareTag(tagFilter));
+                if (environmentColliders.Any())
                 {
                     numContacts++;
+                    damageFrom = environmentColliders.FirstOrDefault();
                 }
             }
 
             if (numContacts >= minContacts)
             {
-                TriggerEnvironmentalDamage();
+                TriggerEnvironmentalDamage(damageFrom);
             }
             yield return new WaitForFixedUpdate();
         }
     }
 
-    protected abstract void TriggerEnvironmentalDamage();
+    protected abstract void TriggerEnvironmentalDamage(Collider2D damageFrom);
 }

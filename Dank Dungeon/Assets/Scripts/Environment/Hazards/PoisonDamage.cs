@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PoisonDamage : EnvironmentalDamage
 {
-    protected override void TriggerEnvironmentalDamage()
+    protected override void TriggerEnvironmentalDamage(Collider2D damageFrom)
     {
 
     }

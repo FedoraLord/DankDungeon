@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class Enemy : Character
 {
     public Mirror mirror;
-    public Rigidbody2D body;
     public int health = 5;
 
     private NavMeshAgent navigator;
@@ -23,11 +22,6 @@ public class Enemy : Character
         if (navigator == null)
             navigator = mirror.mirror3D.GetComponent<NavMeshAgent>();
         navigator.SetDestination(GameController.Player3DTransform.position);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //pit
     }
     
     public void TakeDamage(Weapon wpn)
@@ -55,7 +49,7 @@ public class Enemy : Character
         Vector2 direction = enemy - player;
 
         mirror.Mirror2DObject();
-        body.velocity = (direction).normalized * force;
+        body.velocity = direction.normalized * force;
 
         yield return new WaitForSeconds(duration);
 
@@ -68,8 +62,14 @@ public class Enemy : Character
         Destroy(gameObject);
     }
 
-    protected override void FallInPit()
+    protected override void FallInPit_Start()
     {
         mirror.Mirror2DObject();
+        StopCoroutine(knockbackRoutine);
+    }
+
+    protected override void FallInPit_End()
+    {
+        Die();
     }
 }
