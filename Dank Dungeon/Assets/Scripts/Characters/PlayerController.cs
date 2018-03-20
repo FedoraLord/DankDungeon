@@ -113,6 +113,14 @@ public class PlayerController : Character
         hasControl = true;
         //Take Damage
         transform.localScale = Vector3.one;
-        transform.position = lastValidPosition;
+        Vector2 awayFromPit = (Vector2)transform.position + (lastValidPosition - (Vector2)transform.position) * 2f;
+        if (Physics2D.OverlapPoint(awayFromPit, environmentalDamage) == null)
+        {
+            transform.position = awayFromPit;
+        }
+        else
+        {
+            transform.position = lastValidPosition;
+        }
     }
 }

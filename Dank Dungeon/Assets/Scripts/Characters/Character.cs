@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Character : MonoBehaviour {
@@ -8,17 +9,27 @@ public abstract class Character : MonoBehaviour {
     public BoxCollider2D mainCollider;
     public LayerMask environmentalDamage;
 
-    protected Vector2 lastValidPosition;
+    [System.NonSerialized]
+    public Vector2 lastValidPosition;
+    private Vector2 previousValidPosition;
+
 
     private bool isFalling;
+    private EnvironmentalDamage[] envDamageScripts;
 
     protected IEnumerator UpdateLastValidPosition()
     {
+        envDamageScripts = GetComponents<EnvironmentalDamage>();
         while (true)
         {
-            if (!mainCollider.IsTouchingLayers(environmentalDamage))
+            if (envDamageScripts.All(x => !x.isTakingDamage))
             {
+                previousValidPosition = lastValidPosition;
                 lastValidPosition = transform.position;
+            }
+            else
+            {
+                lastValidPosition = previousValidPosition;
             }
             yield return new WaitForFixedUpdate();
         }
@@ -38,7 +49,6 @@ public abstract class Character : MonoBehaviour {
 
     private IEnumerator Falling()
     {
-        Debug.Log("falling");
         float endTime = Time.time + 0.5f;
         while (Time.time < endTime)
         {

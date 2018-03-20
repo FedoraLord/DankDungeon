@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
+# Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dank Dungeon", "Dank Dungeon.csproj", "{67621A97-655B-8CBA-DE70-F93AD5712184}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dank Dungeon.Editor", "Dank Dungeon.Editor.csproj", "{BD20D593-8DEC-4E4B-1E08-60DFDA79247F}"

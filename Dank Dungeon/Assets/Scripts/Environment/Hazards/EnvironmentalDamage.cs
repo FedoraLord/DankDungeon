@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 
 public abstract class EnvironmentalDamage : MonoBehaviour {
@@ -9,6 +8,8 @@ public abstract class EnvironmentalDamage : MonoBehaviour {
     public List<Transform> overlapPoints;
     public LayerMask damageLayer;
     public int minContacts = 1;
+    [System.NonSerialized]
+    public bool isTakingDamage;
 
     protected string tagFilter;
 
@@ -31,7 +32,12 @@ public abstract class EnvironmentalDamage : MonoBehaviour {
 
             if (numContacts >= minContacts)
             {
+                isTakingDamage = true;
                 TriggerEnvironmentalDamage(damageFrom);
+            }
+            else
+            {
+                isTakingDamage = false;
             }
             yield return new WaitForFixedUpdate();
         }
