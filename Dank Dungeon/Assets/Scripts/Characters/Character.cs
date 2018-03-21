@@ -22,7 +22,7 @@ public abstract class Character : MonoBehaviour {
         envDamageScripts = GetComponents<EnvironmentalDamage>();
         while (true)
         {
-            if (envDamageScripts.All(x => !x.isTakingDamage))
+            if (!isFalling && envDamageScripts.All(x => !x.isTakingDamage))
             {
                 previousValidPosition = lastValidPosition;
                 lastValidPosition = transform.position;
@@ -42,7 +42,7 @@ public abstract class Character : MonoBehaviour {
             isFalling = true;
             FallInPit_Start();
             Vector2 lastVelocity = body.velocity;
-            Vector2 fallTo = (Vector2)transform.position + lastVelocity.normalized;
+            //Vector2 fallTo = (Vector2)transform.position + lastVelocity.normalized;
             StartCoroutine(Falling());
         }
     }

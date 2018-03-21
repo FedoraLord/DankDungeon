@@ -10,6 +10,8 @@ public class PlayerController : Character
     public bool hasControl = true;
     public float speed = 5;
     public float hordeMovementSpeed = 2;
+    public int health;
+    public int maxHealth;
     public Transform weaponPivot;
     public Weapon weapon;
     public Transform topEnemyDetector;
@@ -21,11 +23,21 @@ public class PlayerController : Character
 	void Start () {
         SetWeapon(weapon);
         StartCoroutine(UpdateLastValidPosition());
+        Mirror mirror = GetComponent<Mirror>();
+        mirror.mirror3D.GetComponent<NavMeshAgent>().Warp(mirror.Coordinates3D());
     }
 
     public void SetWeapon(Weapon newWeapon)
     {
-        weapon = Instantiate(newWeapon, weaponPivot);
+        if (weapon == null)
+        {
+            throw new System.Exception("PlayerController needs a reference to a Weapon prefab!");
+        }
+        else
+        {
+            weapon = Instantiate(newWeapon, weaponPivot);
+            weapon.SetSprite();
+        }
     }
 
     void Update () {

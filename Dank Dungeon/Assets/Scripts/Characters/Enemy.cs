@@ -7,26 +7,88 @@ public class Enemy : Character
 {
     public Mirror mirror;
     public int health = 5;
+    public int damage;
+    public float attackRange;
+    public float attackLatency;
 
+    private bool isAttacking;
     private NavMeshAgent navigator;
     private IEnumerator knockbackRoutine;
+    private IEnumerator attackRoutine;
 
-	void Start () {
+    void Start()
+    {
         GameObject obj = mirror.mirror3D;
         if (obj != null)
             navigator = obj.GetComponent<NavMeshAgent>();
-        
-	}
-	
-	void Update () {
+
+    }
+
+    void Update () {
         if (navigator == null)
             navigator = mirror.mirror3D.GetComponent<NavMeshAgent>();
-        navigator.SetDestination(GameController.Player3DTransform.position);
+
+        if (IsAtDestination())
+        {
+            StartAttacking();
+        }
+        else
+        {
+            navigator.SetDestination(GameController.Player3DTransform.position);
+        }
     }
-    
+
+    private bool IsAtDestination()
+    {
+        if (navigator.hasPath && navigator.pathStatus == NavMeshPathStatus.PathComplete && !navigator.pathPending)
+        {
+            if (navigator.remainingDistance <= attackRange)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void StartAttacking()
+    {
+        if (!isAttacking)
+        {
+            attackRoutine = Attack();
+            StartCoroutine(attackRoutine);
+        }
+    }
+
+    private IEnumerator Attack()
+    {
+        isAttacking = true;
+        bool hitPlayer = false;
+        mirror.Mirror2DObject();
+        PlayerController player = GameController.PlayerCtrl;
+        
+        while (!hitPlayer)
+        {
+            body.velocity = (player.transform.position - transform.position).normalized * navigator.speed * 2;
+            yield return new WaitForEndOfFrame();
+            hitPlayer = mainCollider.IsTouching(player.mainCollider);
+        }
+
+        mirror.Mirror3DObject();
+        yield return new WaitForSeconds(attackLatency);
+        isAttacking = false;
+    }
+
+    //void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+
+    //    }
+    //}
+
     public void TakeDamage(Weapon wpn)
     {
-        health -= wpn.damage;
+        health -= wpn.stats.damage;
         if (health <= 0)
         {
             Die();
@@ -37,7 +99,7 @@ public class Enemy : Character
             {
                 StopCoroutine(knockbackRoutine);
             }
-            knockbackRoutine = Knockback(wpn.knockbackForce, wpn.knockbackTime);
+            knockbackRoutine = Knockback(wpn.stats.knockbackForce, wpn.stats.knockbackTime);
             StartCoroutine(knockbackRoutine);
         }
     }

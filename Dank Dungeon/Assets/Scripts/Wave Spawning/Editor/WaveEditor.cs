@@ -18,7 +18,6 @@ public class WaveEditor : Editor
             {
                 EditorGUILayout.HelpBox("Utility commands at the beginning of the command queue will be ignored by the spawner.", MessageType.Warning);
             }
-
         }
         EditorGUILayout.Space();
 

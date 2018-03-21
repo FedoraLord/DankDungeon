@@ -273,6 +273,9 @@ MonoBehaviour:
     m_Bits: 1024
   mirror: {fileID: 114367940535308648}
   health: 5
+  damage: 0
+  attackRange: 2
+  attackLatency: 2
 --- !u!114 &114367940535308648
 MonoBehaviour:
   m_ObjectHideFlags: 1

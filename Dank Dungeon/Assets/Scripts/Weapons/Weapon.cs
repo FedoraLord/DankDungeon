@@ -4,14 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour {
-
-    public SwordType type;
+    
+    public WeaponStats stats;
     public new SpriteRenderer renderer;
     public new BoxCollider2D collider;
-    public int damage = 1;
-    public int hitsPerSwing = 1;
-    public float knockbackForce = 1;
-    public float knockbackTime = 1;
+    public int level = 1;
 
     protected bool isSwinging;
     protected bool canDamage;
@@ -21,7 +18,7 @@ public abstract class Weapon : MonoBehaviour {
     {
         get
         {
-            return collider.IsTouchingLayers(type.swingInterruptionLayers);
+            return collider.IsTouchingLayers(stats.swingInterruptionLayers);
         }
     }
 
@@ -36,11 +33,25 @@ public abstract class Weapon : MonoBehaviour {
         ResetRestingPosition();
     }
 
+    public void SetSprite()
+    {
+        renderer.sprite = stats.sprite;
+        collider.size = stats.sprite.bounds.size;
+        collider.offset = stats.sprite.bounds.center;
+    }
+
+    public void ApplyUpgrade(WeaponStats upgrade)
+    {
+        stats = upgrade;
+        level++;
+        SetSprite();
+    }
+
     public void AttemptSwing(Vector2 direction)
     {
         if (!isSwinging)
         {
-            remainingHits = hitsPerSwing;
+            remainingHits = stats.hitsPerSwing;
             StartCoroutine(FindValidSwing(direction));
         }
     }
@@ -71,13 +82,13 @@ public abstract class Weapon : MonoBehaviour {
     private IEnumerator TryClockwiseSlash(Vector2 cursorDirection)
     {
         currentAttack = Slash(true);
-        yield return AttackIfValid(Quaternion.Euler(0, 0, type.attackRadius / 2) * cursorDirection);
+        yield return AttackIfValid(Quaternion.Euler(0, 0, stats.attackRadius / 2) * cursorDirection);
     }
 
     private IEnumerator TryCounterClockwiseSlash(Vector2 cursorDirection)
     {
         currentAttack = Slash(false);
-        yield return AttackIfValid(Quaternion.Euler(0, 0, -type.attackRadius / 2) * cursorDirection);
+        yield return AttackIfValid(Quaternion.Euler(0, 0, -stats.attackRadius / 2) * cursorDirection);
     }
 
     private IEnumerator TryStab(Vector2 cursorDirection)
@@ -110,15 +121,15 @@ public abstract class Weapon : MonoBehaviour {
         canDamage = false;
         ResetRestingPosition();
 
-        if (type.attackLatency > 0)
-            yield return new WaitForSeconds(type.attackLatency);
+        if (stats.attackLatency > 0)
+            yield return new WaitForSeconds(stats.attackLatency);
 
         isSwinging = false;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (renderer.enabled && collider.IsTouchingLayers(type.swingInterruptionLayers))
+        if (renderer.enabled && collider.IsTouchingLayers(stats.swingInterruptionLayers))
         {
             StopCoroutine(currentAttack);
             StartCoroutine(EndSwing());

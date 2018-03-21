@@ -342,13 +342,12 @@
     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifier.cs" />
     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifierVolume.cs" />
     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshSurface.cs" />
-    <Compile Include="Assets\Prefabs\Crafting\Craftable.cs" />
-    <Compile Include="Assets\Prefabs\Crafting\WeaponUpgrade.cs" />
-    <Compile Include="Assets\Prefabs\Enemies\EnemyStats.cs" />
-    <Compile Include="Assets\Prefabs\Weapons\Swords\SwordType.cs" />
     <Compile Include="Assets\Scripts\Characters\Character.cs" />
     <Compile Include="Assets\Scripts\Characters\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Characters\EnemyStats.cs" />
     <Compile Include="Assets\Scripts\Characters\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Crafting\Craftable.cs" />
+    <Compile Include="Assets\Scripts\Crafting\CraftingMaterial.cs" />
     <Compile Include="Assets\Scripts\Environment\Bridge.cs" />
     <Compile Include="Assets\Scripts\Environment\Gate.cs" />
     <Compile Include="Assets\Scripts\Environment\Hazards\EnvironmentalDamage.cs" />
@@ -369,6 +368,7 @@
     <Compile Include="Assets\Scripts\Wave Spawning\WaveSpawner.cs" />
     <Compile Include="Assets\Scripts\Weapons\ShortSword.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
+    <Compile Include="Assets\Scripts\Weapons\WeaponStats.cs" />
     <Compile Include="Assets\Tilemap\GridInformation\Scripts\GridInformation.cs" />
     <Compile Include="Assets\Tilemap\Tiles\Animated Tile\Scripts\AnimatedTile.cs" />
     <Compile Include="Assets\Tilemap\Tiles\Pipeline Tile\Scripts\PipelineTile.cs" />

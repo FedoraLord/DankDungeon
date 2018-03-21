@@ -41,7 +41,7 @@ public class Mirror : MonoBehaviour {
         }
 	}
 
-    private Vector3 Coordinates3D()
+    public Vector3 Coordinates3D()
     {
         Vector3 pos = transform.position;
         pos.z = GameController.Z_OffsetLevel3D;

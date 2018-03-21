@@ -5,7 +5,8 @@ licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - sprite: {fileID: 21300000, guid: 488954c2839bb9246b96bd74bd3cb97b, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

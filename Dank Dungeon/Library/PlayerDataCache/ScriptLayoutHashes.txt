@@ -146,7 +146,6 @@ c261e943c1efad142d715ca930c9b7c6 Assembly-CSharp.dll:Cinemachine.CinemachineComp
 c3b726e1ef77ecefcf78c4586a6bf32e Assembly-CSharp.dll:Cinemachine.CinemachineTrackedDolly
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Cinemachine.CinemachinePipeline
 8f1905fd412522d9861f412be12b907a Assembly-CSharp.dll:.PoisonDamage
-51d65140175eec4a922c28f3daf7456c Assembly-CSharp.dll:.WeaponUpgrade
 1d0ed45a65af4d08065a79ace88b43fc Assembly-CSharp.dll:Cinemachine.CinemachinePath
 4e64a8439d3f2714054286cecee27cab Assembly-CSharp.dll:UnityEngine.Tilemaps.PipelineTile
 166f2fb08a5bd8e5be94b11ac3fce237 Assembly-CSharp.dll:Cinemachine.CinemachineTargetGroup
@@ -170,7 +169,7 @@ a2fcde0f386c1b7adb06e5d9737c4c9c Assembly-CSharp.dll:Cinemachine.CinemachineGrou
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Cinemachine.CinemachineSameAsFollowObject
 d9ae8c6401801a4a88651871144fd209 Assembly-CSharp.dll:Cinemachine.CinemachineBlendListCamera
 76f3454fd858ca9749a9b7152f3017b1 Assembly-CSharp.dll:Cinemachine.CinemachineMixingCamera
-ae56fec506bb047fd3ef9360928ff452 Assembly-CSharp.dll:.SwordType
+bc9728d4cfeb86165f4031a4abd44112 Assembly-CSharp.dll:.WeaponStats
 0d9c8b4275ad157d5c0da68d795fd426 Assembly-CSharp.dll:Cinemachine.Timeline.CinemachineShot
 082365e59fa03ee2299e62f279a02926 Assembly-CSharp.dll:Cinemachine.CinemachineConfiner
 aab5055413ba9b8bc47cc178f000a470 Assembly-CSharp.dll:.Something
@@ -197,7 +196,7 @@ f739fe68956c7babcc274f024cbc4a87 Assembly-CSharp.dll:Cinemachine.CinemachineSmoo
 31e3835f61fc1a3e9b12acf856f160af Assembly-CSharp.dll:.GameController
 4e64a8439d3f2714054286cecee27cab Assembly-CSharp.dll:UnityEngine.Tilemaps.TerrainTile
 4d9436cdb04079b7993a26d89d62c6a1 Assembly-CSharp.dll:.Bridge
-c43c919bfe9a89eb52a0b35ed12558fd Assembly-CSharp.dll:.ShortSword
+fbbc1efdcad9194a62b625b9c0a6affe Assembly-CSharp.dll:.ShortSword
 ef47b5b296e56702c76218de521ccc37 Assembly-CSharp.dll:Cinemachine.CinemachineBrain
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Cinemachine.CinemachineHardLockToTarget
 506e030fa92c58e7a9fb2a4b86130357 Assembly-CSharp.dll:Cinemachine.CinemachineBasicMultiChannelPerlin

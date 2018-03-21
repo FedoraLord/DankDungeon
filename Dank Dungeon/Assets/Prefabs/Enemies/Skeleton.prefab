@@ -265,12 +265,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 50666989470769328}
-  mainCollider: {fileID: 0}
+  mainCollider: {fileID: 61511131975456524}
   environmentalDamage:
     serializedVersion: 2
     m_Bits: 1024
   mirror: {fileID: 114032167772515214}
   health: 2
+  damage: 0
+  attackRange: 2
+  attackLatency: 2
 --- !u!114 &114569285753374000
 MonoBehaviour:
   m_ObjectHideFlags: 1

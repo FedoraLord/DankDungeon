@@ -7,15 +7,15 @@ public class ShortSword : Weapon {
     protected override IEnumerator Slash(bool clockwise)
     {
         renderer.enabled = true;
-        remainingHits = 3;
+        remainingHits = stats.hitsPerSwing;
 
-        if (type.chargeInTime > 0)
-            yield return new WaitForSeconds(type.chargeInTime);
+        if (stats.chargeInTime > 0)
+            yield return new WaitForSeconds(stats.chargeInTime);
 
         canDamage = true;
-        for (float angleTraveled = 0; angleTraveled < type.attackRadius; angleTraveled += type.attackSpeed)
+        for (float angleTraveled = 0; angleTraveled < stats.attackRadius; angleTraveled += stats.attackSpeed)
         {
-            float rotation = type.attackSpeed;
+            float rotation = stats.attackSpeed;
             if (clockwise)
             {
                 rotation *= -1;
@@ -26,8 +26,8 @@ public class ShortSword : Weapon {
         }
         canDamage = false;
 
-        if (type.chargeOutTime > 0)
-            yield return new WaitForSeconds(type.chargeOutTime);
+        if (stats.chargeOutTime > 0)
+            yield return new WaitForSeconds(stats.chargeOutTime);
 
         yield return EndSwing();
     }
@@ -39,26 +39,26 @@ public class ShortSword : Weapon {
 
         transform.localPosition = new Vector3();
 
-        if (type.chargeInTime > 0)
-            yield return new WaitForSeconds(type.chargeInTime);
+        if (stats.chargeInTime > 0)
+            yield return new WaitForSeconds(stats.chargeInTime);
 
         canDamage = true;
         //thrust forward
-        for (float distanceTraveled = 0; distanceTraveled < type.stabDistance; distanceTraveled += type.stabSpeed)
+        for (float distanceTraveled = 0; distanceTraveled < stats.stabDistance; distanceTraveled += stats.stabSpeed)
         {
-            transform.localPosition = (transform.localPosition + new Vector3(0, type.stabSpeed, 0));
+            transform.localPosition = (transform.localPosition + new Vector3(0, stats.stabSpeed, 0));
             yield return new WaitForEndOfFrame();
         }
         //come back
-        for (float distanceTraveled = 0; distanceTraveled < type.stabDistance; distanceTraveled += type.stabSpeed)
+        for (float distanceTraveled = 0; distanceTraveled < stats.stabDistance; distanceTraveled += stats.stabSpeed)
         {
-            transform.localPosition = (transform.localPosition + new Vector3(0, -type.stabSpeed, 0));
+            transform.localPosition = (transform.localPosition + new Vector3(0, -stats.stabSpeed, 0));
             yield return new WaitForEndOfFrame();
         }
         canDamage = false;
 
-        if (type.chargeOutTime > 0)
-            yield return new WaitForSeconds(type.chargeOutTime);
+        if (stats.chargeOutTime > 0)
+            yield return new WaitForSeconds(stats.chargeOutTime);
 
         yield return EndSwing();
     }
