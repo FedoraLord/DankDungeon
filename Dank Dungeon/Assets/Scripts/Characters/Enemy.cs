@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,8 +11,10 @@ public class Enemy : Character
     public int damage;
     public float attackRange;
     public float attackLatency;
+    public LayerMask attackLineOfSight;
 
     private bool isAttacking;
+    private bool isKnockedBack;
     private NavMeshAgent navigator;
     private IEnumerator knockbackRoutine;
     private IEnumerator attackRoutine;
@@ -21,20 +24,24 @@ public class Enemy : Character
         GameObject obj = mirror.mirror3D;
         if (obj != null)
             navigator = obj.GetComponent<NavMeshAgent>();
-
     }
 
     void Update () {
         if (navigator == null)
             navigator = mirror.mirror3D.GetComponent<NavMeshAgent>();
+        navigator.SetDestination(GameController.Player3DTransform.position);
 
-        if (IsAtDestination())
+        if (!IsFalling)
         {
-            StartAttacking();
-        }
-        else
-        {
-            navigator.SetDestination(GameController.Player3DTransform.position);
+            if (!isAttacking && IsAtDestination())
+            {
+                RaycastHit2D hit = Physics2D.RaycastAll(transform.position, (GameController.PlayerCtrl.transform.position - transform.position), attackRange, attackLineOfSight)
+                    .Where(x => x.collider != mainCollider).OrderBy(x => x.distance).FirstOrDefault();
+                if (hit.collider != null && hit.collider.gameObject == GameController.PlayerCtrl.gameObject)
+                {
+                    StartAttacking();
+                }
+            }
         }
     }
 
@@ -52,7 +59,7 @@ public class Enemy : Character
 
     private void StartAttacking()
     {
-        if (!isAttacking)
+        if (!isKnockedBack)
         {
             attackRoutine = Attack();
             StartCoroutine(attackRoutine);
@@ -65,26 +72,33 @@ public class Enemy : Character
         bool hitPlayer = false;
         mirror.Mirror2DObject();
         PlayerController player = GameController.PlayerCtrl;
-        
-        while (!hitPlayer)
+
+        float attackTimeout = Time.time + 2;
+        while (!hitPlayer && Vector2.Distance(player.transform.position, transform.position ) < attackRange + 0.1f && attackTimeout > Time.time)
         {
             body.velocity = (player.transform.position - transform.position).normalized * navigator.speed * 2;
             yield return new WaitForEndOfFrame();
             hitPlayer = mainCollider.IsTouching(player.mainCollider);
         }
 
+        if (hitPlayer)
+        {
+            player.TakePhysicalDamage(this);
+        }
+
+        float backOffTime = Time.time;
+        while (Vector2.Distance(player.transform.position, transform.position) < attackRange && Time.time < backOffTime + attackLatency)
+        {
+            body.velocity = (transform.position - player.transform.position).normalized * navigator.speed;
+            yield return new WaitForFixedUpdate();
+        }
+
         mirror.Mirror3DObject();
-        yield return new WaitForSeconds(attackLatency);
+        float remainingLatency = attackLatency - (Time.time - backOffTime);
+        if (remainingLatency > 0)
+            yield return new WaitForSeconds(remainingLatency);
         isAttacking = false;
     }
-
-    //void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-
-    //    }
-    //}
 
     public void TakeDamage(Weapon wpn)
     {
@@ -106,6 +120,8 @@ public class Enemy : Character
 
     public IEnumerator Knockback(float force, float duration)
     {
+        isKnockedBack = true;
+
         Vector2 player = GameController.PlayerCtrl.transform.position;
         Vector2 enemy = transform.position;
         Vector2 direction = enemy - player;
@@ -116,6 +132,7 @@ public class Enemy : Character
         yield return new WaitForSeconds(duration);
 
         mirror.Mirror3DObject();
+        isKnockedBack = false;
     }
 
     void Die()
@@ -127,7 +144,10 @@ public class Enemy : Character
     protected override void FallInPit_Start()
     {
         mirror.Mirror2DObject();
-        StopCoroutine(knockbackRoutine);
+        if (knockbackRoutine != null)
+        {
+            StopCoroutine(knockbackRoutine);
+        }
     }
 
     protected override void FallInPit_End()

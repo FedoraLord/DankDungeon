@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23048388188197400}
   - component: {fileID: 114216515779362850}
   - component: {fileID: 114092791620670560}
+  - component: {fileID: 114106291259374072}
   m_Layer: 0
   m_Name: Pit 3D
   m_TagString: Untagged
@@ -112,6 +113,17 @@ MonoBehaviour:
   m_Area: 3
   m_IgnoreFromBuild: 0
   m_AffectedAgents: f2652fae
+--- !u!114 &114106291259374072
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987356942758932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef247f144053c147bd23f39d80fea14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114216515779362850
 MonoBehaviour:
   m_ObjectHideFlags: 1

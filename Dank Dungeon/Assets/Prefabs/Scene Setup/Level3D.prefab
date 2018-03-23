@@ -94,7 +94,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1951223738132216
 GameObject:
@@ -309,6 +309,7 @@ MonoBehaviour:
   floorParent: {fileID: 4881228671603906}
   staticPrefab: {fileID: 1919194645889864, guid: 8fcf1007f4038a74ab330d8abdc62674,
     type: 2}
+  floor2: {fileID: 0}
 --- !u!114 &114376223910064770
 MonoBehaviour:
   m_ObjectHideFlags: 1

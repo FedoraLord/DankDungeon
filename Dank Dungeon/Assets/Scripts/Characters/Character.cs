@@ -13,8 +13,8 @@ public abstract class Character : MonoBehaviour {
     public Vector2 lastValidPosition;
     private Vector2 previousValidPosition;
 
+    protected bool IsFalling { get; private set; }
 
-    private bool isFalling;
     private EnvironmentalDamage[] envDamageScripts;
 
     protected IEnumerator UpdateLastValidPosition()
@@ -22,7 +22,7 @@ public abstract class Character : MonoBehaviour {
         envDamageScripts = GetComponents<EnvironmentalDamage>();
         while (true)
         {
-            if (!isFalling && envDamageScripts.All(x => !x.isTakingDamage))
+            if (!IsFalling && envDamageScripts.All(x => !x.isTakingDamage))
             {
                 previousValidPosition = lastValidPosition;
                 lastValidPosition = transform.position;
@@ -37,12 +37,11 @@ public abstract class Character : MonoBehaviour {
 
     public void FallInPit(Collider2D pit)
     {
-        if (!isFalling)
+        if (!IsFalling)
         {
-            isFalling = true;
+            IsFalling = true;
             FallInPit_Start();
             Vector2 lastVelocity = body.velocity;
-            //Vector2 fallTo = (Vector2)transform.position + lastVelocity.normalized;
             StartCoroutine(Falling());
         }
     }
@@ -63,7 +62,7 @@ public abstract class Character : MonoBehaviour {
             yield return new WaitForFixedUpdate();
         }
         FallInPit_End();
-        isFalling = false;
+        IsFalling = false;
     }
     
     protected abstract void FallInPit_Start();

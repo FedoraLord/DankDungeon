@@ -7,11 +7,6 @@ public class PlayerController : Character
 {
     public static Transform lastRoom;
 
-    public bool hasControl = true;
-    public float speed = 5;
-    public float hordeMovementSpeed = 2;
-    public int health;
-    public int maxHealth;
     public Transform weaponPivot;
     public Weapon weapon;
     public Transform topEnemyDetector;
@@ -19,8 +14,17 @@ public class PlayerController : Character
     public Transform leftEnemyDetector;
     public Transform rightEnemyDetector;
     public LayerMask enemyLayer;
+
+    private bool hasControl = true;
+    private float speed = 5;
+    private float hordeMovementSpeed = 5;
+    private int health;
+    private int maxHealth = 100;
+    private int damageFromPits = 20;
+    private IEnumerator physicalDamageRoutine;
     
 	void Start () {
+        health = maxHealth;
         SetWeapon(weapon);
         StartCoroutine(UpdateLastValidPosition());
         Mirror mirror = GetComponent<Mirror>();
@@ -56,6 +60,7 @@ public class PlayerController : Character
         if (Input.GetKey(KeyCode.W))
         {
             //TODO these conditions will be "if(touching || !hasBluePotionEffect)"
+            //also change mass to 100 or something on the rigidbody
             if (Physics2D.OverlapPoint(topEnemyDetector.position, enemyLayer))
             {
                 movingThroughEnemy = true;
@@ -122,10 +127,12 @@ public class PlayerController : Character
 
     protected override void FallInPit_End()
     {
+        StartCoroutine(TakePitDamage());
+
         hasControl = true;
-        //Take Damage
         transform.localScale = Vector3.one;
         Vector2 awayFromPit = (Vector2)transform.position + (lastValidPosition - (Vector2)transform.position) * 2f;
+
         if (Physics2D.OverlapPoint(awayFromPit, environmentalDamage) == null)
         {
             transform.position = awayFromPit;
@@ -134,5 +141,55 @@ public class PlayerController : Character
         {
             transform.position = lastValidPosition;
         }
+    }
+
+    public void TakePhysicalDamage(Enemy sender)
+    {
+        //TODO: anything special going to happen if its a fire slime or something?
+        int damage = sender.damage;
+        TakePhysicalDamage(damage);
+    }
+
+    public IEnumerator TakePitDamage()
+    {
+        yield return new WaitForSeconds(0.1f);
+        TakePhysicalDamage(damageFromPits, true);
+    }
+
+    private void TakePhysicalDamage(int damage, bool interrupt = false)
+    {
+        if (interrupt)
+        {
+            if (physicalDamageRoutine != null)
+            {
+                StopCoroutine(physicalDamageRoutine);
+                physicalDamageRoutine = null;
+            }
+        }
+
+        if (physicalDamageRoutine == null)
+        {
+            //TODO: armor resistance
+            health -= damage;
+            physicalDamageRoutine = PhysicalDamageCooldown();
+            StartCoroutine(physicalDamageRoutine);
+        }
+    }
+
+    private IEnumerator PhysicalDamageCooldown()
+    {
+        float showTime = 0.5f;
+        float hideTime = 0.2f;
+        SpriteRenderer r = GetComponent<SpriteRenderer>();
+
+        for (int blinks = 0; blinks < 3; blinks++)
+        {
+            r.enabled = false;
+            yield return new WaitForSeconds(hideTime);
+            r.enabled = true;
+            yield return new WaitForSeconds(showTime);
+        }
+
+        physicalDamageRoutine = null;
     }
 }

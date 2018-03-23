@@ -338,9 +338,11 @@
     <Compile Include="Assets\Cinemachine\Timeline\CinemachineMixer.cs" />
     <Compile Include="Assets\Cinemachine\Timeline\CinemachineShot.cs" />
     <Compile Include="Assets\Cinemachine\Timeline\CinemachineTrack.cs" />
+    <Compile Include="Assets\NavMeshComponents\Scripts\LocalNavMeshBuilder.cs" />
     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshLink.cs" />
     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifier.cs" />
     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifierVolume.cs" />
+    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshSourceTag.cs" />
     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshSurface.cs" />
     <Compile Include="Assets\Scripts\Characters\Character.cs" />
     <Compile Include="Assets\Scripts\Characters\Enemy.cs" />
@@ -359,9 +361,12 @@
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\MapGenerator.cs" />
+    <Compile Include="Assets\Scripts\MapGeneratorV2.cs" />
     <Compile Include="Assets\Scripts\Mirror.cs" />
     <Compile Include="Assets\Scripts\Testing\CoroutineExample.cs" />
+    <Compile Include="Assets\Scripts\Testing\NavMeshAgentMover.cs" />
     <Compile Include="Assets\Scripts\Testing\Something.cs" />
+    <Compile Include="Assets\Scripts\Testing\SpawnPit.cs" />
     <Compile Include="Assets\Scripts\Wave Spawning\EnemyList.cs" />
     <Compile Include="Assets\Scripts\Wave Spawning\Wave.cs" />
     <Compile Include="Assets\Scripts\Wave Spawning\WaveCommand.cs" />

@@ -9,7 +9,7 @@ public class PitDamage : EnvironmentalDamage
         tagFilter = "Pit";
         StartCoroutine(CheckCollisions());
     }
-
+    
     protected override void TriggerEnvironmentalDamage(Collider2D damageFrom)
     {
         Character actor = GetComponent<Character>();

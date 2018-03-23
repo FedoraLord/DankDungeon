@@ -167,8 +167,13 @@ namespace UnityEngine.AI
             }
         }
 
-        public AsyncOperation UpdateNavMesh(NavMeshData data)
+        public AsyncOperation UpdateNavMesh(NavMeshData data = null)
         {
+            if (data == null)
+            {
+                data = m_NavMeshData;
+            }
+
             var sources = CollectSources();
 
             // Use unscaled bounds - this differs in behaviour from e.g. collider components.

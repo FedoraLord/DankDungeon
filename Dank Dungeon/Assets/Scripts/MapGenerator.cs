@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Tilemaps;
@@ -32,6 +33,15 @@ public class MapGenerator : MonoBehaviour {
         foreach (var surface in surfaces)
         {
             surface.BuildNavMesh();
+        }
+    }
+
+    public IEnumerator UpdateNavMeshes()
+    {
+        NavMeshSurface[] surfaces = floorParent.GetComponents<NavMeshSurface>();
+        foreach (var surface in surfaces)
+        {
+            yield return surface.UpdateNavMesh();
         }
     }
 
