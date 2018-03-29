@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour {
-    
+public abstract class Weapon : MonoBehaviour
+{
     public WeaponStats stats;
     public new SpriteRenderer renderer;
     public new BoxCollider2D collider;
@@ -110,10 +110,67 @@ public abstract class Weapon : MonoBehaviour {
         }
     }
 
-    protected abstract IEnumerator Slash(bool clockwise);
+    private IEnumerator Slash(bool clockwise)
+    {
+        renderer.enabled = true;
+        remainingHits = stats.hitsPerSwing;
 
-    protected abstract IEnumerator Stab();
-    
+        if (stats.chargeInTime > 0)
+            yield return new WaitForSeconds(stats.chargeInTime);
+
+        canDamage = true;
+        for (float angleTraveled = 0; angleTraveled < stats.attackRadius; angleTraveled += stats.attackSpeed)
+        {
+            float rotation = stats.attackSpeed;
+            if (clockwise)
+            {
+                rotation *= -1;
+            }
+
+            transform.parent.Rotate(new Vector3(0, 0, 1), rotation);
+            yield return new WaitForEndOfFrame();
+        }
+        canDamage = false;
+
+        if (stats.chargeOutTime > 0)
+            yield return new WaitForSeconds(stats.chargeOutTime);
+
+        yield return EndSwing();
+    }
+
+    private IEnumerator Stab()
+    {
+        renderer.enabled = true;
+        remainingHits = 3;
+
+        transform.localPosition = new Vector3();
+
+        if (stats.chargeInTime > 0)
+            yield return new WaitForSeconds(stats.chargeInTime);
+
+        canDamage = true;
+        //thrust forward
+        for (float distanceTraveled = 0; distanceTraveled < stats.stabDistance; distanceTraveled += stats.stabSpeed)
+        {
+            transform.localPosition = (transform.localPosition + new Vector3(0, stats.stabSpeed, 0));
+            yield return new WaitForEndOfFrame();
+        }
+        canDamage = false;
+        //come back
+        for (float distanceTraveled = 0; distanceTraveled < stats.stabDistance; distanceTraveled += stats.stabSpeed)
+        {
+            transform.localPosition = (transform.localPosition + new Vector3(0, -stats.stabSpeed, 0));
+            yield return new WaitForEndOfFrame();
+        }
+
+        if (stats.chargeOutTime > 0)
+            yield return new WaitForSeconds(stats.chargeOutTime);
+
+        yield return EndSwing();
+    }
+
+    protected abstract IEnumerator SpecialAttack();
+
     protected IEnumerator EndSwing()
     {
         collider.enabled = false;

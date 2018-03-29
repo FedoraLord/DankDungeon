@@ -21,6 +21,7 @@ TextureImporter:
     21300028: Swords_14
     21300030: Swords_15
     21300032: Swords_16
+    21300034: Swords_17
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -104,8 +105,8 @@ TextureImporter:
         y: 198
         width: 48
         height: 126
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -118,8 +119,8 @@ TextureImporter:
         y: 198
         width: 60
         height: 126
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -132,8 +133,8 @@ TextureImporter:
         y: 198
         width: 60
         height: 126
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -146,8 +147,8 @@ TextureImporter:
         y: 198
         width: 60
         height: 126
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -159,9 +160,9 @@ TextureImporter:
         x: 402
         y: 198
         width: 60
-        height: 150
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -174,8 +175,8 @@ TextureImporter:
         y: 198
         width: 48
         height: 162
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -187,9 +188,9 @@ TextureImporter:
         x: 600
         y: 198
         width: 48
-        height: 126
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -201,9 +202,9 @@ TextureImporter:
         x: 702
         y: 198
         width: 36
-        height: 126
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -212,12 +213,12 @@ TextureImporter:
       name: Swords_8
       rect:
         serializedVersion: 2
-        x: 18
-        y: 6
-        width: 60
-        height: 126
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 798
+        y: 198
+        width: 36
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -226,12 +227,12 @@ TextureImporter:
       name: Swords_9
       rect:
         serializedVersion: 2
-        x: 114
+        x: 18
         y: 6
         width: 60
-        height: 174
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -240,12 +241,12 @@ TextureImporter:
       name: Swords_10
       rect:
         serializedVersion: 2
-        x: 222
+        x: 114
         y: 6
-        width: 36
-        height: 162
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 60
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -254,12 +255,12 @@ TextureImporter:
       name: Swords_11
       rect:
         serializedVersion: 2
-        x: 306
+        x: 210
         y: 6
         width: 60
-        height: 144
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -268,12 +269,12 @@ TextureImporter:
       name: Swords_12
       rect:
         serializedVersion: 2
-        x: 402
+        x: 306
         y: 6
         width: 60
-        height: 144
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -282,12 +283,12 @@ TextureImporter:
       name: Swords_13
       rect:
         serializedVersion: 2
-        x: 498
+        x: 402
         y: 6
         width: 60
-        height: 126
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -296,12 +297,12 @@ TextureImporter:
       name: Swords_14
       rect:
         serializedVersion: 2
-        x: 594
+        x: 498
         y: 6
         width: 60
         height: 126
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -310,12 +311,12 @@ TextureImporter:
       name: Swords_15
       rect:
         serializedVersion: 2
-        x: 690
+        x: 594
         y: 6
         width: 60
         height: 126
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -324,12 +325,26 @@ TextureImporter:
       name: Swords_16
       rect:
         serializedVersion: 2
+        x: 690
+        y: 6
+        width: 60
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Swords_17
+      rect:
+        serializedVersion: 2
         x: 786
         y: 6
         width: 60
         height: 126
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

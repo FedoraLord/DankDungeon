@@ -65,7 +65,6 @@ public class WaveSpawner : MonoBehaviour {
             dest.z = GameController.Z_OffsetLevel3D;
             playerAgent.SetDestination(dest);
 
-            //give the agent time to calculate the path
             yield return new WaitForEndOfFrame();
 
             if (playerAgent.pathStatus == NavMeshPathStatus.PathComplete)

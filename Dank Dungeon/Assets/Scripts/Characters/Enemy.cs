@@ -9,21 +9,29 @@ public class Enemy : Character
     public Mirror mirror;
     public int health = 5;
     public int damage;
+    public float speed;
     public float attackRange;
     public float attackLatency;
     public LayerMask attackLineOfSight;
 
     private bool isAttacking;
-    private bool isKnockedBack;
     private NavMeshAgent navigator;
     private IEnumerator knockbackRoutine;
     private IEnumerator attackRoutine;
 
     void Start()
     {
+        InitializeCharacter();
         GameObject obj = mirror.mirror3D;
         if (obj != null)
             navigator = obj.GetComponent<NavMeshAgent>();
+        StartCoroutine(SetAgentSpeed());
+    }
+
+    private IEnumerator SetAgentSpeed()
+    {
+        yield return new WaitUntil(() => mirror.mirror3D != null);
+        mirror.mirror3D.GetComponent<NavMeshAgent>().speed = speed;
     }
 
     void Update () {
@@ -59,7 +67,7 @@ public class Enemy : Character
 
     private void StartAttacking()
     {
-        if (!isKnockedBack)
+        if (knockbackRoutine == null)
         {
             attackRoutine = Attack();
             StartCoroutine(attackRoutine);
@@ -120,8 +128,6 @@ public class Enemy : Character
 
     public IEnumerator Knockback(float force, float duration)
     {
-        isKnockedBack = true;
-
         Vector2 player = GameController.PlayerCtrl.transform.position;
         Vector2 enemy = transform.position;
         Vector2 direction = enemy - player;
@@ -132,7 +138,7 @@ public class Enemy : Character
         yield return new WaitForSeconds(duration);
 
         mirror.Mirror3DObject();
-        isKnockedBack = false;
+        knockbackRoutine = null;
     }
 
     void Die()

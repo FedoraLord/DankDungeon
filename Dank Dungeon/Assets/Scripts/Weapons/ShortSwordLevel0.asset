@@ -11,8 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c12992acd73dad4dac067a075f4c6eb, type: 3}
   m_Name: ShortSwordLevel0
   m_EditorClassIdentifier: 
+  displayName: Rusty Sword
+  description: A weak sword covered in rust.
   materialsNeeded: []
   craftingTime: 0
+  isConsumable: 0
   attackRadius: 70
   attackSpeed: 20
   attackLatency: 0.25

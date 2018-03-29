@@ -54,3 +54,30 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1099243793
+    locked: 0
+  - name: Floor
+    uniqueID: 3436417661
+    locked: 0
+  - name: Triggers
+    uniqueID: 2100186121
+    locked: 0
+  - name: Walls
+    uniqueID: 2142931079
+    locked: 0
+  - name: Pits Lava
+    uniqueID: 1705049587
+    locked: 0
+  - name: Foreground
+    uniqueID: 2591356841
+    locked: 0
+  - name: Characters
+    uniqueID: 1767759685
+    locked: 0
+  - name: Weapons
+    uniqueID: 3768001211
+    locked: 0
+  - name: Poison Gas
+    uniqueID: 1902630247
+    locked: 0

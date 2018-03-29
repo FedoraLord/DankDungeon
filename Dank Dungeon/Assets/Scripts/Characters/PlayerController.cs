@@ -17,16 +17,17 @@ public class PlayerController : Character
 
     private bool hasControl = true;
     private float speed = 5;
-    private float hordeMovementSpeed = 5;
+    private float hordeMovementSpeed = 1;
     private int health;
     private int maxHealth = 100;
     private int damageFromPits = 20;
     private IEnumerator physicalDamageRoutine;
+    private Vector2 enemyDetectorSize = new Vector2(0.5f, 0.1f);
     
 	void Start () {
+        InitializeCharacter();
         health = maxHealth;
         SetWeapon(weapon);
-        StartCoroutine(UpdateLastValidPosition());
         Mirror mirror = GetComponent<Mirror>();
         mirror.mirror3D.GetComponent<NavMeshAgent>().Warp(mirror.Coordinates3D());
     }
@@ -59,9 +60,7 @@ public class PlayerController : Character
 
         if (Input.GetKey(KeyCode.W))
         {
-            //TODO these conditions will be "if(touching || !hasBluePotionEffect)"
-            //also change mass to 100 or something on the rigidbody
-            if (Physics2D.OverlapPoint(topEnemyDetector.position, enemyLayer))
+            if (Physics2D.OverlapBox(topEnemyDetector.position, enemyDetectorSize, 0, enemyLayer))
             {
                 movingThroughEnemy = true;
             }
@@ -69,7 +68,7 @@ public class PlayerController : Character
         }
         if (Input.GetKey(KeyCode.A))
         {
-            if (Physics2D.OverlapPoint(leftEnemyDetector.position, enemyLayer))
+            if (Physics2D.OverlapBox(leftEnemyDetector.position, enemyDetectorSize, 90, enemyLayer))
             {
                 movingThroughEnemy = true;
             }
@@ -77,7 +76,7 @@ public class PlayerController : Character
         }
         if (Input.GetKey(KeyCode.S))
         {
-            if (Physics2D.OverlapPoint(rightEnemyDetector.position, enemyLayer))
+            if (Physics2D.OverlapBox(rightEnemyDetector.position, enemyDetectorSize, 90, enemyLayer))
             {
                 movingThroughEnemy = true;
             }
@@ -85,7 +84,7 @@ public class PlayerController : Character
         }
         if (Input.GetKey(KeyCode.D))
         {
-            if (Physics2D.OverlapPoint(bottomEnemyDetector.position, enemyLayer))
+            if (Physics2D.OverlapBox(bottomEnemyDetector.position, enemyDetectorSize, 0, enemyLayer))
             {
                 movingThroughEnemy = true;
             }
@@ -94,7 +93,7 @@ public class PlayerController : Character
 
         if (velocity.magnitude > 0)
         {
-            if (movingThroughEnemy)
+            if (movingThroughEnemy /*TODO: && !isBluePotionActive*/)
                 velocity = velocity.normalized * hordeMovementSpeed;
             else
                 velocity = velocity.normalized * speed;

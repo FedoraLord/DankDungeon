@@ -157,7 +157,6 @@ GameObject:
   - component: {fileID: 212517121310230606}
   - component: {fileID: 114736175636178570}
   - component: {fileID: 114410425216924960}
-  - component: {fileID: 114577879622862090}
   - component: {fileID: 61485929601665220}
   - component: {fileID: 50148763560125992}
   m_Layer: 11
@@ -251,7 +250,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1802776242558024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.58, y: 0.97, z: 0}
+  m_LocalPosition: {x: 1, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4693865528479086}
@@ -375,7 +374,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 3
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -427,26 +426,7 @@ MonoBehaviour:
   independentMover: 0
   positionOffset: {x: 0, y: 0}
   customScale: {x: 0, y: 0}
---- !u!114 &114577879622862090
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1802776242558024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b2b7aa76ea9c844298ea3c207f2dce5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  overlapPoints:
-  - {fileID: 4638604143481030}
-  - {fileID: 4699758993940294}
-  - {fileID: 4070895515931620}
-  - {fileID: 4517068800538306}
-  damageLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  minContacts: 4
+  scaleWithSpriteRendererSize: 0
 --- !u!114 &114736175636178570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -458,11 +438,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ae3659dd8e0ff4da91933502071598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 50148763560125992}
+  takeFireDamage: 1
+  takePitDamage: 1
+  takePoisonDamage: 1
   mainCollider: {fileID: 61485929601665220}
   environmentalDamage:
     serializedVersion: 2
     m_Bits: 1024
+  environmentOverlapPoints:
+  - {fileID: 4638604143481030}
+  - {fileID: 4699758993940294}
+  - {fileID: 4070895515931620}
+  - {fileID: 4517068800538306}
+  body: {fileID: 50148763560125992}
   weaponPivot: {fileID: 4693865528479086}
   weapon: {fileID: 114143865538342254, guid: 20e0f975e7467934a92a73663abed0f2, type: 2}
   topEnemyDetector: {fileID: 4734585744118804}
@@ -503,9 +491,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingLayerID: 1767759685
+  m_SortingLayer: 7
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d7757ed0924c2ec41b7520244163476b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

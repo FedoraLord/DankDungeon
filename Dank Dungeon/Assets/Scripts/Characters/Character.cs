@@ -5,24 +5,38 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour {
 
-    public Rigidbody2D body;
+    public bool takeFireDamage;
+    public bool takePitDamage;
+    public bool takePoisonDamage;
     public BoxCollider2D mainCollider;
     public LayerMask environmentalDamage;
+    public List<Transform> environmentOverlapPoints;
+    public Rigidbody2D body;
 
-    [System.NonSerialized]
-    public Vector2 lastValidPosition;
-    private Vector2 previousValidPosition;
+    [System.NonSerialized] public Vector2 lastValidPosition;
 
     protected bool IsFalling { get; private set; }
 
-    private EnvironmentalDamage[] envDamageScripts;
+    private bool isTakingEnvironmentDamage;
+    private int lavaContacts = 1;
+    private int pitContacts = 4;
+    private int poisonContacts = 1;
+    private Vector2 previousValidPosition;
 
-    protected IEnumerator UpdateLastValidPosition()
+    protected void InitializeCharacter()
     {
-        envDamageScripts = GetComponents<EnvironmentalDamage>();
+        if (takeFireDamage || takePitDamage || takePoisonDamage)
+        {
+            StartCoroutine(UpdateLastValidPosition());
+            StartCoroutine(CheckCollisions());
+        }
+    }
+
+    private IEnumerator UpdateLastValidPosition()
+    {
         while (true)
         {
-            if (!IsFalling && envDamageScripts.All(x => !x.isTakingDamage))
+            if (!isTakingEnvironmentDamage)
             {
                 previousValidPosition = lastValidPosition;
                 lastValidPosition = transform.position;
@@ -35,13 +49,62 @@ public abstract class Character : MonoBehaviour {
         }
     }
 
-    public void FallInPit(Collider2D pit)
+    private IEnumerator CheckCollisions()
+    {
+        while (true)
+        {
+            Collider2D damageFrom = null;
+            isTakingEnvironmentDamage = false;
+
+            if (takePitDamage && (damageFrom = GetDamagingCollider("Pit", pitContacts)))
+            {
+                isTakingEnvironmentDamage = true;
+                FallInPit(damageFrom);
+            }
+
+            if (takeFireDamage && (damageFrom = GetDamagingCollider("Lava", lavaContacts)))
+            {
+                isTakingEnvironmentDamage = true;
+                //BurnBabyBurn(damage);
+            }
+
+            if (takePoisonDamage && (damageFrom = GetDamagingCollider("Poison", poisonContacts)))
+            {
+                isTakingEnvironmentDamage = true;
+                //Poison(damage);
+            }
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    private Collider2D GetDamagingCollider(string tagFilter, int minContacts)
+    {
+        int numContacts = 0;
+        Collider2D damageFrom = null;
+        for (int i = 0; i < environmentOverlapPoints.Count; i++)
+        {
+            Collider2D[] colliders = Physics2D.OverlapPointAll(environmentOverlapPoints[i].position, environmentalDamage);
+            var environmentColliders = colliders.Where(x => x.CompareTag(tagFilter));
+            if (environmentColliders.Any())
+            {
+                numContacts++;
+                damageFrom = environmentColliders.FirstOrDefault();
+            }
+        }
+
+        if (numContacts >= minContacts)
+        {
+            return damageFrom;
+        }
+        return null;
+    }
+
+    private void FallInPit(Collider2D pit)
     {
         if (!IsFalling)
         {
             IsFalling = true;
             FallInPit_Start();
-            Vector2 lastVelocity = body.velocity;
             StartCoroutine(Falling());
         }
     }

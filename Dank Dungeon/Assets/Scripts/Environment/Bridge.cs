@@ -7,6 +7,7 @@ public class Bridge : Barrier
 {
     public Direction expandingDirection;
     public enum Direction { X, Y }
+    public SpriteRenderer sr;
 
     public override void DisableBarrier()
     {
@@ -35,17 +36,17 @@ public class Bridge : Barrier
         {
             if (expandingDirection == Direction.X)
             {
-                return transform.localScale.x;
+                return sr.size.x;
             }
             else
             {
-                return transform.localScale.y;
+                return sr.size.y;
             }
         }
 
         set
         {
-            Vector3 scale = transform.localScale;
+            Vector3 scale = sr.size;
             if (expandingDirection == Direction.X)
             {
                 scale.x = value;
@@ -54,7 +55,7 @@ public class Bridge : Barrier
             {
                 scale.y = value;
             }
-            transform.localScale = scale;
+            sr.size = scale;
         }
     }
 }

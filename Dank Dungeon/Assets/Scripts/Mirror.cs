@@ -12,11 +12,16 @@ public class Mirror : MonoBehaviour {
     public MirrorMode independentMover;
     public Vector2 positionOffset;
     public Vector2 customScale;
-    
+    public bool scaleWithSpriteRendererSize;
+
     public enum FindBy { Tag, Name }
     public enum MirrorMode { Object2D, Object3D, DontMirror }
 
+    private SpriteRenderer sr;
+
     void Start() {
+        sr = GetComponent<SpriteRenderer>();
+
         if (mirror3D == null)
         {
             Transform parent;
@@ -30,23 +35,38 @@ public class Mirror : MonoBehaviour {
             }
 
             mirror3D = Instantiate(prefab3D, Coordinates3D(), Quaternion.identity, parent);
-            if (customScale == default(Vector2))
+
+            if (scaleWithSpriteRendererSize)
             {
-                mirror3D.transform.localScale = transform.localScale;
+                mirror3D.transform.localScale = sr.bounds.extents * 2;
             }
             else
-            {
-                mirror3D.transform.localScale = (Vector3)customScale + new Vector3(0, 0, 1);
+            { 
+                if (customScale == default(Vector2))
+                {
+                    mirror3D.transform.localScale = transform.localScale;
+                }
+                else
+                {
+                    mirror3D.transform.localScale = (Vector3)customScale + new Vector3(0, 0, 1);
+                }
             }
         }
 	}
 
     public Vector3 Coordinates3D()
     {
-        Vector3 pos = transform.position;
-        pos.z = GameController.Z_OffsetLevel3D;
-        pos += (Vector3)positionOffset;
-        return pos;
+        if (scaleWithSpriteRendererSize)
+        {
+            return new Vector3(sr.bounds.center.x, sr.bounds.center.y, transform.position.z + GameController.Z_OffsetLevel3D);
+        }
+        else
+        {
+            Vector3 pos = transform.position;
+            pos.z = GameController.Z_OffsetLevel3D;
+            pos += (Vector3)positionOffset;
+            return pos;
+        }
     }
 	
 	void Update () {

@@ -15,6 +15,7 @@ namespace UnityEditor
 		public int m_Z;
         //Desired parent - Jeremy K.
         public string parentTag;
+        public bool useSpriteRendererScale;
 
 		public override void Paint(GridLayout grid, GameObject brushTarget, Vector3Int position)
 		{
@@ -42,12 +43,25 @@ namespace UnityEditor
 			GameObject prefab = m_Prefabs[index];
 			GameObject instance = (GameObject) PrefabUtility.InstantiatePrefab(prefab);
 			Undo.RegisterCreatedObjectUndo((Object)instance, "Paint Prefabs");
+
 			if (instance != null)
 			{
 				instance.transform.SetParent(brushTarget.transform);
-				instance.transform.position = grid.LocalToWorld(grid.CellToLocalInterpolated(new Vector3Int(position.x, position.y, m_Z) + new Vector3(.5f * scale.x, .5f * scale.y, .5f * scale.z)));
-                instance.transform.localScale = scale;
-			}
+                SpriteRenderer sr = instance.GetComponent<SpriteRenderer>();
+
+                if (useSpriteRendererScale && sr != null)
+                {
+                    sr.size = new Vector2(scale.x, scale.y);
+                    float x_pivot = sr.sprite.pivot.x / sr.sprite.pixelsPerUnit * scale.x;
+                    float y_pivot = sr.sprite.pivot.y / sr.sprite.pixelsPerUnit * scale.y;
+                    instance.transform.position = new Vector3(position.x + x_pivot, position.y + y_pivot);
+                }
+                else
+                {
+                    instance.transform.localScale = scale;
+                    instance.transform.position = grid.LocalToWorld(grid.CellToLocalInterpolated(new Vector3Int(position.x, position.y, m_Z) + new Vector3(.5f * scale.x, .5f * scale.y, .5f * scale.z)));
+                }
+            }
         }
 
         public GameObject GetParent(GameObject defaultParent)

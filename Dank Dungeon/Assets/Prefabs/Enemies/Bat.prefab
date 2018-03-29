@@ -107,6 +107,7 @@ MonoBehaviour:
   independentMover: 1
   positionOffset: {x: 0, y: 0}
   customScale: {x: 0, y: 0}
+  scaleWithSpriteRendererSize: 0
 --- !u!114 &114932665992790268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -118,14 +119,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 744abae2069d2a04cbb31482b3637457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 50533318970117636}
+  takeFireDamage: 0
+  takePitDamage: 0
+  takePoisonDamage: 0
   mainCollider: {fileID: 61763083441189332}
   environmentalDamage:
     serializedVersion: 2
     m_Bits: 1024
+  environmentOverlapPoints: []
+  body: {fileID: 50533318970117636}
   mirror: {fileID: 114301507260566498}
   health: 1
   damage: 0
+  speed: 6
   attackRange: 2
   attackLatency: 2
   attackLineOfSight:
@@ -162,9 +168,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingLayerID: 1767759685
+  m_SortingLayer: 7
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300008, guid: ebae08cf813ee5a49b2bb8a3a65eec64, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
