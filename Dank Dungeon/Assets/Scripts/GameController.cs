@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour {
     public static Camera MainCamera { get; set; }
 
     public NavMeshSurface WalkingSurface;
+
     public NavMeshSurface FireProofSurface;
     public NavMeshSurface FlyingSurface;
 
@@ -72,5 +73,10 @@ public class GameController : MonoBehaviour {
         {
             item.GetComponent<Mirror>().Mirror3DObject();
         }
+    }
+
+    public static void Win()
+    {
+        Debug.LogError("Do something to show that you won!");
     }
 }

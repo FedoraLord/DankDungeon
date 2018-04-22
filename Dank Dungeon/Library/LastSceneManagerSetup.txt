@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/NavTest.unity
+- path: Assets/Scenes/FinalMap.unity
   isLoaded: 1
   isActive: 1

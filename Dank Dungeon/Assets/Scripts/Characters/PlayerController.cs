@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,6 +15,7 @@ public class PlayerController : Character
     public Transform leftEnemyDetector;
     public Transform rightEnemyDetector;
     public LayerMask enemyLayer;
+<<<<<<< HEAD
     public AudioSource attackSound;
     public AudioSource walkSound;
     public AudioSource hitSound;
@@ -23,6 +25,12 @@ public class PlayerController : Character
     public AudioSource cough2Sound;
     public AudioSource cough3Sound;
 
+=======
+    
+    [NonSerialized]
+    public Dictionary<CraftingMaterial, int> Inventory;
+    Animator anim;
+>>>>>>> 9ce889e9caf8dc2d6d3d7ecf7ec20f8a94e53f51
 
     private bool hasControl = true;
     private float speed = 5;
@@ -43,8 +51,12 @@ public class PlayerController : Character
         SetWeapon(weapon);
         Mirror mirror = GetComponent<Mirror>();
         mirror.mirror3D.GetComponent<NavMeshAgent>().Warp(mirror.Coordinates3D());
+<<<<<<< HEAD
 
         
+=======
+        anim = GetComponent<Animator>();
+>>>>>>> 9ce889e9caf8dc2d6d3d7ecf7ec20f8a94e53f51
 
     }
 
@@ -106,7 +118,16 @@ public class PlayerController : Character
             }
             velocity += transform.right;
         }
-
+        if (velocity.x == 0 && velocity.y == 0)
+        {
+            anim.SetInteger("Direction", 0);
+        }
+        else if(velocity.x < 0)
+            {
+            anim.SetInteger("Direction",-1);
+        }
+        else
+            anim.SetInteger("Direction", 1);
         if (velocity.magnitude > 0)
         {
             if(!GameController.PlayerCtrl.walkSound.isPlaying)
