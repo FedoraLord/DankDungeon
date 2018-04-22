@@ -76817,13 +76817,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a68936eabb4704eb8c1317555c7289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description:
-  - {fileID: 1872914469}
-  - {fileID: 1006239168}
-  - {fileID: 101296128}
-  - {fileID: 279729043}
-  - {fileID: 353994846}
-  - {fileID: 705256948}
 --- !u!114 &2079296985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76835,16 +76828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d630781949509bc45929ed4a0e4009c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuScene: StartMenu
-  pauseMenuUI: {fileID: 1826081180}
-  contentArray:
-  - {fileID: 9532102}
-  - {fileID: 667078921}
-  - {fileID: 845828184}
-  - {fileID: 655860450}
-  - {fileID: 318123457}
-  - {fileID: 320995878}
-  - {fileID: 2063874436}
 --- !u!114 &2079296986
 MonoBehaviour:
   m_ObjectHideFlags: 0
