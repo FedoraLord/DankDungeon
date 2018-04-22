@@ -15,6 +15,8 @@ public class PlayerController : Character
     public Transform rightEnemyDetector;
     public LayerMask enemyLayer;
 
+    Animator anim;
+
     private bool hasControl = true;
     private float speed = 5;
     private float hordeMovementSpeed = 1;
@@ -34,6 +36,8 @@ public class PlayerController : Character
         SetWeapon(weapon);
         Mirror mirror = GetComponent<Mirror>();
         mirror.mirror3D.GetComponent<NavMeshAgent>().Warp(mirror.Coordinates3D());
+        anim = GetComponent<Animator>();
+
     }
 
     public void SetWeapon(Weapon newWeapon)
@@ -94,7 +98,16 @@ public class PlayerController : Character
             }
             velocity += transform.right;
         }
-
+        if (velocity.x == 0 && velocity.y == 0)
+        {
+            anim.SetInteger("Direction", 0);
+        }
+        else if(velocity.x < 0)
+            {
+            anim.SetInteger("Direction",-1);
+        }
+        else
+            anim.SetInteger("Direction", 1);
         if (velocity.magnitude > 0)
         {
             if (movingThroughEnemy /*TODO: && !isBluePotionActive*/)
