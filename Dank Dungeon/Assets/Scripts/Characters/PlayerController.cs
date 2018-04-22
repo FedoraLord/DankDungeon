@@ -21,6 +21,10 @@ public class PlayerController : Character
     private int health;
     private int maxHealth = 100;
     private int damageFromPits = 20;
+    private int damageFromLava = 10;
+    private int damageFromPoison = 5;
+    private int burnTimer = 5;
+    private int poisonTimer = 10;
     private IEnumerator physicalDamageRoutine;
     private Vector2 enemyDetectorSize = new Vector2(0.5f, 0.1f);
     

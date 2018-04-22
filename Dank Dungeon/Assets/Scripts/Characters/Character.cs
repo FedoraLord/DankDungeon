@@ -17,6 +17,10 @@ public abstract class Character : MonoBehaviour {
 
     protected bool IsFalling { get; private set; }
 
+    public int lavaDamage;
+    public int effectTimer = 10;
+    public int poisonDamage;
+
     private bool isTakingEnvironmentDamage;
     private int lavaContacts = 1;
     private int pitContacts = 4;
@@ -65,13 +69,13 @@ public abstract class Character : MonoBehaviour {
             if (takeFireDamage && (damageFrom = GetDamagingCollider("Lava", lavaContacts)))
             {
                 isTakingEnvironmentDamage = true;
-                //BurnBabyBurn(damage);
+                Lava(lavaDamage);
             }
 
             if (takePoisonDamage && (damageFrom = GetDamagingCollider("Poison", poisonContacts)))
             {
                 isTakingEnvironmentDamage = true;
-                //Poison(damage);
+                Poison(poisonDamage);
             }
             yield return new WaitForFixedUpdate();
         }
@@ -127,7 +131,33 @@ public abstract class Character : MonoBehaviour {
         FallInPit_End();
         IsFalling = false;
     }
-    
+
+    private IEnumerator Lava(int damage)
+    {
+        float timer = 0;
+
+        if(timer >= effectTimer)
+        {
+            timer -= effectTimer;
+            // Deal Damage... Probs make it a override in PlayerController
+        }
+        timer += Time.deltaTime;
+        yield return new WaitForFixedUpdate();
+    }
+
+    private IEnumerator Poison(int damage)
+    {
+        float timer = 0;
+
+        if (timer >= effectTimer)
+        {
+            timer -= effectTimer;
+            // Deal Damage... Probs make it a override in PlayerController
+        }
+        timer += Time.deltaTime;
+        yield return new WaitForFixedUpdate();
+    }
+
     protected abstract void FallInPit_Start();
 
     protected abstract void FallInPit_End();
