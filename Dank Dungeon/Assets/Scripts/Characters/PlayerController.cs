@@ -14,6 +14,15 @@ public class PlayerController : Character
     public Transform leftEnemyDetector;
     public Transform rightEnemyDetector;
     public LayerMask enemyLayer;
+    public AudioSource attackSound;
+    public AudioSource walkSound;
+    public AudioSource hitSound;
+    public AudioSource craftingSound;
+    public AudioSource drinkingSound;
+    public AudioSource cough1Sound;
+    public AudioSource cough2Sound;
+    public AudioSource cough3Sound;
+
 
     private bool hasControl = true;
     private float speed = 5;
@@ -34,6 +43,9 @@ public class PlayerController : Character
         SetWeapon(weapon);
         Mirror mirror = GetComponent<Mirror>();
         mirror.mirror3D.GetComponent<NavMeshAgent>().Warp(mirror.Coordinates3D());
+
+        
+
     }
 
     public void SetWeapon(Weapon newWeapon)
@@ -97,10 +109,16 @@ public class PlayerController : Character
 
         if (velocity.magnitude > 0)
         {
+            if(!GameController.PlayerCtrl.walkSound.isPlaying)
+                GameController.PlayerCtrl.walkSound.Play();
+
             if (movingThroughEnemy /*TODO: && !isBluePotionActive*/)
                 velocity = velocity.normalized * hordeMovementSpeed;
             else
                 velocity = velocity.normalized * speed;
+        } else
+        {
+            GameController.PlayerCtrl.walkSound.Stop();
         }
         body.velocity = velocity;
     }
@@ -111,6 +129,7 @@ public class PlayerController : Character
         {
             Vector2 direction = GameController.MainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             weapon.AttemptSwing(direction);
+            
         }
     }
 
@@ -149,6 +168,7 @@ public class PlayerController : Character
     public void TakePhysicalDamage(Enemy sender)
     {
         //TODO: anything special going to happen if its a fire slime or something?
+        GameController.PlayerCtrl.hitSound.Play();
         int damage = sender.damage;
         TakePhysicalDamage(damage);
     }

@@ -26,6 +26,7 @@ public abstract class Character : MonoBehaviour {
     private int pitContacts = 4;
     private int poisonContacts = 1;
     private Vector2 previousValidPosition;
+    private int coughCounter = 0;
 
     protected void InitializeCharacter()
     {
@@ -148,6 +149,19 @@ public abstract class Character : MonoBehaviour {
     private IEnumerator Poison(int damage)
     {
         float timer = 0;
+        
+        //switch(coughCounter)
+        //{
+        //    case 0:
+        //        PlayCoughOne();
+        //        break;
+        //    case 1:
+        //        PlayCoughTwo();
+        //        break;
+        //    case 2:
+        //        PlayCoughThree();
+        //        break;
+        //}
 
         if (timer >= effectTimer)
         {
@@ -157,6 +171,34 @@ public abstract class Character : MonoBehaviour {
         timer += Time.deltaTime;
         yield return new WaitForFixedUpdate();
     }
+
+    private void PlayCoughOne()
+    {
+        if(!GameController.PlayerCtrl.cough3Sound.isPlaying)
+        {
+            GameController.PlayerCtrl.cough1Sound.Play();
+            coughCounter++;
+        }
+    }
+
+    private void PlayCoughTwo()
+    {
+        if (!GameController.PlayerCtrl.cough1Sound.isPlaying)
+        {
+            GameController.PlayerCtrl.cough2Sound.Play();
+            coughCounter++;
+        }
+    }
+
+    private void PlayCoughThree()
+    {
+        if (!GameController.PlayerCtrl.cough2Sound.isPlaying)
+        {
+            GameController.PlayerCtrl.cough3Sound.Play();
+            coughCounter++;
+        }
+    }
+
 
     protected abstract void FallInPit_Start();
 
