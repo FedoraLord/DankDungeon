@@ -347,6 +347,7 @@
     <Compile Include="Assets\Scripts\Characters\Character.cs" />
     <Compile Include="Assets\Scripts\Characters\Enemy.cs" />
     <Compile Include="Assets\Scripts\Characters\EnemyStats.cs" />
+    <Compile Include="Assets\Scripts\Characters\Inventory.cs" />
     <Compile Include="Assets\Scripts\Characters\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Crafting\Craftable.cs" />
     <Compile Include="Assets\Scripts\Crafting\CraftingMaterial.cs" />
@@ -370,6 +371,7 @@
     <Compile Include="Assets\Scripts\Wave Spawning\Wave.cs" />
     <Compile Include="Assets\Scripts\Wave Spawning\WaveCommand.cs" />
     <Compile Include="Assets\Scripts\Wave Spawning\WaveSpawner.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Consumable.cs" />
     <Compile Include="Assets\Scripts\Weapons\ShortSword.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponStats.cs" />

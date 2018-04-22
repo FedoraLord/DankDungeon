@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,6 +15,9 @@ public class PlayerController : Character
     public Transform leftEnemyDetector;
     public Transform rightEnemyDetector;
     public LayerMask enemyLayer;
+
+    [NonSerialized]
+    public Dictionary<CraftingMaterial, int> Inventory;
 
     private bool hasControl = true;
     private float speed = 5;

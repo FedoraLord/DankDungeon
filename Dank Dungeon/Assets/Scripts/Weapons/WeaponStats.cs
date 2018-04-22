@@ -22,6 +22,11 @@ public class WeaponStats : Craftable
     public int hitsPerSwing;
     public LayerMask swingInterruptionLayers;
     public Sprite sprite;
+
+    protected override void OnCraft()
+    {
+        GameController.PlayerCtrl.weapon.ApplyUpgrade(this);
+    }
 }
 
 #if UNITY_EDITOR
