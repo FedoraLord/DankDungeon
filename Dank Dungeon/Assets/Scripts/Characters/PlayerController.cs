@@ -16,8 +16,12 @@ public class PlayerController : Character
     public Transform rightEnemyDetector;
     public LayerMask enemyLayer;
 
+<<<<<<< HEAD
     [NonSerialized]
     public Dictionary<CraftingMaterial, int> Inventory;
+=======
+    Animator anim;
+>>>>>>> 15ed9ba8d90cb92da6acadddfbcd8d157a4650d6
 
     private bool hasControl = true;
     private float speed = 5;
@@ -38,6 +42,8 @@ public class PlayerController : Character
         SetWeapon(weapon);
         Mirror mirror = GetComponent<Mirror>();
         mirror.mirror3D.GetComponent<NavMeshAgent>().Warp(mirror.Coordinates3D());
+        anim = GetComponent<Animator>();
+
     }
 
     public void SetWeapon(Weapon newWeapon)
@@ -98,7 +104,16 @@ public class PlayerController : Character
             }
             velocity += transform.right;
         }
-
+        if (velocity.x == 0 && velocity.y == 0)
+        {
+            anim.SetInteger("Direction", 0);
+        }
+        else if(velocity.x < 0)
+            {
+            anim.SetInteger("Direction",-1);
+        }
+        else
+            anim.SetInteger("Direction", 1);
         if (velocity.magnitude > 0)
         {
             if (movingThroughEnemy /*TODO: && !isBluePotionActive*/)

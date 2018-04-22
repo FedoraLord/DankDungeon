@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Jeremy Sandbox.unity
+=======
+- path: Assets/Scenes/FinalMap.unity
+>>>>>>> 15ed9ba8d90cb92da6acadddfbcd8d157a4650d6
   isLoaded: 1
   isActive: 1
