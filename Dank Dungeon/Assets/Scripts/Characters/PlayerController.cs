@@ -15,11 +15,26 @@ public class PlayerController : Character
     public Transform leftEnemyDetector;
     public Transform rightEnemyDetector;
     public LayerMask enemyLayer;
+<<<<<<< HEAD
     public GameObject animationObject;
+=======
+<<<<<<< HEAD
+    public AudioSource attackSound;
+    public AudioSource walkSound;
+    public AudioSource hitSound;
+    public AudioSource craftingSound;
+    public AudioSource drinkingSound;
+    public AudioSource cough1Sound;
+    public AudioSource cough2Sound;
+    public AudioSource cough3Sound;
+
+=======
+>>>>>>> 5f9555a419492253a43a4aaab48d6d612bcddb4e
     
     [NonSerialized]
     public Dictionary<CraftingMaterial, int> Inventory;
     Animator anim;
+>>>>>>> 9ce889e9caf8dc2d6d3d7ecf7ec20f8a94e53f51
 
     private bool hasControl = true;
     private float speed = 5;
@@ -40,7 +55,16 @@ public class PlayerController : Character
         SetWeapon(weapon);
         Mirror mirror = GetComponent<Mirror>();
         mirror.mirror3D.GetComponent<NavMeshAgent>().Warp(mirror.Coordinates3D());
+<<<<<<< HEAD
         anim = animationObject.GetComponent<Animator>();
+=======
+<<<<<<< HEAD
+
+        
+=======
+        anim = GetComponent<Animator>();
+>>>>>>> 9ce889e9caf8dc2d6d3d7ecf7ec20f8a94e53f51
+>>>>>>> 5f9555a419492253a43a4aaab48d6d612bcddb4e
 
     }
 
@@ -114,10 +138,16 @@ public class PlayerController : Character
             anim.SetInteger("Direction", 1);
         if (velocity.magnitude > 0)
         {
+            if(!GameController.PlayerCtrl.walkSound.isPlaying)
+                GameController.PlayerCtrl.walkSound.Play();
+
             if (movingThroughEnemy /*TODO: && !isBluePotionActive*/)
                 velocity = velocity.normalized * hordeMovementSpeed;
             else
                 velocity = velocity.normalized * speed;
+        } else
+        {
+            GameController.PlayerCtrl.walkSound.Stop();
         }
         body.velocity = velocity;
     }
@@ -128,6 +158,7 @@ public class PlayerController : Character
         {
             Vector2 direction = GameController.MainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             weapon.AttemptSwing(direction);
+            
         }
     }
 
@@ -166,6 +197,7 @@ public class PlayerController : Character
     public void TakePhysicalDamage(Enemy sender)
     {
         //TODO: anything special going to happen if its a fire slime or something?
+        GameController.PlayerCtrl.hitSound.Play();
         int damage = sender.damage;
         TakePhysicalDamage(damage);
     }

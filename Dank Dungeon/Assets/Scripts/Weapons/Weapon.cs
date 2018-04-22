@@ -27,8 +27,12 @@ public abstract class Weapon : MonoBehaviour
     private List<Func<Vector2, IEnumerator>> attackMethods = new List<Func<Vector2, IEnumerator>>();
     private int attackIndex;
 
+    private SoundFX sound;
+
     private void Start()
     {
+        sound = SoundFX.Instance;
+
         attackMethods = new List<Func<Vector2, IEnumerator>>() { TryClockwiseSlash, TryCounterClockwiseSlash, TryStab };
         ResetRestingPosition();
     }
@@ -112,11 +116,15 @@ public abstract class Weapon : MonoBehaviour
 
     private IEnumerator Slash(bool clockwise)
     {
+        
         renderer.enabled = true;
         remainingHits = stats.hitsPerSwing;
 
         if (stats.chargeInTime > 0)
             yield return new WaitForSeconds(stats.chargeInTime);
+
+        GameController.PlayerCtrl.attackSound.Play();
+
 
         canDamage = true;
         for (float angleTraveled = 0; angleTraveled < stats.attackRadius; angleTraveled += stats.attackSpeed)
@@ -147,6 +155,8 @@ public abstract class Weapon : MonoBehaviour
 
         if (stats.chargeInTime > 0)
             yield return new WaitForSeconds(stats.chargeInTime);
+
+        GameController.PlayerCtrl.attackSound.Play();
 
         canDamage = true;
         //thrust forward
