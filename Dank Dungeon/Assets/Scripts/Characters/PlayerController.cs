@@ -15,13 +15,10 @@ public class PlayerController : Character
     public Transform leftEnemyDetector;
     public Transform rightEnemyDetector;
     public LayerMask enemyLayer;
-
-<<<<<<< HEAD
+    
     [NonSerialized]
     public Dictionary<CraftingMaterial, int> Inventory;
-=======
     Animator anim;
->>>>>>> 15ed9ba8d90cb92da6acadddfbcd8d157a4650d6
 
     private bool hasControl = true;
     private float speed = 5;
