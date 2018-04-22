@@ -15,6 +15,7 @@ public class PlayerController : Character
     public Transform leftEnemyDetector;
     public Transform rightEnemyDetector;
     public LayerMask enemyLayer;
+    public GameObject animationObject;
     
     [NonSerialized]
     public Dictionary<CraftingMaterial, int> Inventory;
@@ -39,7 +40,7 @@ public class PlayerController : Character
         SetWeapon(weapon);
         Mirror mirror = GetComponent<Mirror>();
         mirror.mirror3D.GetComponent<NavMeshAgent>().Warp(mirror.Coordinates3D());
-        anim = GetComponent<Animator>();
+        anim = animationObject.GetComponent<Animator>();
 
     }
 
@@ -199,7 +200,7 @@ public class PlayerController : Character
     {
         float showTime = 0.5f;
         float hideTime = 0.2f;
-        SpriteRenderer r = GetComponent<SpriteRenderer>();
+        SpriteRenderer r = animationObject.GetComponent<SpriteRenderer>();
 
         for (int blinks = 0; blinks < 3; blinks++)
         {
