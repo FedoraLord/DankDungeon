@@ -128,11 +128,14 @@ MonoBehaviour:
     m_Bits: 1024
   environmentOverlapPoints: []
   body: {fileID: 50533318970117636}
+  lavaDamage: 0
+  effectTimer: 10
+  poisonDamage: 0
   mirror: {fileID: 114301507260566498}
   health: 1
-  damage: 0
+  damage: 5
   speed: 6
-  attackRange: 2
+  attackRange: 1.5
   attackLatency: 2
   attackLineOfSight:
     serializedVersion: 2

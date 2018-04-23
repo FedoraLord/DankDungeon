@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour {
     public void PlayGame()
     {
         //Starts game if game is on a different scene
-        SceneManager.LoadScene("NavTest");
+        SceneManager.LoadScene("FinalMap");
     }
 
     public void QuitGame()

@@ -146,7 +146,7 @@ public class PlayerController : Character
             if(!GameController.PlayerCtrl.walkSound.isPlaying)
                 GameController.PlayerCtrl.walkSound.Play();
 
-            if (movingThroughEnemy /*TODO: && !isBluePotionActive*/)
+            if (movingThroughEnemy && !isBluePotionActive)
                 velocity = velocity.normalized * hordeMovementSpeed;
             else
                 velocity = velocity.normalized * speed;
@@ -272,8 +272,7 @@ public class PlayerController : Character
     private IEnumerator BluePotion()
     {
         canUsePotion = false;
-        isBluePotionActive = true; // Do walkthrough enemies 
-        // Add Knockback
+        isBluePotionActive = true;
 
         yield return new WaitForSeconds(potCooldown);
         canUsePotion = true;
