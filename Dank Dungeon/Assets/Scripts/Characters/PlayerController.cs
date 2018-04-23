@@ -135,12 +135,9 @@ public class PlayerController : Character
         {
             anim.SetInteger("Direction", 0);
         }
-        else if(velocity.x < 0)
-            {
-            anim.SetInteger("Direction",-1);
-        }
         else
             anim.SetInteger("Direction", 1);
+
         if (velocity.magnitude > 0)
         {
             if(!GameController.PlayerCtrl.walkSound.isPlaying)
