@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,8 +13,12 @@ public abstract class Character : MonoBehaviour {
     public LayerMask environmentalDamage;
     public List<Transform> environmentOverlapPoints;
     public Rigidbody2D body;
+    public GameObject animationObject;
 
-    [System.NonSerialized] public Vector2 lastValidPosition;
+    [NonSerialized]
+    public Animator anim;
+    [NonSerialized]
+    public Vector2 lastValidPosition;
 
     protected bool IsFalling { get; private set; }
 

@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CraftListItem : MonoBehaviour {
 
-    public Sprite icon;
-    public string itemName;
     public string itemDescription;
     public int blueMaterialNeeded;
     public int redMaterialNeeded;
@@ -14,13 +14,18 @@ public class CraftListItem : MonoBehaviour {
     public int craftTime;
     public int numInInventory;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [NonSerialized]
+    public Sprite icon;
+    [NonSerialized]
+    public string itemName;
+    
+    void Start () {
+        var i = GetComponentInChildren<Image>();
+        if (i)
+            icon = i.sprite;
+
+        var t = GetComponentInChildren<Text>();
+        if (t)
+            itemName = t.text;
+    }
 }

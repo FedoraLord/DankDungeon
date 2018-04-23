@@ -16,7 +16,6 @@ public class PlayerController : Character
     public Transform leftEnemyDetector;
     public Transform rightEnemyDetector;
     public LayerMask enemyLayer;
-    public GameObject animationObject;
     public AudioSource attackSound;
     public AudioSource walkSound;
     public AudioSource hitSound;
@@ -28,7 +27,6 @@ public class PlayerController : Character
     
     [NonSerialized]
     public Dictionary<CraftingMaterial, int> Inventory;
-    Animator anim;
 
     private bool hasControl = true;
     private float speed = 5;
