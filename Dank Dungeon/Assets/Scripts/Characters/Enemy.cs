@@ -18,6 +18,7 @@ public class Enemy : Character
     private NavMeshAgent navigator;
     private IEnumerator knockbackRoutine;
     private IEnumerator attackRoutine;
+    private SpriteRenderer spriteR;
 
     void Start()
     {
@@ -26,6 +27,8 @@ public class Enemy : Character
         if (obj != null)
             navigator = obj.GetComponent<NavMeshAgent>();
         StartCoroutine(SetAgentSpeed());
+        anim = animationObject.GetComponent<Animator>();
+        spriteR = animationObject.GetComponent<SpriteRenderer>();
     }
 
     private IEnumerator SetAgentSpeed()
@@ -38,6 +41,13 @@ public class Enemy : Character
         if (navigator == null)
             navigator = mirror.mirror3D.GetComponent<NavMeshAgent>();
         navigator.SetDestination(GameController.Player3DTransform.position);
+
+        if (navigator.velocity.x < 0)
+            spriteR.flipX = false;
+        if (navigator.velocity.x > 0)
+            spriteR.flipX = true;
+
+
 
         if (!IsFalling)
         {
@@ -160,5 +170,15 @@ public class Enemy : Character
     protected override void FallInPit_End()
     {
         Die();
+    }
+
+    protected override void StandingInLava()
+    {
+        Die(); 
+    }
+
+    protected override void StandingInPoison()
+    {
+        Die();       
     }
 }

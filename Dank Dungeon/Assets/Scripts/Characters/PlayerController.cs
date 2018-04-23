@@ -26,16 +26,17 @@ public class PlayerController : Character
     public AudioSource cough3Sound;
     public CraftingMenu menu;
 
+    private SpriteRenderer spriteR;
     private bool hasControl = true;
     private float speed = 5;
     private float hordeMovementSpeed = 1;
     private int health;
     private int maxHealth = 100;
     private int damageFromPits = 20;
-    private int damageFromLava = 10;
+    private int damageFromLava = 2;
     private int damageFromPoison = 5;
-    private int burnTimer = 5;
-    private int poisonTimer = 10;
+    public int burnTimer = 5;
+    public int poisonTimer = 5;
     public int healingAmount;
     public int effectInvincTimer;
     public int physInvincTimer;
@@ -43,6 +44,7 @@ public class PlayerController : Character
     public float potCooldown = 5;
     public bool canUsePotion = true;
     public bool isBluePotionActive = false;
+    public bool isGreenPotionActive = false;
     private IEnumerator physicalDamageRoutine;
     private Vector2 enemyDetectorSize = new Vector2(0.5f, 0.1f);
     
@@ -53,6 +55,7 @@ public class PlayerController : Character
         Mirror mirror = GetComponent<Mirror>();
         mirror.mirror3D.GetComponent<NavMeshAgent>().Warp(mirror.Coordinates3D());
         anim = animationObject.GetComponent<Animator>();
+        spriteR = animationObject.GetComponent<SpriteRenderer>();
     }
 
     public void SetWeapon(Weapon newWeapon)
@@ -134,6 +137,13 @@ public class PlayerController : Character
             }
             velocity += transform.right;
         }
+
+        if (velocity.x < 0)
+            spriteR.flipX = true;
+
+        if (velocity.x > 0)
+            spriteR.flipX = false;
+
         if (velocity.x == 0 && velocity.y == 0)
         {
             anim.SetInteger("Direction", 0);
@@ -208,10 +218,35 @@ public class PlayerController : Character
         TakePhysicalDamage(damage);
     }
 
+    protected override void StandingInLava()
+    {
+        if (!isGreenPotionActive)
+            StartCoroutine(TakeLavaDamage());
+    }
+
+    protected override void StandingInPoison()
+    {
+        if (!isGreenPotionActive)
+            StartCoroutine(TakePoisonDamage());
+    }
+
     public IEnumerator TakePitDamage()
     {
         yield return new WaitForSeconds(0.1f);
         TakePhysicalDamage(damageFromPits, true);
+    }
+
+    public IEnumerator TakeLavaDamage()
+    {
+        yield return new WaitForSeconds(3f);
+        TakePhysicalDamage(damageFromLava, true);
+    }
+
+    public IEnumerator TakePoisonDamage()
+    {
+        yield return new WaitForSeconds(3f);
+        TakePhysicalDamage(damageFromPoison, true);
+
     }
 
     private void TakePhysicalDamage(int damage, bool interrupt = false)
@@ -265,9 +300,11 @@ public class PlayerController : Character
     private IEnumerator GreenPotion()
     {
         canUsePotion = false;
-        // Null Status Effects
+        isGreenPotionActive = true;
+        
         yield return new WaitForSeconds(potCooldown);
 
+        isGreenPotionActive = false;
         canUsePotion = true;
     }
 
@@ -277,6 +314,7 @@ public class PlayerController : Character
         isBluePotionActive = true;
 
         yield return new WaitForSeconds(potCooldown);
+
         canUsePotion = true;
 
         yield return new WaitForSeconds(3f);
