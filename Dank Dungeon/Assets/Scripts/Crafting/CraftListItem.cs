@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class CraftListItem : MonoBehaviour {
 
+    public Image icon;
     public string itemDescription;
     public int blueMaterialNeeded;
     public int redMaterialNeeded;
@@ -15,15 +16,10 @@ public class CraftListItem : MonoBehaviour {
     public int numInInventory;
 
     [NonSerialized]
-    public Sprite icon;
-    [NonSerialized]
     public string itemName;
     
-    void Start () {
-        var i = GetComponentInChildren<Image>();
-        if (i)
-            icon = i.sprite;
-
+    void Start ()
+    {
         var t = GetComponentInChildren<Text>();
         if (t)
             itemName = t.text;

@@ -24,6 +24,7 @@ public class PlayerController : Character
     public AudioSource cough1Sound;
     public AudioSource cough2Sound;
     public AudioSource cough3Sound;
+    public CraftingMenu menu;
     
     [NonSerialized]
     public Dictionary<CraftingMaterial, int> Inventory;
@@ -71,25 +72,32 @@ public class PlayerController : Character
     }
 
     void Update () {
-        if (health <= 0)
+        if (!menu.IsOpen)
         {
-            SceneManager.LoadScene("Lose");
-        }
-        if (hasControl)
-        {
-            MovePlayer();
-            Attack();
-        }
+            if (health <= 0)
+            {
+                SceneManager.LoadScene("Lose");
+            }
+            if (hasControl)
+            {
+                MovePlayer();
+                Attack();
+            }
 
-        // Maybe put check to see if they have avaliable potions here?
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            StartCoroutine(RedPotion());
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-            StartCoroutine(GreenPotion());
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-            StartCoroutine(BluePotion());
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-            StartCoroutine(YellowPotion(damageUp));           
+            // Maybe put check to see if they have avaliable potions here?
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                StartCoroutine(RedPotion());
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+                StartCoroutine(GreenPotion());
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+                StartCoroutine(BluePotion());
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+                StartCoroutine(YellowPotion(damageUp));           
+        }
+        else
+        {
+            GameController.PlayerCtrl.walkSound.Stop();
+        }
     }
 
     private void MovePlayer()
@@ -145,10 +153,12 @@ public class PlayerController : Character
                 velocity = velocity.normalized * hordeMovementSpeed;
             else
                 velocity = velocity.normalized * speed;
-        } else
+        }
+        else
         {
             GameController.PlayerCtrl.walkSound.Stop();
         }
+         
         body.velocity = velocity;
     }
 

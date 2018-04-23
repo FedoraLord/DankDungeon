@@ -21,6 +21,11 @@ public class CraftingMenu : MonoBehaviour {
     public Text craftButtonText;
     public Text useButtonText;
 
+    public bool IsOpen
+    {
+        get { return isOpen; }
+    }
+
     [SerializeField]
     private GameObject[] immediateChildren;
     private bool isOpen;
@@ -40,6 +45,8 @@ public class CraftingMenu : MonoBehaviour {
         {
             immediateChildren[i].SetActive(isOpen);
         }
+
+        Time.timeScale = isOpen ? 0 : 1;
     }
 
     public void X_ButtonClicked()
@@ -65,7 +72,7 @@ public class CraftingMenu : MonoBehaviour {
     public void ListItemSelected(CraftListItem selected)
     {
         selectedItem = selected;
-        selectedIcon.sprite = selected.icon;
+        selectedIcon.sprite = selected.icon.sprite;
         selectedDescription.text = selected.itemDescription;
         selectedName.text = selected.itemName;
         blueMaterialNeeded.text = FormatMaterialNeeded(selected.blueMaterialNeeded, blueMaterial);
@@ -88,9 +95,5 @@ public class CraftingMenu : MonoBehaviour {
                 ListItemSelected(firstItem);
             }
         }
-
-        var a = TestImage;
 	}
-    public Component TestImage;
-	
 }

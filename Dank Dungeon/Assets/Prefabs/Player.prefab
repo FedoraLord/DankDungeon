@@ -1146,6 +1146,7 @@ MonoBehaviour:
   - {fileID: 4070895515931620}
   - {fileID: 4517068800538306}
   body: {fileID: 50148763560125992}
+  animationObject: {fileID: 1539953559903134}
   lavaDamage: 5
   effectTimer: 10
   poisonDamage: 5
@@ -1158,7 +1159,6 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  animationObject: {fileID: 1539953559903134}
   attackSound: {fileID: 82935620517256632}
   walkSound: {fileID: 82773071722956746}
   hitSound: {fileID: 82858225828414650}
@@ -1167,6 +1167,7 @@ MonoBehaviour:
   cough1Sound: {fileID: 82398768092883390}
   cough2Sound: {fileID: 82362897510390564}
   cough3Sound: {fileID: 82395108526041132}
+  menu: {fileID: 0}
   healingAmount: 0
   effectInvincTimer: 0
   physInvincTimer: 0
