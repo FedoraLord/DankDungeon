@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
@@ -77,6 +78,6 @@ public class GameController : MonoBehaviour {
 
     public static void Win()
     {
-        Debug.LogError("Do something to show that you won!");
+        SceneManager.LoadScene("Win");
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : Character
 {
@@ -72,6 +73,10 @@ public class PlayerController : Character
     }
 
     void Update () {
+        if (health <= 0)
+        {
+            SceneManager.LoadScene("Lose");
+        }
         if (hasControl)
         {
             MovePlayer();

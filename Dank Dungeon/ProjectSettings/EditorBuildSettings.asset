@@ -5,6 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NavTest.unity
     guid: facd65917237f024e9a75a5ba12db5cd
+  - enabled: 1
+    path: Assets/Scenes/StartMenu.unity
+    guid: dc56d1f84b6a5664dadd84bd2601f736
+  - enabled: 1
+    path: Assets/Scenes/FinalMap.unity
+    guid: ce98e3c9616a79a47b4d1708edfb9fe4
+  - enabled: 1
+    path: Assets/Scenes/Lose.unity
+    guid: 0e34f00fa0caefe4cb12c904c4d8206b
+  - enabled: 1
+    path: Assets/Scenes/Win.unity
+    guid: 5ec46e04ffeef124ea6409894e3bd30f
