@@ -52,7 +52,7 @@ public class CraftingMaterial : MonoBehaviour
         {
             Vector2 direction = player.transform.position - transform.position;
             direction.Normalize();
-            rigid.velocity = direction * 3;
+            rigid.velocity = direction * 5;
         }
     }
 }

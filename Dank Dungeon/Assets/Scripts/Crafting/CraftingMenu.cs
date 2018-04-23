@@ -26,6 +26,7 @@ public class CraftingMenu : MonoBehaviour
     public Text craftButton_text;
     public Text useButton_text;
     public Button useButton_button;
+    public Button craftButton_button;
 
     public bool IsOpen
     {
@@ -156,6 +157,7 @@ public class CraftingMenu : MonoBehaviour
 
     public void UpdateCraftButton()
     {
+        craftButton_button.interactable = CanCraft();
         craftButton_text.text = selectedItem.GetCraftButtonText();
     }
 
@@ -182,4 +184,12 @@ public class CraftingMenu : MonoBehaviour
         
         ToggleMenu();
 	}
+
+    private bool CanCraft()
+    {
+        return selectedItem.blueMaterialNeeded <= blueMaterial
+            && selectedItem.redMaterialNeeded <= redMaterial
+            && selectedItem.greenMaterialNeeded <= greenMaterial
+            && selectedItem.yellowMaterialNeeded <= yellowMaterial;
+    }
 }

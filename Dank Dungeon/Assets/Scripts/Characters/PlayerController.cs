@@ -83,16 +83,6 @@ public class PlayerController : Character
                 MovePlayer();
                 Attack();
             }
-
-            // Maybe put check to see if they have avaliable potions here?
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-                StartCoroutine(RedPotion());
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-                StartCoroutine(GreenPotion());
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-                StartCoroutine(BluePotion());
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-                StartCoroutine(YellowPotion(damageUp));           
         }
         else
         {
@@ -284,6 +274,36 @@ public class PlayerController : Character
         }
 
         physicalDamageRoutine = null;
+    }
+
+    public bool DrinkRedPotion()
+    {
+        return DrinkPotionIfAble(RedPotion());
+    }
+
+    public bool DrinkBluePotion()
+    {
+        return DrinkPotionIfAble(BluePotion());
+    }
+
+    public bool DrinkGreenPotion()
+    {
+        return DrinkPotionIfAble(GreenPotion());
+    }
+
+    public bool DrinkYellowPotion()
+    {
+        return DrinkPotionIfAble(YellowPotion(damageUp));
+    }
+
+    private bool DrinkPotionIfAble(IEnumerator potionRoutine)
+    {
+        if (canUsePotion)
+        {
+            StartCoroutine(potionRoutine);
+            return true;
+        }
+        return false;
     }
 
     private IEnumerator RedPotion()
