@@ -160,4 +160,9 @@ public class Enemy : Character
     {
         Die();
     }
+
+    protected override void StandingInLava()
+    {
+        Die(); // for testing
+    }
 }

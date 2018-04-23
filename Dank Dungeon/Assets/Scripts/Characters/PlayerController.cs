@@ -37,8 +37,8 @@ public class PlayerController : Character
     private int damageFromPits = 20;
     private int damageFromLava = 10;
     private int damageFromPoison = 5;
-    private int burnTimer = 5;
-    private int poisonTimer = 10;
+    public int burnTimer = 5;
+    public int poisonTimer = 5;
     public int healingAmount;
     public int effectInvincTimer;
     public int physInvincTimer;
@@ -211,10 +211,37 @@ public class PlayerController : Character
         TakePhysicalDamage(damage);
     }
 
+    protected override void StandingInLava()
+    {
+        Debug.Log("Reeeeee");
+        StartCoroutine(TakeLavaDamage());
+    }
+
     public IEnumerator TakePitDamage()
     {
         yield return new WaitForSeconds(0.1f);
         TakePhysicalDamage(damageFromPits, true);
+    }
+
+    public IEnumerator TakeLavaDamage()
+    {
+        yield return new WaitForSeconds(0.1f);
+        TakePhysicalDamage(damageFromLava, true);
+    }
+
+    public IEnumerator TakePoisonDamage()
+    {
+        float timer = 0;
+
+        if (timer >= poisonTimer)
+        {
+            timer -= poisonTimer;
+            TakePhysicalDamage(damageFromPoison, true);
+        }
+        timer += Time.deltaTime;
+        yield return new WaitForFixedUpdate();
+
+        timer = 0;
     }
 
     private void TakePhysicalDamage(int damage, bool interrupt = false)

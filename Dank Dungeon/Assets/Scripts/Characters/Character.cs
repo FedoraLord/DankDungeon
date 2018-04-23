@@ -75,13 +75,27 @@ public abstract class Character : MonoBehaviour {
             if (takeFireDamage && (damageFrom = GetDamagingCollider("Lava", lavaContacts)))
             {
                 isTakingEnvironmentDamage = true;
-                Lava(lavaDamage);
+                Lava(damageFrom);
             }
 
             if (takePoisonDamage && (damageFrom = GetDamagingCollider("Poison", poisonContacts)))
             {
                 isTakingEnvironmentDamage = true;
-                Poison(poisonDamage);
+
+                //switch(coughCounter)
+                //{
+                //    case 0:
+                //        PlayCoughOne();
+                //        break;
+                //    case 1:
+                //        PlayCoughTwo();
+                //        break;
+                //    case 2:
+                //        PlayCoughThree();
+                //        break;
+                //}
+
+                Poison(damageFrom);
             }
             yield return new WaitForFixedUpdate();
         }
@@ -119,6 +133,16 @@ public abstract class Character : MonoBehaviour {
         }
     }
 
+    private void Lava(Collider2D lava)
+    {
+        StandingInLava();
+    }
+
+    private void Poison(Collider2D poison)
+    {
+        //StandingInPoison();
+    }
+
     private IEnumerator Falling()
     {
         float endTime = Time.time + 0.5f;
@@ -136,45 +160,6 @@ public abstract class Character : MonoBehaviour {
         }
         FallInPit_End();
         IsFalling = false;
-    }
-
-    private IEnumerator Lava(int damage)
-    {
-        float timer = 0;
-
-        if(timer >= effectTimer)
-        {
-            timer -= effectTimer;
-            // Deal Damage... Probs make it a override in PlayerController
-        }
-        timer += Time.deltaTime;
-        yield return new WaitForFixedUpdate();
-    }
-
-    private IEnumerator Poison(int damage)
-    {
-        float timer = 0;
-        
-        //switch(coughCounter)
-        //{
-        //    case 0:
-        //        PlayCoughOne();
-        //        break;
-        //    case 1:
-        //        PlayCoughTwo();
-        //        break;
-        //    case 2:
-        //        PlayCoughThree();
-        //        break;
-        //}
-
-        if (timer >= effectTimer)
-        {
-            timer -= effectTimer;
-            // Deal Damage... Probs make it a override in PlayerController
-        }
-        timer += Time.deltaTime;
-        yield return new WaitForFixedUpdate();
     }
 
     private void PlayCoughOne()
@@ -208,4 +193,8 @@ public abstract class Character : MonoBehaviour {
     protected abstract void FallInPit_Start();
 
     protected abstract void FallInPit_End();
+
+    protected abstract void StandingInLava();
+
+    //protected abstract void StandingInPoison();
 }
