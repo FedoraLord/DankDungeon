@@ -173,6 +173,11 @@ public class Enemy : Character
 
     protected override void StandingInLava()
     {
-        Die(); // for testing
+        Die(); 
+    }
+
+    protected override void StandingInPoison()
+    {
+        Die();       
     }
 }

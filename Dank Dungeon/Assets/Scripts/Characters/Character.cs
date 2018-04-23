@@ -196,5 +196,5 @@ public abstract class Character : MonoBehaviour {
 
     protected abstract void StandingInLava();
 
-    //protected abstract void StandingInPoison();
+    protected abstract void StandingInPoison();
 }

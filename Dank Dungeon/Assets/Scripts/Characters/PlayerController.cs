@@ -47,6 +47,7 @@ public class PlayerController : Character
     public float potCooldown = 5;
     public bool canUsePotion = true;
     public bool isBluePotionActive = false;
+    public bool isGreenPotionActive = false;
     private IEnumerator physicalDamageRoutine;
     private Vector2 enemyDetectorSize = new Vector2(0.5f, 0.1f);
     
@@ -222,8 +223,14 @@ public class PlayerController : Character
 
     protected override void StandingInLava()
     {
-        Debug.Log("Reeeeee");
-        StartCoroutine(TakeLavaDamage());
+        if (!isGreenPotionActive)
+            StartCoroutine(TakeLavaDamage());
+    }
+
+    protected override void StandingInPoison()
+    {
+        if (!isGreenPotionActive)
+            StartCoroutine(TakePoisonDamage());
     }
 
     public IEnumerator TakePitDamage()
@@ -242,6 +249,7 @@ public class PlayerController : Character
     {
         yield return new WaitForSeconds(3f);
         TakePhysicalDamage(damageFromPoison, true);
+
     }
 
     private void TakePhysicalDamage(int damage, bool interrupt = false)
@@ -295,9 +303,11 @@ public class PlayerController : Character
     private IEnumerator GreenPotion()
     {
         canUsePotion = false;
-        // Null Status Effects
+        isGreenPotionActive = true;
+        
         yield return new WaitForSeconds(potCooldown);
 
+        isGreenPotionActive = false;
         canUsePotion = true;
     }
 
@@ -307,6 +317,7 @@ public class PlayerController : Character
         isBluePotionActive = true;
 
         yield return new WaitForSeconds(potCooldown);
+
         canUsePotion = true;
 
         yield return new WaitForSeconds(3f);
