@@ -352,6 +352,8 @@
     <Compile Include="Assets\Scripts\Characters\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Crafting\Craftable.cs" />
     <Compile Include="Assets\Scripts\Crafting\CraftingMaterial.cs" />
+    <Compile Include="Assets\Scripts\Crafting\CraftingMenu.cs" />
+    <Compile Include="Assets\Scripts\Crafting\CraftListItem.cs" />
     <Compile Include="Assets\Scripts\Environment\Bridge.cs" />
     <Compile Include="Assets\Scripts\Environment\Gate.cs" />
     <Compile Include="Assets\Scripts\Environment\Lever.cs" />
