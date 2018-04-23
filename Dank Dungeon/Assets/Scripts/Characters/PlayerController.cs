@@ -36,7 +36,7 @@ public class PlayerController : Character
     private int health;
     private int maxHealth = 100;
     private int damageFromPits = 20;
-    private int damageFromLava = 10;
+    private int damageFromLava = 2;
     private int damageFromPoison = 5;
     public int burnTimer = 5;
     public int poisonTimer = 5;
@@ -234,23 +234,14 @@ public class PlayerController : Character
 
     public IEnumerator TakeLavaDamage()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(3f);
         TakePhysicalDamage(damageFromLava, true);
     }
 
     public IEnumerator TakePoisonDamage()
     {
-        float timer = 0;
-
-        if (timer >= poisonTimer)
-        {
-            timer -= poisonTimer;
-            TakePhysicalDamage(damageFromPoison, true);
-        }
-        timer += Time.deltaTime;
-        yield return new WaitForFixedUpdate();
-
-        timer = 0;
+        yield return new WaitForSeconds(3f);
+        TakePhysicalDamage(damageFromPoison, true);
     }
 
     private void TakePhysicalDamage(int damage, bool interrupt = false)
