@@ -15,10 +15,7 @@ public class PlayerController : Character
     public Transform leftEnemyDetector;
     public Transform rightEnemyDetector;
     public LayerMask enemyLayer;
-<<<<<<< HEAD
     public GameObject animationObject;
-=======
-<<<<<<< HEAD
     public AudioSource attackSound;
     public AudioSource walkSound;
     public AudioSource hitSound;
@@ -27,14 +24,10 @@ public class PlayerController : Character
     public AudioSource cough1Sound;
     public AudioSource cough2Sound;
     public AudioSource cough3Sound;
-
-=======
->>>>>>> 5f9555a419492253a43a4aaab48d6d612bcddb4e
     
     [NonSerialized]
     public Dictionary<CraftingMaterial, int> Inventory;
     Animator anim;
->>>>>>> 9ce889e9caf8dc2d6d3d7ecf7ec20f8a94e53f51
 
     private bool hasControl = true;
     private float speed = 5;
@@ -55,24 +48,14 @@ public class PlayerController : Character
         SetWeapon(weapon);
         Mirror mirror = GetComponent<Mirror>();
         mirror.mirror3D.GetComponent<NavMeshAgent>().Warp(mirror.Coordinates3D());
-<<<<<<< HEAD
         anim = animationObject.GetComponent<Animator>();
-=======
-<<<<<<< HEAD
-
-        
-=======
-        anim = GetComponent<Animator>();
->>>>>>> 9ce889e9caf8dc2d6d3d7ecf7ec20f8a94e53f51
->>>>>>> 5f9555a419492253a43a4aaab48d6d612bcddb4e
-
     }
 
     public void SetWeapon(Weapon newWeapon)
     {
         if (weapon == null)
         {
-            throw new System.Exception("PlayerController needs a reference to a Weapon prefab!");
+            throw new Exception("PlayerController needs a reference to a Weapon prefab!");
         }
         else
         {
