@@ -29,6 +29,7 @@ public class PlayerController : Character
     [NonSerialized]
     public Dictionary<CraftingMaterial, int> Inventory;
 
+    private SpriteRenderer spriteR;
     private bool hasControl = true;
     private float speed = 5;
     private float hordeMovementSpeed = 1;
@@ -56,6 +57,7 @@ public class PlayerController : Character
         Mirror mirror = GetComponent<Mirror>();
         mirror.mirror3D.GetComponent<NavMeshAgent>().Warp(mirror.Coordinates3D());
         anim = animationObject.GetComponent<Animator>();
+        spriteR = animationObject.GetComponent<SpriteRenderer>();
     }
 
     public void SetWeapon(Weapon newWeapon)
@@ -137,6 +139,13 @@ public class PlayerController : Character
             }
             velocity += transform.right;
         }
+
+        if (velocity.x < 0)
+            spriteR.flipX = true;
+
+        if (velocity.x > 0)
+            spriteR.flipX = false;
+
         if (velocity.x == 0 && velocity.y == 0)
         {
             anim.SetInteger("Direction", 0);
