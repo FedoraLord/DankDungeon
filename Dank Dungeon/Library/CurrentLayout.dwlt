@@ -135,7 +135,6 @@ MonoBehaviour:
   vertical: 1
   controlID: 1710
 --- !u!114 &7
->>>>>>> 8cb8896bb7248a2ae31b329db8db764b0c507fa0
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_PrefabParentObject: {fileID: 0}
