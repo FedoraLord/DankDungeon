@@ -48,16 +48,6 @@ public abstract class Character : MonoBehaviour {
             }
             else
             {
-            //    if (takeFireDamage)
-            //    {
-            //        if (!GameController.PlayerCtrl.burningSound.isPlaying)
-            //        {
-            //            Debug.Log("Burning.");
-            //            GameController.PlayerCtrl.burningSound.Play();
-            //        }
-            //    }
-
-
                 lastValidPosition = previousValidPosition;
             }
             yield return new WaitForFixedUpdate();
@@ -66,16 +56,10 @@ public abstract class Character : MonoBehaviour {
 
     private IEnumerator CheckCollisions()
     {
-
-
         while (true)
         {
-
             Collider2D damageFrom = null;
             isTakingEnvironmentDamage = false;
-
-            bool change = isTakingEnvironmentDamage;
-
 
             if (takePitDamage && (damageFrom = GetDamagingCollider("Pit", pitContacts)))
             {
@@ -87,8 +71,6 @@ public abstract class Character : MonoBehaviour {
             {
                 isTakingEnvironmentDamage = true;
                 Lava(lavaDamage);
-
-
             }
 
             if (takePoisonDamage && (damageFrom = GetDamagingCollider("Poison", poisonContacts)))
@@ -96,7 +78,6 @@ public abstract class Character : MonoBehaviour {
                 isTakingEnvironmentDamage = true;
                 Poison(poisonDamage);
             }
-
             yield return new WaitForFixedUpdate();
         }
     }
@@ -168,8 +149,8 @@ public abstract class Character : MonoBehaviour {
     private IEnumerator Poison(int damage)
     {
         float timer = 0;
-
-        //switch (coughCounter)
+        
+        //switch(coughCounter)
         //{
         //    case 0:
         //        PlayCoughOne();

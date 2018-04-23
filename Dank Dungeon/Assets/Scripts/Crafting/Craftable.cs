@@ -28,7 +28,6 @@ public abstract class Craftable : ScriptableObject
 
     public void Craft()
     {
-        GameController.PlayerCtrl.craftingSound.Play();
         for (int i = 0; i < materialsNeeded.Count; i++)
         {
             CraftingMaterial onHand = Inventory.Instance.materials.Where(x => x.material == materialsNeeded[i].material).First();
