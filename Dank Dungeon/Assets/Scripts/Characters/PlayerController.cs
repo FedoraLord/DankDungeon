@@ -25,9 +25,6 @@ public class PlayerController : Character
     public AudioSource cough2Sound;
     public AudioSource cough3Sound;
     public CraftingMenu menu;
-    
-    [NonSerialized]
-    public Dictionary<CraftingMaterial, int> Inventory;
 
     private bool hasControl = true;
     private float speed = 5;

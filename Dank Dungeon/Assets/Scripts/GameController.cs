@@ -17,9 +17,10 @@ public class GameController : MonoBehaviour {
     public static Camera MainCamera { get; set; }
 
     public NavMeshSurface WalkingSurface;
-
     public NavMeshSurface FireProofSurface;
     public NavMeshSurface FlyingSurface;
+
+    public CraftingMaterial[] craftingMaterials;
 
     void Start()
     {
@@ -79,5 +80,11 @@ public class GameController : MonoBehaviour {
     public static void Win()
     {
         SceneManager.LoadScene("Win");
+    }
+
+    public void RandomDrop(Vector2 position)
+    {
+        int i = UnityEngine.Random.Range(0, craftingMaterials.Length);
+        Instantiate(craftingMaterials[i], position, Quaternion.identity, null);
     }
 }

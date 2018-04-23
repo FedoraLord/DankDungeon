@@ -144,6 +144,7 @@ public class Enemy : Character
     void Die()
     {
         GameController.Spawner.EnemyDied(this);
+        GameController.GameCtrl.RandomDrop(transform.position);
         Destroy(gameObject);
     }
 

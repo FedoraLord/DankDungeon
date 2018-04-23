@@ -9,8 +9,8 @@ public class Consumable : Craftable {
 
     }
 
-    protected override void OnCraft()
-    {
-        throw new System.NotImplementedException();
-    }
+    //protected override void OnCraft()
+    //{
+    //    throw new System.NotImplementedException();
+    //}
 }

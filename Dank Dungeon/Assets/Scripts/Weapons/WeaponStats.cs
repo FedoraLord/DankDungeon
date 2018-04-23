@@ -23,10 +23,10 @@ public class WeaponStats : Craftable
     public LayerMask swingInterruptionLayers;
     public Sprite sprite;
 
-    protected override void OnCraft()
-    {
-        GameController.PlayerCtrl.weapon.ApplyUpgrade(this);
-    }
+    //protected override void OnCraft()
+    //{
+    //    GameController.PlayerCtrl.weapon.ApplyUpgrade(this);
+    //}
 }
 
 #if UNITY_EDITOR
