@@ -25,6 +25,11 @@ public class PlayerController : Character
     public AudioSource cough1Sound;
     public AudioSource cough2Sound;
     public AudioSource cough3Sound;
+<<<<<<< HEAD
+    public AudioSource burningSound;
+
+=======
+>>>>>>> 8cb8896bb7248a2ae31b329db8db764b0c507fa0
     
     [NonSerialized]
     public Dictionary<CraftingMaterial, int> Inventory;
@@ -57,6 +62,11 @@ public class PlayerController : Character
         Mirror mirror = GetComponent<Mirror>();
         mirror.mirror3D.GetComponent<NavMeshAgent>().Warp(mirror.Coordinates3D());
         anim = animationObject.GetComponent<Animator>();
+<<<<<<< HEAD
+        anim = GetComponent<Animator>();
+
+=======
+>>>>>>> 8cb8896bb7248a2ae31b329db8db764b0c507fa0
     }
 
     public void SetWeapon(Weapon newWeapon)
@@ -133,14 +143,16 @@ public class PlayerController : Character
         }
         if (velocity.x == 0 && velocity.y == 0)
         {
-            anim.SetInteger("Direction", 0);
+            //anim.SetInteger("Direction", 0);
         }
         else if(velocity.x < 0)
-            {
-            anim.SetInteger("Direction",-1);
+        {
+            //anim.SetInteger("Direction",-1);
         }
         else
-            anim.SetInteger("Direction", 1);
+        {
+            //anim.SetInteger("Direction", 1);
+        }
         if (velocity.magnitude > 0)
         {
             if(!GameController.PlayerCtrl.walkSound.isPlaying)
@@ -152,7 +164,9 @@ public class PlayerController : Character
                 velocity = velocity.normalized * speed;
         } else
         {
-            GameController.PlayerCtrl.walkSound.Stop();
+
+            if (GameController.PlayerCtrl.walkSound.isPlaying)
+                GameController.PlayerCtrl.walkSound.Stop();
         }
         body.velocity = velocity;
     }
