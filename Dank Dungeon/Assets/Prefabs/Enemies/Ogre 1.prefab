@@ -258,8 +258,11 @@ MonoBehaviour:
   - {fileID: 4832651999884110}
   - {fileID: 4580969089762810}
   body: {fileID: 50688729110168976}
+  lavaDamage: 0
+  effectTimer: 10
+  poisonDamage: 0
   mirror: {fileID: 114367940535308648}
-  health: 5
+  health: 15
   damage: 0
   speed: 5
   attackRange: 2

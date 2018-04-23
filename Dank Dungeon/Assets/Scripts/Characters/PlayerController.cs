@@ -24,8 +24,11 @@ public class PlayerController : Character
     public AudioSource cough1Sound;
     public AudioSource cough2Sound;
     public AudioSource cough3Sound;
+<<<<<<< HEAD
     public AudioSource burningSound;
 
+=======
+>>>>>>> 8cb8896bb7248a2ae31b329db8db764b0c507fa0
     
     [NonSerialized]
     public Dictionary<CraftingMaterial, int> Inventory;
@@ -41,6 +44,13 @@ public class PlayerController : Character
     private int damageFromPoison = 5;
     private int burnTimer = 5;
     private int poisonTimer = 10;
+    public int healingAmount;
+    public int effectInvincTimer;
+    public int physInvincTimer;
+    public int damageUp = 10;
+    public float potCooldown = 5;
+    public bool canUsePotion = true;
+    public bool isBluePotionActive = false;
     private IEnumerator physicalDamageRoutine;
     private Vector2 enemyDetectorSize = new Vector2(0.5f, 0.1f);
     
@@ -51,15 +61,18 @@ public class PlayerController : Character
         Mirror mirror = GetComponent<Mirror>();
         mirror.mirror3D.GetComponent<NavMeshAgent>().Warp(mirror.Coordinates3D());
         anim = animationObject.GetComponent<Animator>();
+<<<<<<< HEAD
         anim = GetComponent<Animator>();
 
+=======
+>>>>>>> 8cb8896bb7248a2ae31b329db8db764b0c507fa0
     }
 
     public void SetWeapon(Weapon newWeapon)
     {
         if (weapon == null)
         {
-            throw new System.Exception("PlayerController needs a reference to a Weapon prefab!");
+            throw new Exception("PlayerController needs a reference to a Weapon prefab!");
         }
         else
         {
@@ -74,6 +87,16 @@ public class PlayerController : Character
             MovePlayer();
             Attack();
         }
+
+        // Maybe put check to see if they have avaliable potions here?
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            StartCoroutine(RedPotion());
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            StartCoroutine(GreenPotion());
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            StartCoroutine(BluePotion());
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+            StartCoroutine(YellowPotion(damageUp));           
     }
 
     private void MovePlayer()
@@ -148,8 +171,7 @@ public class PlayerController : Character
         if (Input.GetKey(KeyCode.Mouse0))
         {
             Vector2 direction = GameController.MainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            weapon.AttemptSwing(direction);
-            
+            weapon.AttemptSwing(direction);           
         }
     }
 
@@ -234,5 +256,49 @@ public class PlayerController : Character
         }
 
         physicalDamageRoutine = null;
+    }
+
+    private IEnumerator RedPotion()
+    {
+        canUsePotion = false;
+       
+        health = maxHealth;
+
+        yield return new WaitForSeconds(potCooldown);
+
+        canUsePotion = true;
+    }
+
+    private IEnumerator GreenPotion()
+    {
+        canUsePotion = false;
+        // Null Status Effects
+        yield return new WaitForSeconds(potCooldown);
+
+        canUsePotion = true;
+    }
+
+    private IEnumerator BluePotion()
+    {
+        canUsePotion = false;
+        isBluePotionActive = true; // Do walkthrough enemies 
+        // Add Knockback
+
+        yield return new WaitForSeconds(potCooldown);
+        canUsePotion = true;
+
+        yield return new WaitForSeconds(3f);
+    }
+
+    private IEnumerator YellowPotion(int damage)
+    {
+        canUsePotion = false;
+        int oldDamage = weapon.stats.damage;
+        weapon.stats.damage += 10;
+
+        yield return new WaitForSeconds(potCooldown);
+
+        weapon.stats.damage = oldDamage;
+        canUsePotion = true;
     }
 }
