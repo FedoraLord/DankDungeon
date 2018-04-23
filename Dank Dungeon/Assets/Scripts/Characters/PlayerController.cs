@@ -39,6 +39,13 @@ public class PlayerController : Character
     private int damageFromPoison = 5;
     private int burnTimer = 5;
     private int poisonTimer = 10;
+    public int healingAmount;
+    public int effectInvincTimer;
+    public int physInvincTimer;
+    public int damageUp = 10;
+    public float potCooldown = 5;
+    public bool canUsePotion = true;
+    public bool isBluePotionActive = false;
     private IEnumerator physicalDamageRoutine;
     private Vector2 enemyDetectorSize = new Vector2(0.5f, 0.1f);
     
@@ -70,6 +77,16 @@ public class PlayerController : Character
             MovePlayer();
             Attack();
         }
+
+        // Maybe put check to see if they have avaliable potions here?
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            StartCoroutine(RedPotion());
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            StartCoroutine(GreenPotion());
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            StartCoroutine(BluePotion());
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+            StartCoroutine(YellowPotion(damageUp));           
     }
 
     private void MovePlayer()
@@ -140,8 +157,7 @@ public class PlayerController : Character
         if (Input.GetKey(KeyCode.Mouse0))
         {
             Vector2 direction = GameController.MainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            weapon.AttemptSwing(direction);
-            
+            weapon.AttemptSwing(direction);           
         }
     }
 
@@ -226,5 +242,49 @@ public class PlayerController : Character
         }
 
         physicalDamageRoutine = null;
+    }
+
+    private IEnumerator RedPotion()
+    {
+        canUsePotion = false;
+       
+        health = maxHealth;
+
+        yield return new WaitForSeconds(potCooldown);
+
+        canUsePotion = true;
+    }
+
+    private IEnumerator GreenPotion()
+    {
+        canUsePotion = false;
+        // Null Status Effects
+        yield return new WaitForSeconds(potCooldown);
+
+        canUsePotion = true;
+    }
+
+    private IEnumerator BluePotion()
+    {
+        canUsePotion = false;
+        isBluePotionActive = true; // Do walkthrough enemies 
+        // Add Knockback
+
+        yield return new WaitForSeconds(potCooldown);
+        canUsePotion = true;
+
+        yield return new WaitForSeconds(3f);
+    }
+
+    private IEnumerator YellowPotion(int damage)
+    {
+        canUsePotion = false;
+        int oldDamage = weapon.stats.damage;
+        weapon.stats.damage += 10;
+
+        yield return new WaitForSeconds(potCooldown);
+
+        weapon.stats.damage = oldDamage;
+        canUsePotion = true;
     }
 }
