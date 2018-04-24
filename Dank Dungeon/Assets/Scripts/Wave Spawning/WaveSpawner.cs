@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour {
     
@@ -20,7 +21,9 @@ public class WaveSpawner : MonoBehaviour {
     private bool wavesStarted;
     private WaveTimer countdown = new WaveTimer();
     private List<Enemy> aliveEnemies = new List<Enemy>();
-    
+    public Text waveCounter;
+    private string timeLeft;
+
 	void Start () {
         playerAgent = GameObject.FindGameObjectWithTag("Player3DPosition").GetComponent<NavMeshAgent>();
     }
@@ -43,6 +46,8 @@ public class WaveSpawner : MonoBehaviour {
             if (countdown.stopTime > Time.time)
             {
                 //TODO Update the timer on screen
+                timeLeft = ((Time.time - countdown.stopTime)*(-1)).ToString("0");
+                waveCounter.text = ("NEXT WAVE: " + timeLeft);
             }
             else
             {
