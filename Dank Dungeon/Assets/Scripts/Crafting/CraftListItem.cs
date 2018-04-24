@@ -107,7 +107,7 @@ public class CraftListItem : MonoBehaviour {
                 if (player.DrinkGreenPotion())
                     Number_inv--;
                 break;
-            case "Yellow Potion":
+            case "Gold Potion":
                 if (player.DrinkYellowPotion())
                     Number_inv--;
                 break;

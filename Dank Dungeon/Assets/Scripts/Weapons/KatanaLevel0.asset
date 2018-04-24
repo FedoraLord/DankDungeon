@@ -11,16 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c12992acd73dad4dac067a075f4c6eb, type: 3}
   m_Name: KatanaLevel0
   m_EditorClassIdentifier: 
-  attackRadius: 30
-  attackSpeed: 5
-  attackLatency: 0.15
-  chargeInTime: 0.05
+  attackRadius: 50
+  attackSpeed: 30
+  attackLatency: 0.2
+  chargeInTime: 0.2
   chargeOutTime: 0.05
   stabDistance: 2
-  stabSpeed: 0.15
+  stabSpeed: 0.6
   knockbackForce: 1.5
   knockbackTime: 0.1
-  damage: 2
+  damage: 4
   hitsPerSwing: 1
   swingInterruptionLayers:
     serializedVersion: 2

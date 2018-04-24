@@ -16,5 +16,11 @@ MonoBehaviour:
   - enemyIndex: 2
     type: 0
     utility: 0
-  timeBeforeWave: 5
+  - enemyIndex: 0
+    type: 0
+    utility: 0
+  - enemyIndex: 1
+    type: 0
+    utility: 0
+  timeBeforeWave: 20
   spawnRate: 0.5

@@ -22,27 +22,29 @@ public class CraftingMaterial : MonoBehaviour
                 box.size = sRender.sprite.bounds.size;
                 isFollowingPlayer = true;
                 player = collision.gameObject;
-            }
-            else
-            {
-                switch (materialType)
-                {
-                    case MaterialType.Blue:
-                        CraftingMenu.Instance.BlueMaterial++;
-                        break;
-                    case MaterialType.Red:
-                        CraftingMenu.Instance.RedMaterial++;
-                        break;
-                    case MaterialType.Green:
-                        CraftingMenu.Instance.GreenMaterial++;
-                        break;
-                    case MaterialType.Yellow:
-                        CraftingMenu.Instance.YellowMaterial++;
-                        break;
-                }
-                Destroy(gameObject);
+                Invoke("Collect", 1);
             }
         }
+    }
+
+    private void Collect()
+    {
+        switch (materialType)
+        {
+            case MaterialType.Blue:
+                CraftingMenu.Instance.BlueMaterial++;
+                break;
+            case MaterialType.Red:
+                CraftingMenu.Instance.RedMaterial++;
+                break;
+            case MaterialType.Green:
+                CraftingMenu.Instance.GreenMaterial++;
+                break;
+            case MaterialType.Yellow:
+                CraftingMenu.Instance.YellowMaterial++;
+                break;
+        }
+        Destroy(gameObject);
     }
 
     private void FixedUpdate()
@@ -51,7 +53,7 @@ public class CraftingMaterial : MonoBehaviour
         {
             Vector2 direction = player.transform.position - transform.position;
             direction.Normalize();
-            rigid.velocity = direction * 7;
+            rigid.velocity = direction * 10;
         }
     }
 }

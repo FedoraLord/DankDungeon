@@ -1,4 +1,4 @@
-OSXStandalone
+WindowsStandalone
 SceneListBegin?
 Assets/Scenes/StartMenu.unity
 Assets/Scenes/FinalMap.unity
@@ -158,7 +158,7 @@ c3b726e1ef77ecefcf78c4586a6bf32e Assembly-CSharp.dll:Cinemachine.CinemachineTrac
 4e64a8439d3f2714054286cecee27cab Assembly-CSharp.dll:UnityEngine.Tilemaps.PipelineTile
 c6751c11d95cf225da21e44c3567cbd2 Assembly-CSharp.dll:.SpawnPit
 166f2fb08a5bd8e5be94b11ac3fce237 Assembly-CSharp.dll:Cinemachine.CinemachineTargetGroup
-c289cda456dd51f0188de656af0d2dc3 Assembly-CSharp.dll:.PlayerController
+6dd0cbf9ea8d409e5f9894c866daa316 Assembly-CSharp.dll:.PlayerController
 01871d49a9abb3105a831dff099ec768 Assembly-CSharp.dll:Cinemachine.CinemachineTransposer
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -191,7 +191,7 @@ e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 0fcbcbd9afa80c74caef99e7ba749bb0 Assembly-CSharp.dll:Cinemachine.CinemachineCollider
 0f54a2b60c93ab3dd560d125a2b60197 Assembly-CSharp.dll:Cinemachine.CinemachineBlenderSettings
 2c5258760e299b7177995928629d46d7 Assembly-CSharp.dll:.Dagger
-919ebda836d3bddd413a2564fafb2a47 Assembly-CSharp.dll:.WaveSpawner
+89621d28b72016721bb37f926165d6d4 Assembly-CSharp.dll:.WaveSpawner
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
