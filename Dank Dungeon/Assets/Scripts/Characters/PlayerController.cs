@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : Character
 {
@@ -25,6 +26,10 @@ public class PlayerController : Character
     public AudioSource cough2Sound;
     public AudioSource cough3Sound;
     public CraftingMenu menu;
+    public Text healthCounter;
+
+    [NonSerialized]
+    public Dictionary<CraftingMaterial, int> Inventory;
 
     private SpriteRenderer spriteR;
     private bool hasControl = true;
@@ -44,7 +49,6 @@ public class PlayerController : Character
     public float potCooldown = 5;
     public bool canUsePotion = true;
     public bool isBluePotionActive = false;
-    public bool isGreenPotionActive = false;
     private IEnumerator physicalDamageRoutine;
     private Vector2 enemyDetectorSize = new Vector2(0.5f, 0.1f);
     
@@ -74,6 +78,7 @@ public class PlayerController : Character
     void Update () {
         if (!menu.IsOpen)
         {
+            healthCounter.text = "HEALTH: " + health;
             if (health <= 0)
             {
                 SceneManager.LoadScene("Lose");
@@ -83,6 +88,16 @@ public class PlayerController : Character
                 MovePlayer();
                 Attack();
             }
+
+            // Maybe put check to see if they have avaliable potions here?
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                StartCoroutine(RedPotion());
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+                StartCoroutine(GreenPotion());
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+                StartCoroutine(BluePotion());
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+                StartCoroutine(YellowPotion(damageUp));           
         }
         else
         {
@@ -210,14 +225,8 @@ public class PlayerController : Character
 
     protected override void StandingInLava()
     {
-        if (!isGreenPotionActive)
-            StartCoroutine(TakeLavaDamage());
-    }
-
-    protected override void StandingInPoison()
-    {
-        if (!isGreenPotionActive)
-            StartCoroutine(TakePoisonDamage());
+        Debug.Log("Reeeeee");
+        StartCoroutine(TakeLavaDamage());
     }
 
     public IEnumerator TakePitDamage()
@@ -236,7 +245,6 @@ public class PlayerController : Character
     {
         yield return new WaitForSeconds(3f);
         TakePhysicalDamage(damageFromPoison, true);
-
     }
 
     private void TakePhysicalDamage(int damage, bool interrupt = false)
@@ -276,36 +284,6 @@ public class PlayerController : Character
         physicalDamageRoutine = null;
     }
 
-    public bool DrinkRedPotion()
-    {
-        return DrinkPotionIfAble(RedPotion());
-    }
-
-    public bool DrinkBluePotion()
-    {
-        return DrinkPotionIfAble(BluePotion());
-    }
-
-    public bool DrinkGreenPotion()
-    {
-        return DrinkPotionIfAble(GreenPotion());
-    }
-
-    public bool DrinkYellowPotion()
-    {
-        return DrinkPotionIfAble(YellowPotion(damageUp));
-    }
-
-    private bool DrinkPotionIfAble(IEnumerator potionRoutine)
-    {
-        if (canUsePotion)
-        {
-            StartCoroutine(potionRoutine);
-            return true;
-        }
-        return false;
-    }
-
     private IEnumerator RedPotion()
     {
         canUsePotion = false;
@@ -320,11 +298,9 @@ public class PlayerController : Character
     private IEnumerator GreenPotion()
     {
         canUsePotion = false;
-        isGreenPotionActive = true;
-        
+        // Null Status Effects
         yield return new WaitForSeconds(potCooldown);
 
-        isGreenPotionActive = false;
         canUsePotion = true;
     }
 
@@ -334,7 +310,6 @@ public class PlayerController : Character
         isBluePotionActive = true;
 
         yield return new WaitForSeconds(potCooldown);
-
         canUsePotion = true;
 
         yield return new WaitForSeconds(3f);
