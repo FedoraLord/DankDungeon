@@ -52,6 +52,7 @@ public class PlayerController : Character
     public float potCooldown = 5;
     public bool canUsePotion = true;
     public bool isBluePotionActive = false;
+    public bool isGreenPotionActive = false;
     private IEnumerator physicalDamageRoutine;
     private Vector2 enemyDetectorSize = new Vector2(0.5f, 0.1f);
     private int weaponIndex;
@@ -270,14 +271,12 @@ public class PlayerController : Character
 
     protected override void StandingInLava()
     {
-        StartCoroutine(TakeLavaDamage(damageFromLava, burnTimer));
+        StartCoroutine(TakeLavaDamage());
     }
 
     protected override void StandingInPoison()
     {
         StartCoroutine(TakePoisonDamage());
-        Debug.Log("Reeeeee");
-        //StartCoroutine(TakeLavaDamage());
     }
 
     public IEnumerator TakePitDamage()
@@ -286,52 +285,56 @@ public class PlayerController : Character
         TakePhysicalDamage(damageFromPits, true);
     }
 
-    public IEnumerator TakeLavaDamage(int damageAmount, int duration)
+    public IEnumerator TakeLavaDamage()
     {
         float timer;
         bool isRunning = false;
 
-        //if (isRunning == false)
-        //{
-        //    isRunning = true;
-        //    do
-        //    {
-        //        if (isGreenPotionActive)
-        //        {
-        //            isRunning = false;
-        //            break;
-        //        }
-        //        else
-        //        {
-        //            timer = Time.time + burnTimer;
-        //            health -= damageFromLava;
-        //            Debug.Log(health);
-        yield return new WaitForSeconds(3);
-        //            isRunning = false;
-        //        }
-        //    }
-        //    while (timer > Time.time);
-        //}
+        if (isRunning)
+        {
+            isRunning = true;
+            do
+            {
+                if (isGreenPotionActive)
+                {
+                    isRunning = false;
+                    break;
+                }
+                else
+                {
+                    timer = Time.time + burnTimer;
+                    health -= damageFromLava;
+                    yield return new WaitForSeconds(3);
+                    isRunning = false;
+                }
+            }
+            while (timer > Time.time);
+        }
     }
 
     public IEnumerator TakePoisonDamage()
     {
+        bool isRunning = false;
         float timer;
 
-        //do
-        //{
-        //    if (isGreenPotionActive)
-        //        break;
-        //    else
-        //    {
-        //        timer = Time.time + poisonTimer;
-        //        health -= damageFromPoison;
-        //        yield return new WaitForSeconds(3f);
-        //    }
-        //}
-        //while (timer > Time.time);
-        yield return new WaitForSeconds(3f);
-        TakePhysicalDamage(damageFromPoison, true);
+        if (isRunning)
+        {
+            do
+            {
+                if (isGreenPotionActive)
+                {
+                    isRunning = false;
+                    break;
+                }
+                else
+                {
+                    timer = Time.time + poisonTimer;
+                    health -= damageFromPoison;
+                    yield return new WaitForSeconds(3);
+                }
+            }
+            while (timer > Time.time);
+        }
     }
 
     private void TakePhysicalDamage(int damage, bool interrupt = false)
@@ -415,9 +418,10 @@ public class PlayerController : Character
     private IEnumerator GreenPotion()
     {
         canUsePotion = false;
-        // Null Status Effects
+        isGreenPotionActive = true;
         yield return new WaitForSeconds(potCooldown);
 
+        isGreenPotionActive = false;
         canUsePotion = true;
     }
 
