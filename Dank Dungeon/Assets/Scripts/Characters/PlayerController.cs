@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : Character
 {
@@ -26,9 +27,17 @@ public class PlayerController : Character
     public AudioSource cough2Sound;
     public AudioSource cough3Sound;
     public CraftingMenu menu;
+<<<<<<< HEAD
     public List<ActiveWeapon> allWeapons;
     public Dagger daggerPrefab;
     
+=======
+    public Text healthCounter;
+
+    [NonSerialized]
+    public Dictionary<CraftingMaterial, int> Inventory;
+
+>>>>>>> 8f5de3111c9dd38a831bd2257bcb393a9b8fa503
     private SpriteRenderer spriteR;
     private bool hasControl = true;
     private float speed = 5;
@@ -36,18 +45,17 @@ public class PlayerController : Character
     private int health;
     private int maxHealth = 100;
     private int damageFromPits = 20;
-    private int damageFromLava = 2;
-    private int damageFromPoison = 5;
-    public int burnTimer = 5;
-    public int poisonTimer = 5;
+    private int damageFromLava = 1;
+    private int damageFromPoison = 2;
+    public int burnTimer = 3;
+    public int poisonTimer = 3;
     public int healingAmount;
     public int effectInvincTimer;
     public int physInvincTimer;
-    public int damageUp = 10;
+    public int damageUp = 5;
     public float potCooldown = 5;
     public bool canUsePotion = true;
     public bool isBluePotionActive = false;
-    public bool isGreenPotionActive = false;
     private IEnumerator physicalDamageRoutine;
     private Vector2 enemyDetectorSize = new Vector2(0.5f, 0.1f);
     private int weaponIndex;
@@ -112,6 +120,7 @@ public class PlayerController : Character
     void Update () {
         if (!menu.IsOpen)
         {
+            healthCounter.text = "HEALTH: " + health;
             if (health <= 0)
             {
                 SceneManager.LoadScene("Lose");
@@ -123,6 +132,16 @@ public class PlayerController : Character
                 SwitchWeapon();
                 ThrowDagger();
             }
+
+            // Maybe put check to see if they have avaliable potions here?
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                StartCoroutine(RedPotion());
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+                StartCoroutine(GreenPotion());
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+                StartCoroutine(BluePotion());
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+                StartCoroutine(YellowPotion(damageUp));           
         }
         else
         {
@@ -265,14 +284,17 @@ public class PlayerController : Character
 
     protected override void StandingInLava()
     {
-        if (!isGreenPotionActive)
-            StartCoroutine(TakeLavaDamage());
+<<<<<<< HEAD
+        StartCoroutine(TakeLavaDamage(damageFromLava, burnTimer));
     }
 
     protected override void StandingInPoison()
     {
-        if (!isGreenPotionActive)
-            StartCoroutine(TakePoisonDamage());
+        StartCoroutine(TakePoisonDamage());
+=======
+        Debug.Log("Reeeeee");
+        StartCoroutine(TakeLavaDamage());
+>>>>>>> 08038af7d3017e61ab57b37be926107ae67d4f2a
     }
 
     public IEnumerator TakePitDamage()
@@ -281,17 +303,55 @@ public class PlayerController : Character
         TakePhysicalDamage(damageFromPits, true);
     }
 
-    public IEnumerator TakeLavaDamage()
+    public IEnumerator TakeLavaDamage(int damageAmount, int duration)
     {
-        yield return new WaitForSeconds(3f);
-        TakePhysicalDamage(damageFromLava, true);
+        float timer;
+        bool isRunning = false;
+
+        if (isRunning == false)
+        {
+            isRunning = true;
+            do
+            {
+                if (isGreenPotionActive)
+                {
+                    isRunning = false;
+                    break;
+                }
+                else
+                {
+                    timer = Time.time + burnTimer;
+                    health -= damageFromLava;
+                    Debug.Log(health);
+                    yield return new WaitForSeconds(3);
+                    isRunning = false;
+                }
+            }
+            while (timer > Time.time);
+        }
     }
 
     public IEnumerator TakePoisonDamage()
     {
+<<<<<<< HEAD
+        float timer;
+
+        do
+        {
+            if (isGreenPotionActive)
+                break;
+            else
+            {
+                timer = Time.time + poisonTimer;
+                health -= damageFromPoison;
+                yield return new WaitForSeconds(3f);
+            }
+        }
+        while (timer > Time.time);
+=======
         yield return new WaitForSeconds(3f);
         TakePhysicalDamage(damageFromPoison, true);
-
+>>>>>>> 08038af7d3017e61ab57b37be926107ae67d4f2a
     }
 
     private void TakePhysicalDamage(int damage, bool interrupt = false)
@@ -331,36 +391,6 @@ public class PlayerController : Character
         physicalDamageRoutine = null;
     }
 
-    public bool DrinkRedPotion()
-    {
-        return DrinkPotionIfAble(RedPotion());
-    }
-
-    public bool DrinkBluePotion()
-    {
-        return DrinkPotionIfAble(BluePotion());
-    }
-
-    public bool DrinkGreenPotion()
-    {
-        return DrinkPotionIfAble(GreenPotion());
-    }
-
-    public bool DrinkYellowPotion()
-    {
-        return DrinkPotionIfAble(YellowPotion(damageUp));
-    }
-
-    private bool DrinkPotionIfAble(IEnumerator potionRoutine)
-    {
-        if (canUsePotion)
-        {
-            StartCoroutine(potionRoutine);
-            return true;
-        }
-        return false;
-    }
-
     private IEnumerator RedPotion()
     {
         canUsePotion = false;
@@ -375,11 +405,9 @@ public class PlayerController : Character
     private IEnumerator GreenPotion()
     {
         canUsePotion = false;
-        isGreenPotionActive = true;
-        
+        // Null Status Effects
         yield return new WaitForSeconds(potCooldown);
 
-        isGreenPotionActive = false;
         canUsePotion = true;
     }
 
@@ -389,7 +417,6 @@ public class PlayerController : Character
         isBluePotionActive = true;
 
         yield return new WaitForSeconds(potCooldown);
-
         canUsePotion = true;
 
         yield return new WaitForSeconds(3f);
