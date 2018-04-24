@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c12992acd73dad4dac067a075f4c6eb, type: 3}
+  m_Name: KatanaLevel0
+  m_EditorClassIdentifier: 
+  attackRadius: 30
+  attackSpeed: 5
+  attackLatency: 0.15
+  chargeInTime: 0.05
+  chargeOutTime: 0.05
+  stabDistance: 2
+  stabSpeed: 0.15
+  knockbackForce: 1.5
+  knockbackTime: 0.1
+  damage: 2
+  hitsPerSwing: 1
+  swingInterruptionLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  sprite: {fileID: 21300010, guid: 488954c2839bb9246b96bd74bd3cb97b, type: 3}
+  nextLevel: {fileID: 11400000, guid: 66dd92b15da8f044d9ed156fd595259e, type: 2}

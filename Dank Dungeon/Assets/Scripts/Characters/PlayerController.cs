@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -10,7 +11,7 @@ public class PlayerController : Character
     public static Transform lastRoom;
 
     public Transform weaponPivot;
-    public Weapon weapon;
+    public Weapon currentWeapon;
     public Transform topEnemyDetector;
     public Transform bottomEnemyDetector;
     public Transform leftEnemyDetector;
@@ -25,7 +26,9 @@ public class PlayerController : Character
     public AudioSource cough2Sound;
     public AudioSource cough3Sound;
     public CraftingMenu menu;
-
+    public List<ActiveWeapon> allWeapons;
+    public Dagger daggerPrefab;
+    
     private SpriteRenderer spriteR;
     private bool hasControl = true;
     private float speed = 5;
@@ -47,27 +50,62 @@ public class PlayerController : Character
     public bool isGreenPotionActive = false;
     private IEnumerator physicalDamageRoutine;
     private Vector2 enemyDetectorSize = new Vector2(0.5f, 0.1f);
+    private int weaponIndex;
     
+    [Serializable]
+    public class ActiveWeapon
+    {
+        public bool isUnlocked;
+        public Weapon weapon;
+    }
+
 	void Start () {
         InitializeCharacter();
         health = maxHealth;
-        SetWeapon(weapon);
+
+        for (int i = 0; i < allWeapons.Count; i++)
+        {
+            allWeapons[i].weapon.SetSprite();
+        }
+        SetWeapon(allWeapons[0].weapon);
+
         Mirror mirror = GetComponent<Mirror>();
         mirror.mirror3D.GetComponent<NavMeshAgent>().Warp(mirror.Coordinates3D());
         anim = animationObject.GetComponent<Animator>();
         spriteR = animationObject.GetComponent<SpriteRenderer>();
+
+        var a = GetWeapon(typeof(ShortSword));
+        var b = currentWeapon.GetType();
+        var c = allWeapons[0].weapon.GetType();
+        var d = b == c;
+    }
+
+    public ActiveWeapon GetWeapon(Type weaponType)
+    {
+        return allWeapons.Where(x => x.weapon.GetType() == weaponType).FirstOrDefault();
     }
 
     public void SetWeapon(Weapon newWeapon)
     {
-        if (weapon == null)
+        currentWeapon = newWeapon;
+    }
+
+    public void SwitchWeapon()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            throw new Exception("PlayerController needs a reference to a Weapon prefab!");
-        }
-        else
-        {
-            weapon = Instantiate(newWeapon, weaponPivot);
-            weapon.SetSprite();
+            if (currentWeapon.Sheathe())
+            {
+                for (int i = (weaponIndex + 1) % allWeapons.Count; i != weaponIndex; i = (i + 1) % allWeapons.Count)
+                {
+                    if (allWeapons[i].isUnlocked)
+                    {
+                        weaponIndex = i;
+                        currentWeapon = allWeapons[i].weapon;
+                        break;
+                    }
+                }
+            }
         }
     }
 
@@ -82,11 +120,28 @@ public class PlayerController : Character
             {
                 MovePlayer();
                 Attack();
+                SwitchWeapon();
+                ThrowDagger();
             }
         }
         else
         {
             GameController.PlayerCtrl.walkSound.Stop();
+        }
+    }
+
+    private void ThrowDagger()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            if (CraftingMenu.Instance.daggers.Number_inv > 0)
+            {
+                Vector2 cursorDirection = GameController.MainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+                var a = Instantiate(daggerPrefab, null);
+                a.transform.position = transform.position;
+                a.transform.up = cursorDirection;
+                CraftingMenu.Instance.daggers.Number_inv--;
+            }
         }
     }
 
@@ -164,7 +219,7 @@ public class PlayerController : Character
         if (Input.GetKey(KeyCode.Mouse0))
         {
             Vector2 direction = GameController.MainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            weapon.AttemptSwing(direction);           
+            currentWeapon.AttemptSwing(direction);           
         }
     }
 
@@ -343,12 +398,12 @@ public class PlayerController : Character
     private IEnumerator YellowPotion(int damage)
     {
         canUsePotion = false;
-        int oldDamage = weapon.stats.damage;
-        weapon.stats.damage += 10;
+        int oldDamage = currentWeapon.stats.damage;
+        currentWeapon.stats.damage += 10;
 
         yield return new WaitForSeconds(potCooldown);
 
-        weapon.stats.damage = oldDamage;
+        currentWeapon.stats.damage = oldDamage;
         canUsePotion = true;
     }
 }

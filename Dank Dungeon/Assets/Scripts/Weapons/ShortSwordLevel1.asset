@@ -11,8 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c12992acd73dad4dac067a075f4c6eb, type: 3}
   m_Name: ShortSwordLevel1
   m_EditorClassIdentifier: 
-  materialsNeeded: []
-  craftingTime: 0
   attackRadius: 70
   attackSpeed: 20
   attackLatency: 0.25
@@ -22,9 +20,10 @@ MonoBehaviour:
   stabSpeed: 0.3
   knockbackForce: 3
   knockbackTime: 0.1
-  damage: 1
+  damage: 2
   hitsPerSwing: 3
   swingInterruptionLayers:
     serializedVersion: 2
     m_Bits: 512
   sprite: {fileID: 21300004, guid: 488954c2839bb9246b96bd74bd3cb97b, type: 3}
+  nextLevel: {fileID: 0}

@@ -37,6 +37,16 @@ public abstract class Weapon : MonoBehaviour
         ResetRestingPosition();
     }
 
+    public bool Sheathe()
+    {
+        if (isSwinging)
+            return false;
+        
+        //?
+
+        return true;
+    }
+
     public void SetSprite()
     {
         renderer.sprite = stats.sprite;
@@ -44,9 +54,9 @@ public abstract class Weapon : MonoBehaviour
         collider.offset = stats.sprite.bounds.center;
     }
 
-    public void ApplyUpgrade(WeaponStats upgrade)
+    public void ApplyUpgrade()
     {
-        stats = upgrade;
+        stats = stats.nextLevel;
         level++;
         SetSprite();
     }

@@ -23,6 +23,8 @@ public class WeaponStats : Craftable
     public LayerMask swingInterruptionLayers;
     public Sprite sprite;
 
+    public WeaponStats nextLevel;
+
     //protected override void OnCraft()
     //{
     //    GameController.PlayerCtrl.weapon.ApplyUpgrade(this);

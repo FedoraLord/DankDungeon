@@ -80,11 +80,89 @@ public class CraftListItem : MonoBehaviour {
 
     public void Used()
     {
+        PlayerController player = GameController.PlayerCtrl;
+        switch (itemName)
+        {
+            case "Short Sword":
+                TryEquipSword(typeof(ShortSword));
+                CraftingMenu.Instance.UpdateUseButton();
+                break;
+            case "Broad Sword":
+                TryEquipSword(typeof(BroadSword));
+                CraftingMenu.Instance.UpdateUseButton();
+                break;
+            case "Katana":
+                TryEquipSword(typeof(Katana));
+                CraftingMenu.Instance.UpdateUseButton();
+                break;
+            case "Red Potion":
+                if (player.DrinkRedPotion())
+                    Number_inv--;
+                break;
+            case "Blue Potion":
+                if (player.DrinkBluePotion())
+                    Number_inv--;
+                break;
+            case "Green Potion":
+                if (player.DrinkGreenPotion())
+                    Number_inv--;
+                break;
+            case "Yellow Potion":
+                if (player.DrinkYellowPotion())
+                    Number_inv--;
+                break;
+        }
+    }
 
+    private void TryEquipSword(Type t)
+    {
+        PlayerController player = GameController.PlayerCtrl;
+        PlayerController.ActiveWeapon w = player.GetWeapon(t);
+        if (w.weapon.Sheathe())
+        {
+            player.SetWeapon(w.weapon);
+        }
     }
 
     public void Crafted()
     {
-
+        PlayerController player = GameController.PlayerCtrl;
+        switch (itemName)
+        {
+            case "Short Sword":
+                var a = player.GetWeapon(typeof(ShortSword));
+                var b = a.weapon;
+                b.ApplyUpgrade();
+                CraftingMenu.Instance.UpdateCraftButton();
+                CraftingMenu.Instance.UpdateUseButton();
+                break;
+            case "Broad Sword":
+                PlayerController.ActiveWeapon broadSword = player.GetWeapon(typeof(BroadSword));
+                if (broadSword.isUnlocked)
+                    broadSword.weapon.ApplyUpgrade();
+                else
+                    broadSword.isUnlocked = true;
+                CraftingMenu.Instance.UpdateCraftButton();
+                CraftingMenu.Instance.UpdateUseButton();
+                break;
+            case "Katana":
+                PlayerController.ActiveWeapon katana = player.GetWeapon(typeof(Katana));
+                if (katana.isUnlocked)
+                    katana.weapon.ApplyUpgrade();
+                else
+                    katana.isUnlocked = true;
+                CraftingMenu.Instance.UpdateCraftButton();
+                CraftingMenu.Instance.UpdateUseButton();
+                break;
+            case "Armor":
+            case "Red Potion":
+            case "Blue Potion":
+            case "Green Potion":
+            case "Yellow Potion":
+            case "Dagger":
+            case "Bomb":
+                Number_inv++;
+                break;
+        }
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CraftingMaterial : MonoBehaviour
 {
-
     public Rigidbody2D rigid;
     public BoxCollider2D box;
     public SpriteRenderer sRender;
@@ -52,7 +51,7 @@ public class CraftingMaterial : MonoBehaviour
         {
             Vector2 direction = player.transform.position - transform.position;
             direction.Normalize();
-            rigid.velocity = direction * 5;
+            rigid.velocity = direction * 7;
         }
     }
 }

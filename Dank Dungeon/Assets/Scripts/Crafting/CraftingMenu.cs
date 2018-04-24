@@ -28,6 +28,8 @@ public class CraftingMenu : MonoBehaviour
     public Button useButton_button;
     public Button craftButton_button;
 
+    public CraftListItem daggers;
+
     public bool IsOpen
     {
         get { return isOpen; }
@@ -78,10 +80,10 @@ public class CraftingMenu : MonoBehaviour
     }
 
     private bool isOpen;
-    private int blueMaterial;
-    private int redMaterial;
-    private int greenMaterial;
-    private int yellowMaterial;
+    private int blueMaterial = 99;
+    private int redMaterial = 99;
+    private int greenMaterial = 99;
+    private int yellowMaterial = 99;
     
     [SerializeField]
     private GameObject[] immediateChildren;
@@ -92,17 +94,6 @@ public class CraftingMenu : MonoBehaviour
         {
             ToggleMenu();
         }
-
-        //if (Input.GetKeyDown(KeyCode.Alpha1))
-        //    BlueMaterial++;
-        //if (Input.GetKeyDown(KeyCode.Alpha2))
-        //    RedMaterial++;
-        //if (Input.GetKeyDown(KeyCode.Alpha3))
-        //    GreenMaterial++;
-        //if (Input.GetKeyDown(KeyCode.Alpha4))
-        //    YellowMaterial++;
-        //if (Input.GetKeyDown(KeyCode.Alpha0))
-        //    selectedItem.Number_inv++;
     }
 
     public void ToggleMenu()
@@ -128,6 +119,10 @@ public class CraftingMenu : MonoBehaviour
 
     public void CraftButtonClicked()
     {
+        BlueMaterial -= selectedItem.blueMaterialNeeded;
+        RedMaterial -= selectedItem.redMaterialNeeded;
+        GreenMaterial -= selectedItem.greenMaterialNeeded;
+        YellowMaterial -= selectedItem.yellowMaterialNeeded;
         selectedItem.Crafted();
     }
 
@@ -164,6 +159,34 @@ public class CraftingMenu : MonoBehaviour
     public void UpdateUseButton()
     {
         useButton_button.interactable = selectedItem.canUseInMenu;
+
+        if (!selectedItem.canUseInMenu)
+        {
+            useButton_button.interactable = false;
+        }
+        else
+        {
+            PlayerController player = GameController.PlayerCtrl;
+            PlayerController.ActiveWeapon w = null;
+
+            switch (selectedItem.ItemName)
+            {
+                case "Short Sword":
+                    w = player.GetWeapon(typeof(ShortSword));
+                    break;
+                case "Broad Sword":
+                    w = player.GetWeapon(typeof(BroadSword));
+                    break;
+                case "Katana":
+                    w = player.GetWeapon(typeof(Katana));
+                    break;
+            }
+
+            if (w != null)
+            {
+                useButton_button.interactable = w.isUnlocked && w.weapon.Sheathe() && player.currentWeapon != w.weapon;
+            }
+        }
         useButton_text.text = selectedItem.GetUseButtonText();
     }
 

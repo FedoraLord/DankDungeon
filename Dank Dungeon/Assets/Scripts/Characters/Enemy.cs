@@ -151,7 +151,7 @@ public class Enemy : Character
         knockbackRoutine = null;
     }
 
-    void Die()
+    public void Die()
     {
         GameController.Spawner.EnemyDied(this);
         GameController.GameCtrl.RandomDrop(transform.position);
