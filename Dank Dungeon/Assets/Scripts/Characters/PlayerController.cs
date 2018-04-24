@@ -33,14 +33,14 @@ public class PlayerController : Character
     private int health;
     private int maxHealth = 100;
     private int damageFromPits = 20;
-    private int damageFromLava = 2;
-    private int damageFromPoison = 5;
-    public int burnTimer = 5;
-    public int poisonTimer = 5;
+    private int damageFromLava = 1;
+    private int damageFromPoison = 2;
+    public int burnTimer = 3;
+    public int poisonTimer = 3;
     public int healingAmount;
     public int effectInvincTimer;
     public int physInvincTimer;
-    public int damageUp = 10;
+    public int damageUp = 5;
     public float potCooldown = 5;
     public bool canUsePotion = true;
     public bool isBluePotionActive = false;
@@ -210,14 +210,12 @@ public class PlayerController : Character
 
     protected override void StandingInLava()
     {
-        if (!isGreenPotionActive)
-            StartCoroutine(TakeLavaDamage());
+        StartCoroutine(TakeLavaDamage(damageFromLava, burnTimer));
     }
 
     protected override void StandingInPoison()
     {
-        if (!isGreenPotionActive)
-            StartCoroutine(TakePoisonDamage());
+        StartCoroutine(TakePoisonDamage());
     }
 
     public IEnumerator TakePitDamage()
@@ -226,17 +224,50 @@ public class PlayerController : Character
         TakePhysicalDamage(damageFromPits, true);
     }
 
-    public IEnumerator TakeLavaDamage()
+    public IEnumerator TakeLavaDamage(int damageAmount, int duration)
     {
-        yield return new WaitForSeconds(3f);
-        TakePhysicalDamage(damageFromLava, true);
+        float timer;
+        bool isRunning = false;
+
+        if (isRunning == false)
+        {
+            isRunning = true;
+            do
+            {
+                if (isGreenPotionActive)
+                {
+                    isRunning = false;
+                    break;
+                }
+                else
+                {
+                    timer = Time.time + burnTimer;
+                    health -= damageFromLava;
+                    Debug.Log(health);
+                    yield return new WaitForSeconds(3);
+                    isRunning = false;
+                }
+            }
+            while (timer > Time.time);
+        }
     }
 
     public IEnumerator TakePoisonDamage()
     {
-        yield return new WaitForSeconds(3f);
-        TakePhysicalDamage(damageFromPoison, true);
+        float timer;
 
+        do
+        {
+            if (isGreenPotionActive)
+                break;
+            else
+            {
+                timer = Time.time + poisonTimer;
+                health -= damageFromPoison;
+                yield return new WaitForSeconds(3f);
+            }
+        }
+        while (timer > Time.time);
     }
 
     private void TakePhysicalDamage(int damage, bool interrupt = false)
